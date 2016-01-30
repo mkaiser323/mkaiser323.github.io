@@ -57,6 +57,9 @@ var skills = [
 			{
 				"skill":"Java",
 				"stars":4
+			},{
+				"skill":"Python",
+				"stars":2
 			}
 		]
 	},{
