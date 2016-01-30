@@ -108,7 +108,7 @@ var experience = [
 		"position":"Web Developer",
 		"date":"December 2015 - Present",
 		"place":"The International Center for Climate Change Impact Studies",
-		"details":"Currently developing a Wordress web site for a newly established environmental organization",
+		"details":"Currently developing a WordPress web site for a newly established environmental organization",
 		"bullet_points":[],
 		"loc":"Bronx, NY",
 		"link":"http://climate-change-impact-studies.org"
