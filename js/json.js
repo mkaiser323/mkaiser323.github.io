@@ -122,7 +122,7 @@ var experience = [
 		"link":"http://electifi.com/landingNotDone"
 	},{
 		"position":"Mathematics Researcher & Programmer",
-		"date":"October 2014 - January 2016",
+		"date":"October 2015 - January 2016",
 		"place":"Research Foundation - CUNY",
 		"details":"Worked on open problems in CAT(0) space with direct application to mapping optimal evolutionary history in phylogenetic trees",
 		"bullet_points":[
