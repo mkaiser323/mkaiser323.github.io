@@ -85,7 +85,7 @@ var awards = [
 		"place":"Lehman College",
 		"date":"October 2015"
 	},{
-		"award":"Presidential Scholar Award for Outstanding Academic Achievement",
+		"award":"Dean's List",
 		"place":"Lehman College",
 		"date":"Fall 2014 <br> to <br> Spring 2015"
 	},{
