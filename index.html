@@ -1,1 +1,170 @@
-Hello World
+<!Doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+		<!--Font Awesome-->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+		<!--Google Fonts-->
+		<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+
+		<!--Custom CSS-->
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+
+		<!--Favicon-->
+		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+ 
+		<title>Mahedi Kaiser Interactive Resume</title>
+
+	</head>
+	<body>
+		<nav class = "navbar navbar-fixed-top">
+			<div class = "container">
+				<div class = "navbar-header">
+					<a class = "navbar-brand blue page-scroll" href="header"><img src = "img/header.png" class = "header"/></a>
+					<i class = "fa fa-bars"></i>
+				</div>
+				<ul class = "nav navbar-nav navbar-right">
+					<li><a class="page-scroll" href = "#summary">Summary</a></li>
+					<li><a class="page-scroll" href = "#projects">Projects</a></li>
+					<li><a class="page-scroll" href = "#experience">Experience</a></li>
+					<li><a class="page-scroll" href = "#awards">Awards & Certificates</a></li>
+					<li><a class="page-scroll" href = "#skills">Skills</a></li>
+					<li><a class="page-scroll" href = "footer">Contact</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<header>
+			<div class = "container">
+				<div class = "row text-center">
+					<div class = "header-content">
+						<div class = "col-md-12">
+							<h1>Mahedi Kaiser </h1>
+							<hr>
+							<h2>Interactive Resume</h2>
+						</div>
+						<div class = "col-md-12"><a class = "page-scroll" href = "#summary"><i class = "fa fa-angle-down"></i></a></div>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<section class = "hidebg" id = "summary">
+			<div class = "container">
+				<div class = "row">
+					<div class = "col-md-12">
+						<div class = "row">
+							<h2>Summary</h2>
+							<p class = "description text-center">Aspiring Software Engineer and Web Developer</p>
+						</div>
+						<hr>
+						<div class = "row summary-content">
+							<div class = "col-md-4">
+								<h3 class = "text-left blue">Hi, I'm Mahedi Kaiser</h3>
+								<p class = "text-left">I'm an aspring web developer and software engineer. I love everything related to coding. I enjoy solving puzzles, fixing things, and coming up with creative ideas and solutions.  Here, you will find the projects that I have worked on so far. </p>
+								<br>
+								<p class = "text-left">You can also see a print version of my resume <span class = "print_resume"><a target = "_blank" href = "http://bit.do/MKaiser_Resume">here</a></span></p>
+							</div>
+							<div class = "col-md-4 col-sm-12">
+								<div class = "profile-picture"></div>
+							</div>
+							<div class = "col-md-4">
+								<h3 class = "blue">Education</h3>
+								<ul>
+									<li><span class = "black">Lehman College</span></li>
+									<li><span class = "black">Bachelor of Arts:</span> Computer Science</li>
+									<li><span class = "black">Expected Graduation:</span> June 2016</li>
+									<li><span class = "black">GPA:</span> 3.9</li>
+									<li><span class = "black">Location:</span> Bronx, New York</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+		<section class = "projects showbg" id = "projects">
+			<div class = "container">
+				<h2>Projects</h2>
+				<hr>
+				<div class = "row all-projects" id = "display_projects"></div>
+			</div>
+		</section>
+
+		<section class = "hidebg" id = "experience">
+			<div class = "container">
+				<h2>Experience</h2>
+				<hr>
+				<div class = "row" id = "display_experience"></div>
+			</div>
+		</section>
+
+		<section class = "showbg" id = "awards">
+			<div class = "container">
+				<div class = "row">
+					<h2>Awards & Certificates</h2>
+					<hr>
+					<div class = "row" id = 'display_awards'></div>
+				</div>
+			</div>
+		</section>
+
+		<section class = "hidebg" id = "skills">
+			<div class = "container">
+				<h2>Skills</h2>
+				<hr>
+				<div class = "row">
+					<div id = "display_skills"></div>
+				</div>
+			</div>
+		</section>
+
+
+		<footer>
+			<div class = "container">
+				<h2>Contact</h2>
+				<hr>
+				<div class = "row text-center">
+					<div class = "col-md-4"></div>
+					<div class = "col-md-4">
+						<div id = "display_contact"></div>
+					</div>
+					<div class = "col-md-4"></div>
+				</div>
+				<hr>
+			</div>
+
+		</footer>
+
+		<!--<div class = "back-to-top">
+			<a class = "page-scroll" href="header"><i class = "fa fa-arrow-up"></i></a>
+		</div>-->
+
+
+		<!--JQUERY-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+	    <!-- Scrolling Nav JavaScript -->
+	    <script src="js/jquery.easing.min.js"></script>
+	    <script src="js/scrolling-nav.js"></script>
+
+	    <!--external json-->
+	    <script type="text/javascript" src = "js/json.js"></script>
+
+	    <!--My own custom JavaScript-->
+		<script type="text/javascript" src = "js/script.js"></script>
+	</body>
+</html>
