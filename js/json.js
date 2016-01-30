@@ -126,7 +126,7 @@ var experience = [
 		"place":"CUNY - Research Foundation",
 		"details":"Worked on open problems in CAT(0) space with direct application to mapping optimal evolutionary history in phylogenetic trees",
 		"bullet_points":[
-			{"bullet":"Worked in teams to come up with algorithms to compute shortest paths in CAT(0) space"},
+			{"bullet":"Worked in groups to come up with algorithms to compute shortest paths in CAT(0) space"},
 			{"bullet":"Wrote python code to implement proposed solutions"}
 		],
 		"loc":"Bronx, NY",
