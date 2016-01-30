@@ -123,7 +123,7 @@ var experience = [
 	},{
 		"position":"Mathematics Researcher & Programmer",
 		"date":"October 2014 - January 2016",
-		"place":"CUNY-Lehman College",
+		"place":"CUNY - Research Foundation",
 		"details":"Worked on open problems in CAT(0) space with direct application to mapping optimal evolutionary history in phylogenetic trees",
 		"bullet_points":[
 			{"bullet":"Worked in teams to come up with algorithms to compute shortest paths in CAT(0) space"},
