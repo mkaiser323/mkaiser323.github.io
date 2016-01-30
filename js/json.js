@@ -69,9 +69,6 @@ var skills = [
 				"skill":"Sublime Text",
 				"stars":5
 			},{
-				"skill":"Microsoft Office (Word, Excel, Powerpoint)",
-				"stars":5
-			},{
 				"skill":"git",
 				"stars":2
 			}
