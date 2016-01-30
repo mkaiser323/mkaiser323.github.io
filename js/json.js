@@ -45,7 +45,7 @@ var skills = [
 				"stars":5
 			},{
 				"skill":"WordPress",
-				"stars":4
+				"stars":3
 			},{
 				"skill":"Meteor.js",
 				"stars":2
