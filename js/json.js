@@ -44,7 +44,7 @@ var skills = [
 				"skill":"JSON",
 				"stars":5
 			},{
-				"skill":"XML",
+				"skill":"WordPress",
 				"stars":4
 			},{
 				"skill":"Meteor.js",
@@ -71,6 +71,9 @@ var skills = [
 			},{
 				"skill":"Microsoft Office (Word, Excel, Powerpoint)",
 				"stars":5
+			},{
+				"skill":"git",
+				"stars":2
 			}
 		]
 	}
