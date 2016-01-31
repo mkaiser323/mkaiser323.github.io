@@ -72,8 +72,11 @@ var skills = [
 				"skill":"Sublime Text",
 				"stars":5
 			},{
-				"skill":"git",
+				"skill":"Git",
 				"stars":2
+			},{
+				"skill":"Microsoft Office(Word, Excel, PowerPoint)",
+				"stars":5
 			}
 		]
 	}
@@ -81,16 +84,24 @@ var skills = [
 
 var awards = [
 	{
-		"award":"Winnner of the NSBE Hackathon Sponsored by IBM, Facebook, Pandora & Goldman Sachs",
-		"place":"Lehman College",
+		"award":"1st place Winnner of the NSBE Hackathon Sponsored by IBM, Facebook, Pandora & Goldman Sachs",
+		"place":"CUNY - Lehman College",
 		"date":"October 2015"
 	},{
+		"award":"1st place Winnner of the TrainCube Web Development Competition",
+		"place":"CUNY - Lehman College",
+		"date":"July 2015"
+	},{
+		"award":"3rd place Winnner of the NSBE Hackathon Sponsored by LSAMP & Goldman Sachs",
+		"place":"CUNY - City College",
+		"date":"May 2015"
+	},{
 		"award":"Dean's List",
-		"place":"Lehman College",
+		"place":"CUNY - Lehman College",
 		"date":"Fall 2014 <br> to <br> Spring 2015"
 	},{
 		"award":"Herbert H. Lehman Leadership Certificate",
-		"place":"Lehman College",
+		"place":"CUNY - Lehman College",
 		"date":"November 2014"
 	},{
 		"award":"Loyola Scholarship",
@@ -108,7 +119,7 @@ var experience = [
 		"position":"Web Developer",
 		"date":"December 2015 - Present",
 		"place":"The International Center for Climate Change Impact Studies",
-		"details":"Currently developing a WordPress web site for a newly established environmental organization",
+		"details":"I am currently developing a WordPress web site for a newly established environmental organization",
 		"bullet_points":[],
 		"loc":"Bronx, NY",
 		"link":"http://climate-change-impact-studies.org"
@@ -116,15 +127,15 @@ var experience = [
 		"position":"Web Developer",
 		"date":"October 2015 - Present",
 		"place":"Electifi",
-		"details":"Currently working on the landing page for a startup",
+		"details":"I am currently working on the landing page for a startup",
 		"bullet_points":[],
 		"loc":"Bronx, NY",
 		"link":"http://electifi.com/landingNotDone"
 	},{
 		"position":"Mathematics Researcher & Programmer",
 		"date":"October 2015 - January 2016",
-		"place":"Research Foundation - CUNY",
-		"details":"Worked on open problems in CAT(0) space with direct application to mapping optimal evolutionary history in phylogenetic trees",
+		"place":"CUNY - Research Foundation",
+		"details":"I worked on open problems in CAT(0) space with direct application to mapping optimal evolutionary history in phylogenetic trees",
 		"bullet_points":[
 			{"bullet":"Worked in groups to come up with algorithms to compute shortest paths in CAT(0) space"},
 			{"bullet":"Wrote python code to implement proposed solutions"}

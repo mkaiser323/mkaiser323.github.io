@@ -105,7 +105,6 @@ var projects_handler = function(){
 }
 
 var header_handler = function(){
-
 	arrow_hover();
 }
 
@@ -266,6 +265,10 @@ var display_experience = function(div_id){
 
 		var out = '<div class = "row">';
 
+		if(i!=0){
+			out += '<hr>';//section dividers
+		}
+
 		//LEFT COLUMN
 		out += '<div class = "col-md-4">';
 		out += '<h3 class = "place" >' + place + '</h3>';
@@ -344,6 +347,10 @@ var display_skills = function(div_id){
 		var section = full,
 		col1 = half, 
 		col2 = half;
+
+		if(s!=0){
+			section += '<hr>';//section dividers
+		}
 
 		//add header
 		section += '<h3>' + skills[s].section + '</h3>';
