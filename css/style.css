@@ -50,7 +50,7 @@ h3{
 /*NAVIGATION*/
 nav{
 	display: none;
-	background-color: rgba(255, 255, 255, 0.9);
+	background-color: rgba(255, 255, 255, 1);
 	border-bottom: none;
 	box-shadow: 0 0px 5px 5px #777;
 	margin: 0 auto;
@@ -58,7 +58,6 @@ nav{
 }
 
 nav li{
-	/*display: inline;*/
 	margin-bottom: 0px;
 }
 
@@ -67,9 +66,16 @@ nav li a{
 	margin-bottom: 0px;
 }
 
-nav ul{
-	margin: 0px;
+
+.nav li{
+	font-size: 16px;
 	padding: 0px;
+	margin: 0px;
+}
+
+.page-scroll, nav  ul li a{
+	padding: 0px;
+	margin: 0px;
 }
 
 .nav a:hover, nav li:hover, nav li a:hover, .nav li .page-scroll:hover, .highlighted{
@@ -498,6 +504,9 @@ section h2, footer h2{
 /*END PROJECTS*/
 
 /*EXPERIENCE*/
+#display_experience{
+	padding-bottom: 30px;
+}
 .place, .position{
 	text-align: left;
 }
@@ -778,6 +787,11 @@ section h2, footer h2{
 /*END AWARDS*/
 
 /*SKILLS*/
+#display_skills h3{
+	text-align: left;
+	color: #444;
+}
+
 .skill{
 	margin: 0px;
 	font-size: 1.5em;
@@ -813,3 +827,10 @@ footer p{
 	color: white;
 }
 /*END FOOTER*/
+
+
+.remove_space{
+	padding: 0px;
+	margin: 0px;
+}
+
