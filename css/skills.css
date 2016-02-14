@@ -17,4 +17,19 @@
 .filled-star{
 	color: #4CA6FF;
 }
+
+
+
+@media(max-width: 399px){
+
+	#display_skills h3{
+		text-align: center;
+	}
+
+	.skill, .skill p, .skills_col, .sk, .st{
+	padding: 0px;
+	margin: 0px;
+	}
+}
+
 /*END SKILLS*/

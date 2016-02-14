@@ -131,8 +131,8 @@ var display_awards = function(div_id){
 };
 
 var display_skills = function(div_id){
-	var half = "<div class = 'col-md-6'>",
-	full = "<div class = 'col-md-12'>"
+	var half = "<div class = 'col-md-6 skills_col'>",
+	full = "<div class = 'col-md-12 skills_group'>"
 	close_div = "</div>",
 	out = "";
 
