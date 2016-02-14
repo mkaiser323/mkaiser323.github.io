@@ -218,7 +218,7 @@ var display_projects = function(div_id){
 		tag_div += "</div>";
 
 		var out;
-		if(projects.length % 2 === 1 && i === 0){
+		if(projects.length % 2 === 1 && i === projects.length-1){//this centers the last element if the set is odd
 			out = "<div class = 'col-md-3'></div><div class = 'col-md-6'>";
 		} else {
 			out = "<div class = 'col-md-6'>";
