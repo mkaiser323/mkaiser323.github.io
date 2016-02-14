@@ -73,7 +73,7 @@ var skills = [
 				"stars":5
 			},{
 				"skill":"Git",
-				"stars":2
+				"stars":3
 			},{
 				"skill":"Microsoft Office(Word, Excel, PowerPoint)",
 				"stars":5
