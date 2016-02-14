@@ -170,6 +170,17 @@ var experience = [
 var projects = [
 	{
 		"header":"Front End Web Developer",
+		"details":"Software Development class project in which I worked with 2 other teammates on a project where we implemented design principles learned in class",
+		"taglist": [
+			{"tag":"Agile&nbsp;Development"},
+			{"tag":"JavaScript"},
+			{"tag":"JQuery"}
+		],
+		"bg_img":"img/gallery.png",
+		"finished_product":"http://mkaiser323.github.io/Gallery",
+		"github":"https://github.com/mkaiser323/Gallery"
+	},{
+		"header":"Front End Web Developer",
 		"details":"Won first place, competing in a team of 3 to develop a brand-new mobile-friendly web site for a local business in under a week.",
 		"taglist": [
 			{"tag":"HTML5"},
