@@ -158,8 +158,8 @@ var display_skills = function(div_id){
 			var full_star = "<i class = 'fa fa-star filled-star'></i> ", 
 			empty_star = "<i class = 'fa fa-star faded'></i> ";
 
-			var skill_field = "<div class = 'col-md-6 text-left'><p>" + skill + "</p></div>";
-			var stars_field = "<div class = 'col-md-6 text-right'>";
+			var skill_field = "<div class = 'col-md-6 col-sm-6 col-xs-6 text-left sk'><p>" + skill + "</p></div>";
+			var stars_field = "<div class = 'col-md-6 col-sm-6 col-xs-6 text-right st'>";
 			for(var j = 0; j < stars; j++){
 				stars_field += full_star;
 			}
@@ -168,9 +168,9 @@ var display_skills = function(div_id){
 			}
 			stars_field += "</div>";
 
-			var row = "<div class = 'col-md-12 col-sm-12 skill'>";
+			var row = "<div class = 'row skill'><div class = 'col-md-12 col-sm-12'>";
 			row += skill_field + stars_field;
-			row += "</div>";
+			row += "</div></div>";
 
 			if(i < Math.ceil(skills[s].skills.length/2)){
 				if(i === Math.ceil(skills[s].skills.length/2)-1){

@@ -1,12 +1,12 @@
 var skills_handler = function(){
 	//expand stars upon hover:
 	$('.skill').mouseenter(function(){
-		$(this).children('.text-right').children('.filled-star').animate({
+		$(this).children().children('.text-right').children('.filled-star').animate({
 			"margin-right":"5px"
 		}, t/4);
 	});
 	$('.skill').mouseleave(function(){
-		$(this).children('.text-right').children('.filled-star').animate({
+		$(this).children().children('.text-right').children('.filled-star').animate({
 			"margin-right":"0px"
 		}, t/4);
 	});
