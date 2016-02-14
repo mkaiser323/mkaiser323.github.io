@@ -1,0 +1,19 @@
+/*FOOTER*/
+footer {
+	background-color: #4CA6FF;
+	min-height: 100vh;
+	color: white;
+}
+
+footer p, footer .fa{
+	font-size: 32px;
+}
+footer h2{
+	color: white;
+}
+
+footer p{
+	margin-top:30px;
+	color: white;
+}
+/*END FOOTER*/

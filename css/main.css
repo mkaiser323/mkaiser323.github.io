@@ -1,0 +1,70 @@
+/*General purpose minified css*/
+.indent,.left,.text-left{text-align:left}.blue{color:#4CA6FF}.bold{font-weight:700}.gray{color:#777}.faded{color:#ccc}.black{color:#222}.white{color:#fff}.no-bullet{list-style-type:none}.indent{text-indent:50px}.horizontal-center{margin-top:5%}
+
+body{
+	background-image: url("../img/background.jpeg");
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 0px 0px;
+    background-size: 100% 300%;
+    overflow-x: hidden;
+}
+
+@media(max-width: 767px) and (orientation:portrait){
+	body{
+		background-image: url("../img/background_mobile.jpeg");
+	}
+}
+
+body, .link{
+	font-family: 'Ubuntu', sans-serif;
+	color: #777;
+}
+
+::selection{
+	color: white;
+	background-color: #4CA6FF;
+}
+
+/*h1 ... hn */
+h1{
+	font-size: 6em;
+	margin-bottom: 20px;
+}
+
+h2{
+	font-weight: bold;
+	color: #4CA6FF;
+}
+
+h2, h3{
+	font-size: 3.5em;
+	text-align: center;
+}
+
+h3{
+	font-size: 2.5em;
+}
+/*END h1 ... hn */
+
+/*SECTIONS*/
+section h2, footer h2{
+	margin-top: 60px;
+}
+.showbg{
+	/*background-color: rgba(0, 0, 0, 0.75);*/
+	background: linear-gradient(rgba(0, 0, 0, .9),rgba(0, 0, 0, .65), rgba(0, 0, 0, .4), rgba(0, 0, 0, 0.3), 
+		rgba(0, 0, 0, .4), rgba(0, 0, 0, .65), rgba(0, 0, 0, .9));
+	color: #fff;
+}
+.hidebg{
+	background-color: #fff;
+	min-height: 100vh;
+}
+/*END SECTIONS*/
+
+.remove_space{
+	padding: 0px;
+	margin: 0px;
+}
+

@@ -1,0 +1,20 @@
+/*SKILLS*/
+#display_skills h3{
+	text-align: left;
+	color: #444;
+}
+
+.skill{
+	margin: 0px;
+	font-size: 1.5em;
+}
+
+.skill:hover{
+	background-color: #eee;
+	cursor: pointer;
+}
+
+.filled-star{
+	color: #4CA6FF;
+}
+/*END SKILLS*/

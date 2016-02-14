@@ -1,0 +1,35 @@
+/*SUMMARY*/
+#summary a:link,
+#summary a:active,
+#summary a:visited{
+	border: solid #4CA6FF 2px;
+	padding: 0 5px;
+	background-color: #4CA6FF;
+	color: white;
+}
+
+#summary a:hover{
+	text-decoration: underline;
+}
+#summary ul{
+	list-style-type: none;
+	padding: 0;
+}
+
+#summary li{
+	margin-top:20px;
+	text-align: left;
+}
+
+
+@media(max-width: 767px){
+	#summary h3, #summary li, #summary p{
+		text-align: center;
+		text-indent: 0px;
+
+	}
+	.position{
+		font-style: italic;
+	}
+}
+/*END SUMMARY*/

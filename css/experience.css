@@ -1,0 +1,43 @@
+/*EXPERIENCE*/
+#display_experience{
+	padding-bottom: 30px;
+}
+.place, .position{
+	text-align: left;
+}
+#display_experience h3, #summary li .black{
+	color: #444;
+}
+
+#display_experience p, #display_experience li, #summary li, #summary p,
+#display_experience a, 
+#display_experience a:visited, 
+#display_experience a:active,
+#display_experience a:link {
+	font-size: 20px;
+}
+
+#display_experience a:hover{
+	text-decoration: underline;
+}
+
+.work_location, .date, 
+#display_experience a, 
+#display_experience a:visited, 
+#display_experience a:active,
+#display_experience a:link
+{
+	color: #4CA6FF;
+}
+
+
+@media(max-width: 767px){
+	#display_experience a{
+		display: none;
+	}
+
+	#display_experience h3, .date, .work_location{
+		text-align: center;
+	}
+}
+/*END EXPERIENCE*/
