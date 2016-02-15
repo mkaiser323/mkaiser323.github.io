@@ -35,6 +35,11 @@
 	display: none;
 }
 
+.details:hover{
+	cursor: pointer;
+}
+
+
 .details p{
 	color: #fff;
 }
@@ -63,6 +68,7 @@
 	margin: 10px;
 	position: relative;
 	left: 100%;
+	display: none;
 }
 .tags .tag{
 	position: relative;
@@ -217,10 +223,18 @@
 
 .view{
 	border: solid white 1px;
+	border: none;
+	background-color: #4CA6FF;
+}
+
+.view p{
+	margin: 25px;
+	font-size: 32px;
+	letter-spacing: 4px;
 }
 
 .view:hover{
-	background-color: rgba(255, 255, 255, 0.1);
+	background-color: rgba(255, 255, 255, 0.25);
 }
 
 .view-options{
