@@ -60,4 +60,14 @@ header h1, header h2{
 	}
 }
 
+@media(max-width: 480px) and (orientation:portrait){
+	/*FORMATTING FOR BACKGROUND ON SMALLER SCREENS*/
+	header{
+		background-color: black;
+	}
+
+	/*FORMATTING FOR BACKGROUND ON SMALLER SCREENS*/
+
+}
+
 /*END HEADER*/
