@@ -54,6 +54,8 @@ var display_projects = function(div_id){
 		out += '<div class = "row text-center project-frame">'
 		+ '<div class = "project" id = "project_'+i+'"">';
 
+		out += "<a href = '"+page+"' target = '_blank'>";
+
 		out += '<img src = "' + bg_img + '"/>';
 		out += '<div class = "details">';
 		out += '<div class = "title">' + '<h3>' + header + '</h3></div>';
@@ -63,9 +65,11 @@ var display_projects = function(div_id){
 		out += tag_div;
 		out += '<div class = "view-options">';
 		out += "<div class = 'view col-md-12'><p>Additional Details</p></div>";
-		out +='</div>';	
-		out += "</div></div></div></div>";
-		out = "<a href = '"+page+"' target = '_blank'>"+ out + '</a>';
+		out +='</div>';//end view-options
+		out +='</div>';//end details
+
+		out += '</a>';
+		out += "</div></div></div>";
 		$(div_id).append(out);
 		//render_summary(i);
 

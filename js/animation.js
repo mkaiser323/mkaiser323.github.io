@@ -15,59 +15,59 @@ var skills_handler = function(){
 var projects_handler = function(){
 	//hover effect for project details
 	$('.project').mouseenter(function(){
-		$(this).children('.details').stop();
-		$(this).children('.details').children('.title').stop();
-		$(this).children('.details').children('.p').stop();
-		$(this).children('.details').children('.tags').stop();
-		$(this).children('.details').children('hr').stop();
-		$(this).children('.details').children('.view-options').stop();
+		$(this).children('a').children('.details').stop();
+		$(this).children('a').children('.details').children('.title').stop();
+		$(this).children('a').children('.details').children('.p').stop();
+		$(this).children('a').children('.details').children('.tags').stop();
+		$(this).children('a').children('.details').children('hr').stop();
+		$(this).children('a').children('.details').children('.view-options').stop();
 
-		$(this).children('.details').animate({
+		$(this).children('a').children('.details').animate({
 			height: 'show'
 		}, t);
 
-		$(this).children('.details').children('.title').animate({
+		$(this).children('a').children('.details').children('.title').animate({
 			width: '100%'
 		}, t);
 
-		$(this).children('.details').children('.p').animate({
+		$(this).children('a').children('.details').children('.p').animate({
 			right: '0%'
 		}, t);
-		$(this).children('.details').children('.tags').animate({
+		$(this).children('a').children('.details').children('.tags').animate({
 			left: '0%'
 		}, t);
-		$(this).children('.details').children('hr').animate({
+		$(this).children('a').children('.details').children('hr').animate({
 			width: "80%"
 		}, t*1.25);
 
-		$(this).children('.details').children('.view-options').animate({
+		$(this).children('a').children('.details').children('.view-options').animate({
 			bottom: '0px'
 		}, t);
 	});
 
 	$('.project').mouseleave(function(){
-		$(this).children('.details').stop();
-		$(this).children('.details').children('.title').stop();
-		$(this).children('.details').children('.p').stop();
-		$(this).children('.details').children('.tags').stop();
-		$(this).children('.details').children('hr').stop();
-		$(this).children('.details').children('.view-options').stop();
-		$(this).children('.details').animate({
+		$(this).children('a').children('.details').stop();
+		$(this).children('a').children('.details').children('.title').stop();
+		$(this).children('a').children('.details').children('.p').stop();
+		$(this).children('a').children('.details').children('.tags').stop();
+		$(this).children('a').children('.details').children('hr').stop();
+		$(this).children('a').children('.details').children('.view-options').stop();
+		$(this).children('a').children('.details').animate({
 			height: 'hide'
 		}, t);
-		$(this).children('.details').children('.title').animate({
+		$(this).children('a').children('.details').children('.title').animate({
 			width: '300%'
 		}, t);
-		$(this).children('.details').children('.p').animate({
+		$(this).children('a').children('.details').children('.p').animate({
 			right: '100%'
 		}, t);
-		$(this).children('.details').children('.tags').animate({
+		$(this).children('a').children('.details').children('.tags').animate({
 			left: '100%'
 		}, t);		
-		$(this).children('.details').children('hr').animate({
+		$(this).children('a').children('.details').children('hr').animate({
 			width: "0%"
 		}, t/2);
-		$(this).children('.details').children('.view-options').animate({
+		$(this).children('a').children('.details').children('.view-options').animate({
 			bottom: '-500px'
 		}, t);
 	});
