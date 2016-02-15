@@ -179,6 +179,7 @@ var projects = [
 		"bg_img":"img/gallery.png",
 		"finished_product":"http://mkaiser323.github.io/Gallery",
 		"github":"https://github.com/mkaiser323/Gallery",
+		"page":"Gallery.html",
 		"summary":{
 			"title":"Art Gallery",
 			"section":[
@@ -216,6 +217,7 @@ var projects = [
 		"bg_img":"img/albatax.png",
 		"finished_product":"http://www.albatax.com",
 		"github":"https://github.com/mkaiser323/AlbaTax",
+		"page":"AlbaTax.html",
 		"summary":{
 			"title":"AlbaTax.com",
 			"section":[
@@ -253,6 +255,7 @@ var projects = [
 		"bg_img":"img/godu.png",
 		"finished_product":"http://godu.meteor.com",
 		"github":"https://github.com/mkaiser323/GoDu",
+		"page":"GoDu.html",
 		"summary":{
 			"title":"GoDu",
 			"section":[
@@ -288,6 +291,7 @@ var projects = [
 		"bg_img":"img/blocks.png",
 		"finished_product":"http://bit.do/multiplication_blocks",
 		"github":"https://github.com/mkaiser323/Blocks",
+		"page":"Blocks.html",
 		"summary":{
 			"title":"Multiplication Blocks",
 			"section":[
@@ -317,6 +321,7 @@ var projects = [
 		"bg_img":"img/asteroids.png",
 		"finished_product":"http://bit.do/Asteroids",
 		"github":"https://github.com/mkaiser323/Asteroids",
+		"page":"Asteroids.html",
 		"summary":{
 			"title":"Asteroids",
 			"section":[

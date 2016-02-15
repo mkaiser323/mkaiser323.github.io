@@ -1,7 +1,6 @@
 var render_summary = function(i){
 	var out = "<div class = 'project_summary' id = 'summary_" + i + "'>";
 	out += "<div class = 'container'>";
-	out += "<i class = 'fa fa-times'></i><br/>"
 	out += "<div class = 'project_summary_wrapper'>";
 
 	out += "<div class = 'col-lg-3 col-md-3'></div>";
@@ -20,10 +19,7 @@ var render_summary = function(i){
 		}
 	}
 
-
-	out += "<div class = 'exit'><p>x close</p></div>";
 	out += "</div>";//col
-
 	out += "</div>";//wrapper
 	out += "</div>";//container
 	out += "</div>";//project_summary
@@ -38,7 +34,8 @@ var display_projects = function(div_id){
 		bg_img = projects[i].bg_img,
 		finished_product = projects[i].finished_product,
 		github = projects[i].github,
-		taglist = projects[i].taglist;
+		taglist = projects[i].taglist
+		page = projects[i].page;
 
 		//TAGS
 		var tag_div = "<div class = 'tags text-left'><i class = 'fa fa-tags'> tags: </i>";
@@ -65,29 +62,12 @@ var display_projects = function(div_id){
 		out += '<hr>';
 		out += tag_div;
 		out += '<div class = "view-options">';
-
-				/*
-		 		+ '<a href = "' + finished_product +'" target = "_blank">' 
-					+ '<div class = "view view-project col-md-6">';
-
-					if(i==1){
-						out += '<i class  = "fa fa-eye"></i><p>View Demo</p>';
-					} else {
-					 out += '<i class  = "fa fa-eye"></i><p>View Finished Product</p>';	
-					}
-					out += '</div></a>'
-				+ '<a href = "' + github + '" target = "_blank">' 
-					+ '<div class = "view view-code col-md-6">'
-						+ '<i class  = "fa fa-code"></i><p>View Code</p>'
-					+ '</div></a>'*/
-
-
-
 		out += "<div class = 'view col-md-12'><p>Additional Details</p></div>";
 		out +='</div>';	
 		out += "</div></div></div></div>";
+		out = "<a href = '"+page+"' target = '_blank'>"+ out + '</a>';
 		$(div_id).append(out);
-		render_summary(i);
+		//render_summary(i);
 
 	}
 };

@@ -1,22 +1,26 @@
+body{
+	background: none;
+}
+
+nav{
+	display: block;
+}
+
 .project_summary_wrapper{
+	margin-top: 100px;
 }
 
 #summary_0, #summary_1, #summary_2, #summary_3, #summary_4{
-	display: none;
+	display: block;
 }
 
 #summary_0{
 }
 .project_summary{
 	padding-bottom: 50px;
-	position: fixed;
-	z-index: 10000;
-	top: 0px;
-	bottom: 0px;
 	width: 100%;
 	height: 100%;
 	background-color: white;
-	overflow-y:scroll; 
 }
 
 .fa-times{
