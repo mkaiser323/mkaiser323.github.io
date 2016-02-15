@@ -44,6 +44,8 @@ h2, h3{
 
 h3{
 	font-size: 2.5em;
+	color: #444;
+
 }
 /*END h1 ... hn */
 
@@ -62,9 +64,4 @@ section h2, footer h2{
 	min-height: 100vh;
 }
 /*END SECTIONS*/
-
-.remove_space{
-	padding: 0px;
-	margin: 0px;
-}
 

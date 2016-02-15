@@ -1,0 +1,35 @@
+.project_summary_wrapper{
+	padding: 0px 300px;
+}
+
+.project_summary h3{
+	margin-top: 50px;
+	text-align: left;
+}
+
+#summary_0, #summary_1, #summary_2, #summary_3, #summary_4{
+	display: none;
+}
+.project_summary{
+	position: fixed;
+	z-index: 10000;
+	top: 0px;
+	bottom: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	overflow-y:scroll; 
+}
+
+
+.fa-times{
+	float: right;
+	cursor: pointer;
+	margin: 10px;
+	font-size: 20px;
+}
+
+
+.project_summary p{
+	font-size: 18px;
+}

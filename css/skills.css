@@ -1,7 +1,6 @@
 /*SKILLS*/
 #display_skills h3{
 	text-align: left;
-	color: #444;
 }
 
 .skill{
@@ -18,8 +17,6 @@
 	color: #4CA6FF;
 }
 
-
-
 @media(max-width: 399px){
 
 	#display_skills h3{
@@ -31,5 +28,4 @@
 	margin: 0px;
 	}
 }
-
 /*END SKILLS*/

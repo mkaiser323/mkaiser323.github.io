@@ -1,3 +1,20 @@
+var render_summary = function(i){
+	var out = "<div class = 'project_summary' id = 'summary_" + i + "'>";
+	out += "<i class = 'fa fa-times'></i><br/>"
+	out += "<div class = 'project_summary_wrapper'>";
+	var section = projects[i].summary.section;
+	out += "<h2>"+projects[i].summary.title+"</h2>";
+	for(var j = 0; j < section.length; j++){//iterate through each section
+		out += "<h3>" + section[j].header + "</h3>";
+		for(var k = 0; k < section[j].p.length; k++){//iterate through each paragraph
+			out += "<p>" + section[j].p[k].text + "</p>";
+		}
+	}
+	out += "</div></div>";
+	$('body').append(out);
+	//$('#summary_'+i).hide();
+}
+
 var display_projects = function(div_id){
 
 	for(var i = 0; i < projects.length; i++){
@@ -23,7 +40,7 @@ var display_projects = function(div_id){
 			out = "<div class = 'col-md-6'>";
 		}
 		out += '<div class = "row text-center project-frame">'
-		+ '<div class = "project">';
+		+ '<div class = "project" id = "project_'+i+'"">';
 
 		out += '<img src = "' + bg_img + '"/>';
 		out += '<div class = "details">';
@@ -49,6 +66,8 @@ var display_projects = function(div_id){
 				+'</div>';	
 		out += "</div></div></div></div>";
 		$(div_id).append(out);
+		render_summary(i);
+
 	}
 };
 

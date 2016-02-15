@@ -71,6 +71,20 @@ var projects_handler = function(){
 			bottom: '-500px'
 		}, t);
 	});
+
+
+	//PROJECT SUMMARY
+
+	$('.project').click(function(){
+		var index = ($(this).attr("id")).split("_")[1];
+		//alert("project " + index + " has been clicked");
+		$('#summary_'+index).show();
+	});
+
+	$('.fa-times').click(function(){
+		$(this).parent().hide();
+	});
+	//END PROJECT SUMMARY
 }
 
 var header_handler = function(){
