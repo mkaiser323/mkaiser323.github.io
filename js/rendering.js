@@ -4,10 +4,9 @@ var render_summary = function(i){
 	var out = "<div class = 'project_summary' id = 'summary_" + i + "'>";
 	out += "<div class = 'container'>";
 	out += "<div class = 'project_summary_wrapper'>";
-
 	out += "<div class = 'col-lg-3 col-md-3'></div>";
-
 	out += "<div class = 'col-lg-6 col-md-6'>";
+
 	var section = projects[i].summary.section;
 	out += "<h2>"+projects[i].summary.title+"</h2>";
 
@@ -22,17 +21,17 @@ var render_summary = function(i){
 	}
 
 	//finished product/github repo buttons:
-	out += "<a href = '"+finished_product+"' target = '_blank' >";
-	out += "<div class = 'col-md-6' class = 'summary_button' id = 'product_button'>";//button 1
+	out += "<div class = 'col-md-6 summary_button' id = 'product_button'>";//button 1
+	out += "<a href = '"+finished_product+"' target = '_blank' >";	
 	out += "<p>View finished product</p>";
-	out +="</div>";//end button 1	
-	out += "</a>";
+	out += "</a>";	
+	out +="</div>";//end button 1
 
+	out += "<div class = 'col-md-6 summary_button' id = 'repo_button'>";//button 2
 	out += "<a href = '"+github+"' target = '_blank' >";
-	out += "<div class = 'col-md-6' class = 'summary_button' id = 'repo_button'>";//button 2
 	out += "<p>View code on github</p>";	
-	out +="</div>";//end button 2	
 	out += "</a>";
+	out +="</div>";//end button 2
 	out += "</div>";//col
 	out += "</div>";//wrapper
 	out += "</div>";//container

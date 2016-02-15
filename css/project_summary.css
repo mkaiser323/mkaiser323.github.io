@@ -48,9 +48,31 @@ nav{
 	font-size: 18px;
 }
 
-.project_summary .summary_button p{
-	font-weight: bold;
-	color: red;
+.project_summary a:hover, .project_summary a{
+	color: #4CA6FF;
 }
 
+.project_summary .summary_button p{
+	font-weight: bold;
+}
 
+.summary_button, .summary_button *{
+	margin: 0px;
+	padding: 0px;
+}
+
+.summary_button{
+	padding: 20px 0px;
+	text-align: center;
+}
+
+.summary_button{
+}
+
+.project_summary #product_button p{
+	text-align: left;
+}
+
+.project_summary #repo_button p{
+	text-align: right;
+}
