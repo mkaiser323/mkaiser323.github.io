@@ -82,11 +82,11 @@ var projects_handler = function(){
 	});
 
 	$('.fa-times').click(function(){
-		$(this).parent().hide();
+		$(this).parent().parent().hide();
 	});
 
 	$('.exit').click(function(){
-		$(this).parent().hide();		
+		$(this).parent().parent().parent().parent().hide();		
 	});
 	//END PROJECT SUMMARY
 }

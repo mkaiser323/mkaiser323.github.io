@@ -1,7 +1,12 @@
 var render_summary = function(i){
 	var out = "<div class = 'project_summary' id = 'summary_" + i + "'>";
+	out += "<div class = 'container'>";
 	out += "<i class = 'fa fa-times'></i><br/>"
 	out += "<div class = 'project_summary_wrapper'>";
+
+	out += "<div class = 'col-lg-3 col-md-3'></div>";
+
+	out += "<div class = 'col-lg-6 col-md-6'>";
 	var section = projects[i].summary.section;
 	out += "<h2>"+projects[i].summary.title+"</h2>";
 
@@ -16,11 +21,12 @@ var render_summary = function(i){
 	}
 
 
-	out += "</div>";
-
 	out += "<div class = 'exit'><p>x close</p></div>";
+	out += "</div>";//col
 
-	out += "</div>";
+	out += "</div>";//wrapper
+	out += "</div>";//container
+	out += "</div>";//project_summary
 	$('body').append(out);
 }
 
