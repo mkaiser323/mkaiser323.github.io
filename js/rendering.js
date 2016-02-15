@@ -1,4 +1,6 @@
 var render_summary = function(i){
+	var finished_product = projects[i].finished_product,
+	github = projects[i].github;
 	var out = "<div class = 'project_summary' id = 'summary_" + i + "'>";
 	out += "<div class = 'container'>";
 	out += "<div class = 'project_summary_wrapper'>";
@@ -19,6 +21,18 @@ var render_summary = function(i){
 		}
 	}
 
+	//finished product/github repo buttons:
+	out += "<a href = '"+finished_product+"' target = '_blank' >";
+	out += "<div class = 'col-md-6' class = 'summary_button' id = 'product_button'>";//button 1
+	out += "<p>View finished product</p>";
+	out +="</div>";//end button 1	
+	out += "</a>";
+
+	out += "<a href = '"+github+"' target = '_blank' >";
+	out += "<div class = 'col-md-6' class = 'summary_button' id = 'repo_button'>";//button 2
+	out += "<p>View code on github</p>";	
+	out +="</div>";//end button 2	
+	out += "</a>";
 	out += "</div>";//col
 	out += "</div>";//wrapper
 	out += "</div>";//container
