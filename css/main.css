@@ -10,6 +10,7 @@ body{
     overflow-x: hidden;
 }
 
+
 @media(max-width: 767px) and (orientation:portrait){
 	body{
 		background-image: url("../img/background_mobile.jpeg");
@@ -65,3 +66,16 @@ section h2, footer h2{
 }
 /*END SECTIONS*/
 
+
+@media(max-width: 480px) and (orientation:portrait){
+	/*FORMATTING FOR BACKGROUND ON SMALLER SCREENS*/
+	.showbg{
+		background:none;
+		background-color: #4CA6FF;
+	}
+
+	.showbg h2{
+		color: #fff;
+	}
+	/*FORMATTING FOR BACKGROUND ON SMALLER SCREENS*/
+}
