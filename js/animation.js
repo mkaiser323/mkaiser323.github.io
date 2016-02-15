@@ -84,6 +84,10 @@ var projects_handler = function(){
 	$('.fa-times').click(function(){
 		$(this).parent().hide();
 	});
+
+	$('.exit').click(function(){
+		$(this).parent().hide();		
+	});
 	//END PROJECT SUMMARY
 }
 

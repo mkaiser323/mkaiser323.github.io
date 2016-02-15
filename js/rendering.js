@@ -4,15 +4,24 @@ var render_summary = function(i){
 	out += "<div class = 'project_summary_wrapper'>";
 	var section = projects[i].summary.section;
 	out += "<h2>"+projects[i].summary.title+"</h2>";
+
+	var bg_img = projects[i].bg_img;
+	out += "<img src = '"+bg_img+"' class = 'summary_header_img'>";
+
 	for(var j = 0; j < section.length; j++){//iterate through each section
 		out += "<h3>" + section[j].header + "</h3>";
 		for(var k = 0; k < section[j].p.length; k++){//iterate through each paragraph
 			out += "<p>" + section[j].p[k].text + "</p>";
 		}
 	}
-	out += "</div></div>";
+
+
+	out += "</div>";
+
+	out += "<div class = 'exit'><p>x close</p></div>";
+
+	out += "</div>";
 	$('body').append(out);
-	//$('#summary_'+i).hide();
 }
 
 var display_projects = function(div_id){
