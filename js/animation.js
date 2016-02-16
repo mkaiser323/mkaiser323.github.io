@@ -14,6 +14,35 @@ var skills_handler = function(){
 
 var projects_handler = function(){
 	//hover effect for project details
+	if( $(document).width() > 480){
+		hover_effects();
+	}
+	//PROJECT SUMMARY
+	/****This was for the popup-- i shouldn't need it any more
+	$('.project').click(function(){
+		var index = ($(this).attr("id")).split("_")[1];
+		//alert("project " + index + " has been clicked");
+		$('#summary_'+index).show();
+	});
+
+	$('.fa-times').click(function(){
+		$(this).parent().parent().hide();
+	});
+
+	$('.exit').click(function(){
+		$(this).parent().parent().parent().parent().hide();		
+	});
+	*/
+	//END PROJECT SUMMARY
+}
+
+var hover_effects = function(){
+	show_details();
+	hide_details();
+
+}
+
+var show_details = function(){
 	$('.project').mouseenter(function(){
 		$(this).children('a').children('.details').stop();
 		$(this).children('a').children('.details').children('.title').stop();
@@ -44,6 +73,9 @@ var projects_handler = function(){
 			bottom: '0px'
 		}, t);
 	});
+}
+
+var hide_details = function(){
 
 	$('.project').mouseleave(function(){
 		$(this).children('a').children('.details').stop();
@@ -71,25 +103,9 @@ var projects_handler = function(){
 			bottom: '-500px'
 		}, t);
 	});
-
-
-	//PROJECT SUMMARY
-
-	$('.project').click(function(){
-		var index = ($(this).attr("id")).split("_")[1];
-		//alert("project " + index + " has been clicked");
-		$('#summary_'+index).show();
-	});
-
-	$('.fa-times').click(function(){
-		$(this).parent().parent().hide();
-	});
-
-	$('.exit').click(function(){
-		$(this).parent().parent().parent().parent().hide();		
-	});
-	//END PROJECT SUMMARY
 }
+
+
 
 var header_handler = function(){
 	arrow_hover();

@@ -130,12 +130,13 @@
 	color: white;
 }
 
-@media(min-width: 992px) and (max-width: 1199px), (max-width: 665px){
+@media(min-width: 992px) and (max-width: 1199px), (max-width: 591px){
 	.details h3{
 		color: #4CA6FF;
 		text-align: center;
 		margin: 10px; 
-		font-size: 24px;
+		font-size: 28px;
+		margin-bottom: 15px;
 	}
 
 	.details hr{
@@ -162,14 +163,40 @@
 		margin: 0px;
 	}
 
-	.view p{
+	.view i{
 		font-size: 24px;
 		letter-spacing: 2px;
 		margin: 18px;
 	}
 }
 
-@media (min-width: 620px) and (max-width: 665px){
+@media (max-width: 991px){
+
+	.details h3{
+		margin-top: 20px;
+		font-size: 32px;
+	}
+
+	.details hr{
+		margin-top: 30px;
+	}
+
+	.p{
+		display: flex;
+  		justify-content: center;
+	}
+
+	.p p{
+		font-size: 24px;
+	}
+
+	.view i{
+		font-size: 32px;
+		margin: 30px 0px 30px 0px;
+	}
+}
+
+@media (max-width: 665px){
 	.details h3{
 		color: #4CA6FF;
 		text-align: center;
@@ -181,6 +208,12 @@
 		width: 0%;
 		border-color: #fff;
 		margin: 0 auto;
+		margin-top: 20px;
+	}
+
+	.details .p{
+		display: flex;
+  		justify-content: center;
 	}
 
 	.details .p p{
@@ -202,6 +235,18 @@
 	}
 }
 
+@media (max-width: 591px){
+	.details .p p{
+		font-size: 16px;
+	}
+
+	.view i{
+		font-size: 24px;
+		letter-spacing: 2px;
+		margin: 18px;
+	}
+}
+/*
 @media(max-width: 549px){
 	.details h3{
 		color: #4CA6FF;
@@ -252,6 +297,87 @@
 	.view{
 		height: 50%;
 	}
+}*/
+
+/*PHONES*/
+@media(max-width: 480px) and (orientation:portrait){
+	/*
+	-make details section visible and appear under the photo; 
+	-make the entire section clickable
+	*/
+
+	.project *:hover{
+		text-decoration: none;
+	}
+
+	.project h3{
+		font-size: 24px;
+		font-weight: bold;
+		margin-top: 15px;
+	}
+
+	.project .details{
+		display: block;
+		position: relative;
+		background-color: rgba(255, 255, 255, 0.25);
+		border-top: solid #4CA6FF;
+
+	}
+
+	.project .title{
+		width: 100%;
+		border: none;
+	}
+
+	.project .title, .project .view{
+		background-color: rgba(255, 255, 255, 1);				
+	}
+
+	.project .details .p p{
+		margin: 0px;
+	}
+
+	.project .details .p{
+		display: block;
+		right: 0%;
+	}
+
+	.project .details .p p{
+		display: block;
+		color: #fff;
+		font-style: normal;
+		margin: 15px 15px 15px 15px;
+	}
+
+	.project .view-options{
+		position: relative;
+		bottom: 0px;
+		color: #4CA6FF;
+
+	}
+
+	.project .view{
+		position: relative;
+		color: #4CA6FF;
+	}
+
+	.project .view:hover{
+		background-color: rgba(255, 255, 255, .75);		
+	}
+
+	.view p{
+		display: none;
+	}
+
+
+	.view i{
+		color: #4CA6FF;
+		padding: 10px;
+		margin: 0px;
+		font-size: 14px;
+		font-weight: bolder;
+	}
 }
+
 
 /*END PROJECTS*/

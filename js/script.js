@@ -2,6 +2,16 @@ var t = 1000;
 
 $(document).ready(function(){
 
+	$(window).resize(function(){
+		if($(document).width() <= 480){
+			location.reload();
+		} else {
+			show_details();
+			hide_details();
+
+		}
+	});
+
 	//nav toggle
 	$('.fa-bars').click(function(){
 		$('.nav').toggle();
@@ -20,4 +30,5 @@ $(document).ready(function(){
 	projects_handler();
 	skills_handler();
 	header_handler();
+
 });

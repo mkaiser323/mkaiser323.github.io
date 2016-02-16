@@ -77,7 +77,7 @@ var display_projects = function(div_id){
 		out += '<hr>';
 		out += tag_div;
 		out += '<div class = "view-options">';
-		out += "<div class = 'view col-md-12'><p>Additional Details</p></div>";
+		out += "<div class = 'view col-md-12'><i class = 'fa fa-external-link-square'> Additional Details</i></div>";
 		out +='</div>';//end view-options
 		out +='</div>';//end details
 
@@ -85,7 +85,6 @@ var display_projects = function(div_id){
 		out += "</div></div></div>";
 		$(div_id).append(out);
 		//render_summary(i);
-
 	}
 };
 
