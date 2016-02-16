@@ -97,6 +97,39 @@
 	border-color: #fff;
 }
 
+.title{
+	display: block;
+	width: 300%;
+	overflow: hidden;
+}
+
+.view{
+	border: solid white 1px;
+	border: none;
+	background-color: #4CA6FF;
+}
+
+.view p{
+	margin: 25px;
+	font-size: 32px;
+	letter-spacing: 4px;
+}
+
+.view:hover{
+	background-color: rgba(255, 255, 255, 0.25);
+}
+
+.view-options{
+	position: absolute;
+	bottom: -500px;
+	width: 100%;
+}
+
+.view i{
+	position: relative;
+	color: white;
+}
+
 @media(min-width: 992px) and (max-width: 1199px), (max-width: 665px){
 	.details h3{
 		color: #4CA6FF;
@@ -112,7 +145,7 @@
 	}
 
 	.details .p p{
-		font-size: 14px;
+		font-size: 16px;
 	}
 
 	.details .tags{
@@ -127,6 +160,12 @@
 		color: white;
 		background-color: #4CA6FF;
 		margin: 0px;
+	}
+
+	.view p{
+		font-size: 24px;
+		letter-spacing: 2px;
+		margin: 18px;
 	}
 }
 
@@ -215,36 +254,4 @@
 	}
 }
 
-.title{
-	display: block;
-	width: 300%;
-	overflow: hidden;
-}
-
-.view{
-	border: solid white 1px;
-	border: none;
-	background-color: #4CA6FF;
-}
-
-.view p{
-	margin: 25px;
-	font-size: 32px;
-	letter-spacing: 4px;
-}
-
-.view:hover{
-	background-color: rgba(255, 255, 255, 0.25);
-}
-
-.view-options{
-	position: absolute;
-	bottom: -500px;
-	width: 100%;
-}
-
-.view i{
-	position: relative;
-	color: white;
-}
 /*END PROJECTS*/
