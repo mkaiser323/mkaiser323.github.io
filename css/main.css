@@ -1,7 +1,7 @@
 /*General purpose minified css*/
 .indent,.left,.text-left{text-align:left}.blue{color:#4CA6FF}.bold{font-weight:700}.gray{color:#777}.faded{color:#ccc}.black{color:#222}.white{color:#fff}.no-bullet{list-style-type:none}.indent{text-indent:50px}.horizontal-center{margin-top:5%}
 
-*{
+*, body *{
 	padding:0;
 	margin: 0;
 }

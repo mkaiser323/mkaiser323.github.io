@@ -16,6 +16,7 @@ header h1, header h2{
 .header-content hr{
 	border-color: #4CA6FF;
 	width: 50%;
+	margin: 0 auto;
 }
 
 .fa-angle-down{

@@ -41,6 +41,7 @@
     width: auto;
     padding: 0 20px 0 100px;
     text-align: left;
+    overflow-x: none;
 }
 
 .timeline>li .timeline-panel:before {
@@ -233,4 +234,13 @@
         padding: 0 100px 20px 20px;
     }
 }
+
+
+/**PHONE**/
+@media (max-width: 480px){
+    
+}
+/**PHONE**/
+
+
 /*END AWARDS*/
