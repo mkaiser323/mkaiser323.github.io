@@ -21,6 +21,9 @@
 	text-align: left;
 }
 
+.profile-picture{
+	margin: 0 auto;
+}
 
 @media(max-width: 767px){
 	#summary h3, #summary li, #summary p{
