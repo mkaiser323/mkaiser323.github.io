@@ -352,6 +352,10 @@
 		margin: 15px 15px 15px 15px;
 	}
 
+	.project .details hr{
+		display: none;
+	}
+
 	.project .view-options{
 		position: relative;
 		bottom: 0px;
@@ -381,6 +385,8 @@
 		font-weight: bolder;
 	}
 }
+
+
 
 
 /*END PROJECTS*/
