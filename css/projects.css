@@ -39,6 +39,9 @@
 	cursor: pointer;
 }
 
+.details hr{
+	margin: 0 auto;
+}
 
 .details p{
 	color: #fff;

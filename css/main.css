@@ -59,6 +59,14 @@ h3{
 section h2, footer h2{
 	margin-top: 60px;
 }
+header hr{
+	margin-bottom: 20px;
+}
+section hr, footer hr{
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
 .showbg{
 	/*background-color: rgba(0, 0, 0, 0.75);*/
 	background: linear-gradient(rgba(0, 0, 0, .9),rgba(0, 0, 0, .65), rgba(0, 0, 0, .4), rgba(0, 0, 0, 0.3), 
