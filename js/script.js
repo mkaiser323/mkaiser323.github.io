@@ -9,7 +9,7 @@ $(document).ready(function(){
 			viewing_on_desktop = true;
 		}
 		if($(document).width() <= 480 && viewing_on_desktop){
-			//location.reload();
+			location.reload();
 		} else {
 			show_details();
 			hide_details();
