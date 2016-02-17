@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 	$(window).resize(function(){
 		if($(document).width() <= 480){
-			location.reload();
+			//location.reload();
 		} else {
 			show_details();
 			hide_details();
