@@ -237,8 +237,7 @@
 }
 
 
-/**PHONE**/
-@media (max-width: 480px){
+@media (max-width: 767px){
     #awards *{
         padding: 0px;
         margin: 0px;
@@ -259,10 +258,6 @@
         margin: 10px 10px 50px 50px;
         padding: 10px 15px;
     }
-
-
 }
-/**PHONE**/
-
 
 /*END AWARDS*/
