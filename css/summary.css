@@ -1,4 +1,5 @@
 /*SUMMARY*/
+
 #summary a:link,
 #summary a:active,
 #summary a:visited{
@@ -33,6 +34,72 @@
 	}
 	.position{
 		font-style: italic;
+	}
+}
+
+
+@media(min-width: 992px){
+
+	#summary .social_icons{
+		margin-top: 50px;
+	}
+
+	#summary .social_icons a:link,	
+	#summary .social_icons a:active,	
+	#summary .social_icons a:visited{
+		background-color: white;
+		border: none;
+	}
+
+	#summary .fa{
+		text-align: center;
+		background-color: none;
+		color: #777;
+		font-size: 36px;
+	}
+
+	#summary .fa:hover{
+		color: #4CA6FF;		
+	}
+}
+
+
+@media (max-width: 991px){
+	#summary{
+		padding-bottom: 30px;
+	}
+
+	#summary p, #summary h3, #summary ul li{
+		text-align: center;
+	}
+	.picture-frame{
+		margin-bottom: 50px;
+		margin-top: 50px;
+	}
+
+	.profile-picture{
+		margin: 0 auto;
+		display: block;
+	}
+	#summary .fa, #summary .social_icons{
+		display: none;	
+	}
+}
+
+
+@media (max-width: 480px){
+	#summary{
+		padding-bottom: 30px;
+		text-align: center;
+	}
+	.picture-frame{
+		margin-bottom: 50px;
+		margin-top: 50px;
+	}
+
+	.profile-picture{
+		margin: 0 auto;
+		display: block;
 	}
 }
 /*END SUMMARY*/

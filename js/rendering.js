@@ -236,11 +236,16 @@ var display_contact = function(div_id){
 	close_div = "</div>", 
 	out = "";
 	for(var i = 0; i < contact.length; i++){
-		out += "<div class = 'col-md-6'>";
+		if (i < contact.length - 1){
+			out += "<div class = 'col-md-6'>";
+		} else {
+			out += "<div class = 'col-md-12'>";
+
+		}
 		var icon = contact[i].icon,
 		link = contact[i].link;
 		if(contact[i].mailto){
-			out += '<a href = "mailto:' + link + '" target = "_blank">';			
+			out += '<a href = "mailto:' + link + '">';			
 		} else {
 			out += '<a href = "http://' + link + '" target = "_blank">';			
 		}

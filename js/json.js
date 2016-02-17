@@ -15,9 +15,6 @@ var contact = [
 		"icon":"fa fa-envelope",
 		"link":"mahedi.kaiser@gmail.com",
 		"mailto": true
-	},{
-		"icon":"fa fa-facebook-square",
-		"link":"facebook.com/mkaiser323"
 	}
 ];
 
