@@ -1,11 +1,11 @@
 var t = 1000;
 var viewing_on_desktop = false;
 $(document).ready(function(){
-		if($(document.width()>500)){
+		if( $(document).width()>500 ){
 			viewing_on_desktop = true;
 		}
 	$(window).resize(function(){
-		if($(document.width()>500)){
+		if( $(document).width()>500 ){
 			viewing_on_desktop = true;
 		}
 		if($(document).width() <= 480 && viewing_on_desktop){
@@ -35,5 +35,4 @@ $(document).ready(function(){
 	projects_handler();
 	skills_handler();
 	header_handler();
-
 });
