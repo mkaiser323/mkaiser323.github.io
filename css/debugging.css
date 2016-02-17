@@ -17,6 +17,6 @@
 	background-color: black;
 }
 
-.hide, footer, #experience{
+.hide, footer{
 	display: none;
 }

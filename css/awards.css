@@ -243,6 +243,11 @@
         margin: 0px;
     }
 
+    #awards{
+                padding: 30px 10px 30px 10px;
+
+    }
+
     #awards hr{
         margin-bottom: 30px;
         margin-top: 30px;

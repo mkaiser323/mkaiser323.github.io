@@ -123,7 +123,7 @@ var display_experience = function(div_id){
 		out += '</ul>';
 		out += '<p class = "work_location"><i class = "fa fa-map-marker"></i> ' + loc;
 		if(link != ""){
-			out += ' | <a href = "' + link + '" target = "blank" <i class = "fa fa-link"></i> ' + link + '</a></p>';
+			out += ' <span class = "pipe">|</span> <a href = "' + link + '" target = "blank" <i class = "fa fa-link"></i> ' + link + '</a></p>';
 		} else {
 			out += '</p>'
 		}

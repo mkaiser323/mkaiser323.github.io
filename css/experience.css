@@ -28,15 +28,81 @@
 {
 	color: #4CA6FF;
 }
-
+@media (max-width: 820px){
+	#experience {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+}
 
 @media(max-width: 767px){
-	#display_experience a{
+	#display_experience a, .pipe{
 		display: none;
 	}
 
 	#display_experience h3, .date, .work_location{
 		text-align: center;
+	}
+
+	#experience ul{
+		list-style-type: disk;
+		list-style-position: inside;
+		padding-left:5px;
+	}	
+
+	#experience p{
+		margin-bottom: 20px;
+		margin-top: 20px;
+	}
+
+	#experience .date{
+		margin-top: 0px;
+	}
+
+	#experience .work_location{
+		margin-bottom: 0px;
+	}
+}
+
+@media (max-width: 480px){
+	#experience *{
+		padding: 0px;
+		margin: 0px;
+	}
+
+	#experience hr{
+		margin-bottom:30px;
+		margin-top:30px;
+	}
+	#experience{
+		padding: 30px 10px 30px 10px;
+	}
+
+	#experience .position{
+		font-style: normal;
+	}
+
+	#experience p{
+		margin-bottom: 20px;
+		margin-top: 20px;
+	}
+
+	#experience ul{
+		list-style-type: disk;
+		list-style-position: inside;
+		padding-left:5px;
+	}
+
+	#experience .pipe{
+		display: none;
+	}
+
+	#experience .date{
+		margin-top: 0px;
+	}
+
+	#experience .work_location{
+		margin-bottom: 0px;
 	}
 }
 /*END EXPERIENCE*/
