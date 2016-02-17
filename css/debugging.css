@@ -17,8 +17,6 @@
 	background-color: black;
 }
 
-#awards{
-}
-
-footer{
+.hide, footer, #experience{
+	display: none;
 }
