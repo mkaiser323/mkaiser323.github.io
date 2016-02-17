@@ -13,7 +13,7 @@ var contact = [
 		"link":"linkedin.com/in/mkaiser323"
 	},{
 		"icon":"fa fa-envelope",
-		"link":"mkaiser323@gmail.com",
+		"link":"mahedi.kaiser@gmail.com",
 		"mailto": true
 	},{
 		"icon":"fa fa-facebook-square",

@@ -13,6 +13,10 @@ header h1, header h2{
 	margin-top: 15%;
 }
 
+.header-content h2{
+	margin-top: 15px;
+}
+
 .header-content hr{
 	border-color: #4CA6FF;
 	width: 50%;

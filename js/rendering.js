@@ -231,11 +231,12 @@ var display_skills = function(div_id){
 
 var display_contact = function(div_id){
 	var row = "<div class = 'row'>",
-	col_icon = '<div class = "col-md-3">',
-	col_link = '<div class = "col-md-9">',
+	col_icon = '';//'<div class = "col-md-3">',
+	col_link = '';//'<div class = "col-md-9">',
 	close_div = "</div>", 
 	out = "";
 	for(var i = 0; i < contact.length; i++){
+		out += "<div class = 'col-md-6'>";
 		var icon = contact[i].icon,
 		link = contact[i].link;
 		if(contact[i].mailto){
@@ -245,13 +246,15 @@ var display_contact = function(div_id){
 		}
 		out += row;
 		out += col_icon;
-		out += '<p><i class ="fa ' + icon + '"></i></p>';
-		out += close_div;//close column
+		out += '<p><i class ="fa ' + icon + '"></i>';
+		//out += close_div;//close column
 		out += col_link;
-		out += '<p>' + link + '</p>';
-		out += close_div;//close column
+		out += '' + link + '</p>';
+		//out += close_div;//close column
 		out += close_div; //close row
 		out += '</a>';
+
+		out += "</div>";
 	}
 	$(div_id).append(out);
 };
