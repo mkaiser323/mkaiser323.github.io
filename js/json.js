@@ -49,7 +49,7 @@ var skills = [
 			}
 		]
 	},{
-		"section":"Object Oriented Programming",
+		"section":"Programming Languages",
 		"skills":[
 			{
 				"skill":"Java",
@@ -57,6 +57,9 @@ var skills = [
 			},{
 				"skill":"Python",
 				"stars":2
+			},{
+				"skill":"SQL",
+				"stars":3
 			}
 		]
 	},{
@@ -72,8 +75,8 @@ var skills = [
 				"skill":"Git",
 				"stars":3
 			},{
-				"skill":"Microsoft Office(Word, Excel, PowerPoint)",
-				"stars":5
+				"skill":"MySQL Workbench",
+				"stars":3
 			}
 		]
 	}
@@ -115,7 +118,7 @@ var experience = [
 	{
 		"position":"Web Developer",
 		"date":"December 2015 - Present",
-		"place":"The International Center for Climate Change Impact Studies",
+		"place":"Climate Change Impact Studies",
 		"details":"I am currently developing a WordPress web site for a newly established environmental organization",
 		"bullet_points":[],
 		"loc":"Bronx, NY",
@@ -137,6 +140,14 @@ var experience = [
 			{"bullet":"Worked in groups to come up with algorithms to compute shortest paths in CAT(0) space"},
 			{"bullet":"Wrote python code to implement proposed solutions"}
 		],
+		"loc":"Bronx, NY",
+		"link":""
+	},{
+		"position":"Academic Excellence Chair",
+		"date":"January 2016 - present",
+		"place":"National Society of Black Engineers",
+		"details":"I organize workshops and study groups revolving around computer science classes being offered by Lehman as well as interview preparation for students that are applying for internships and jobs",
+		"bullet_points":[],
 		"loc":"Bronx, NY",
 		"link":""
 	},{

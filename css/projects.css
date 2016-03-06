@@ -133,6 +133,17 @@
 	color: white;
 }
 
+@media(min-width: 1200px){
+	.details h3{
+		margin-bottom: 35px;
+	}
+
+	.view{
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+}
+
 @media(min-width: 992px) and (max-width: 1199px), (max-width: 591px){
 	.details h3{
 		color: #4CA6FF;
