@@ -5,7 +5,9 @@
 .place, .position{
 	text-align: left;
 }
-#display_experience h3, #summary li .black{
+.bullet {
+	margin-top: 10px;
+	margin-left: 15px;
 }
 
 #display_experience p, #display_experience li, #summary li, #summary p,

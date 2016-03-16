@@ -69,13 +69,13 @@ var skills = [
 				"skill":"Eclipse Enterprise Edition",
 				"stars":5
 			},{
-				"skill":"Sublime Text",
-				"stars":5
-			},{
 				"skill":"Git",
-				"stars":3
+				"stars":4
 			},{
 				"skill":"MySQL Workbench",
+				"stars":3
+			},{
+				"skill":"Android Studios",
 				"stars":3
 			}
 		]
@@ -117,10 +117,23 @@ var awards = [
 var experience = [
 	{
 		"position":"Web Developer",
+		"date":"March 2016 - Present",
+		"place":"LSAMP",
+		"details":"I am in charge of designing, developing, testing and deploying various componenets of the projectSTEM platform using PHP, JavaScript, HTML, CSS and WordPress. Currently, my team and I are working on creating a faster version of the platform.",
+		"bullet_points":[],
+		"loc":"Bronx, NY",
+		"link":"http://projectstem.net"
+	},{
+		"position":"Web Developer",
 		"date":"December 2015 - Present",
 		"place":"Climate Change Impact Studies",
-		"details":"I am currently developing a WordPress web site for a newly established environmental organization",
-		"bullet_points":[],
+		"details":"I am currently developing a WordPress web site for a newly established environmental organization. So far, I have:",
+		"bullet_points":[
+			{"bullet":"Designed and developed a homepage primarily composed of a Google Maps plugin and a sidebar"},
+			{"bullet":"Customized the plugin to serve the specific needs of the client"},
+			{"bullet":"Made the site responsive across all screen sizes"},
+
+		],
 		"loc":"Bronx, NY",
 		"link":"http://climate-change-impact-studies.org"
 	},{

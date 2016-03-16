@@ -118,12 +118,12 @@ var display_experience = function(div_id){
 		//bullet points
 		out += '<ul>';
 		for(j = 0; j < bullet_points.length; j++){
-			out += '<li>' + bullet_points[j].bullet + '</li>';
+			out += '<li class = "bullet" >' + bullet_points[j].bullet + '</li>';
 		}
 		out += '</ul>';
 		out += '<p class = "work_location"><i class = "fa fa-map-marker"></i> ' + loc;
 		if(link != ""){
-			out += ' <span class = "pipe">|</span> <a href = "' + link + '" target = "blank" <i class = "fa fa-link"></i> ' + link + '</a></p>';
+			out += ' <span class = "pipe">|</span> <a class = "ubuntu" href = "' + link + '" target = "blank"> <i class = "fa fa-link"></i> ' + link + '</a></span></p>';
 		} else {
 			out += '</p>'
 		}
@@ -156,7 +156,7 @@ var display_awards = function(div_id){
 		out += '<h4 class="subheading">' + award + '</h4>';
 		out += '</div>';
 		out += '<div class="timeline-body">';
-		out += '<p><i class = "fa fa-map-marker"> ' + place + '</i></p>';
+		out += '<p><i class = "fa fa-map-marker"><span class = "ubuntu">' + place + '</span></i></p>';
 		out += '</div>';
 		out += '</div>';
 
