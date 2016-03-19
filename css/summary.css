@@ -26,6 +26,10 @@
 	margin: 0 auto;
 }
 
+#summary .fa{
+	margin-bottom: 15px;
+}
+
 @media(max-width: 767px){
 	#summary h3, #summary li, #summary p{
 		text-align: center;
