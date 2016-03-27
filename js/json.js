@@ -84,19 +84,19 @@ var skills = [
 
 var awards = [
 	{
-		"award":"2nd place Winnner of the NSBE Hackathon Sponsored by Google and ThoughtWorks",
+		"award":"2nd place Winnner, Google & ThoughtWorks Hackathon",
 		"place":"Boston, MA",
 		"date":"March 2016"
 	},{
-		"award":"1st place Winnner of the NSBE Hackathon Sponsored by IBM, Facebook, Pandora & Goldman Sachs",
+		"award":"1st place Winnner, IBM & Facebook Hackathon",
 		"place":"CUNY - Lehman College",
 		"date":"October 2015"
 	},{
-		"award":"1st place Winnner of the TrainCube Web Development Competition",
+		"award":"1st place Winnner, TrainCube Web Development Competition",
 		"place":"CUNY - Lehman College",
 		"date":"July 2015"
 	},{
-		"award":"3rd place Winnner of the NSBE Hackathon Sponsored by LSAMP & Goldman Sachs",
+		"award":"3rd place Winnner, LSAMP & Goldman Sachs hackathon",
 		"place":"CUNY - City College",
 		"date":"May 2015"
 	},{
