@@ -84,6 +84,10 @@ var skills = [
 
 var awards = [
 	{
+		"award":"2nd place Winnner of the NSBE Hackathon Sponsored by Google and ThoughtWorks",
+		"place":"Boston, MA",
+		"date":"March 2016"
+	},{
 		"award":"1st place Winnner of the NSBE Hackathon Sponsored by IBM, Facebook, Pandora & Goldman Sachs",
 		"place":"CUNY - Lehman College",
 		"date":"October 2015"
