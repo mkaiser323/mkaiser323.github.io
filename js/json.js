@@ -42,7 +42,7 @@ var skills = [
 				"stars":5
 			},{
 				"skill":"WordPress",
-				"stars":3
+				"stars":4
 			},{
 				"skill":"Meteor.js",
 				"stars":2
@@ -70,7 +70,7 @@ var skills = [
 				"stars":5
 			},{
 				"skill":"Git",
-				"stars":4
+				"stars":5
 			},{
 				"skill":"MySQL Workbench",
 				"stars":3
@@ -184,7 +184,7 @@ var experience = [
 		"place":"Fordham University",
 		"details":"I worked directly under the computer lab coordinator, who was in charge of all of the computer labs on campus. On some days, I worked the front desk and helped students and teachers with the computer lab services. On other days, I worked on various errands and projects for my supervisor, which included the following:",
 		"bullet_points":[
-			{"bullet":"I regularly removed outdated software and installied new software in all computers in the four computer labs under my supervision"},
+			{"bullet":"I regularly removed outdated software and installed new software in all computers in the four computer labs under my supervision"},
 			{"bullet":"During the summer, I successfully disassembled 120 old computers and assembled and configured new replacements in time for the Spring semester deadline"}
 		],
 		"loc":"Bronx, NY",
