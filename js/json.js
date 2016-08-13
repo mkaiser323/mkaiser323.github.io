@@ -123,18 +123,30 @@ var awards = [
 
 var experience = [
 	{
+		"position":"Software Developer",
+		"date":"June 2016 - Present",
+		"place":"General Motors",
+		"details":"Currently working on automated testing for the new Infotainment system. Responsibilities include:",
+		"bullet_points":[
+			{"bullet":"Writing, running, and debugging unit tests using JUnit"},
+			{"bullet":"Working with REST and Salesforce APIs"},
+			{"bullet":"Collaborating with other teams to resolve defects and build failures"}
+		],
+		"loc":"Detroit,MI",
+		"link":""
+	},{
 		"position":"Web Developer",
-		"date":"March 2016 - Present",
+		"date":"March 2016 - June 2016",
 		"place":"LSAMP",
-		"details":"I am in charge of designing, developing, testing and deploying various componenets of the projectSTEM platform using PHP, JavaScript, HTML, CSS and WordPress. Currently, my team and I are working on creating a faster version of the platform.",
+		"details":"In charge of designing, developing, testing and deploying various componenets of the projectSTEM platform using PHP, JavaScript, HTML, CSS and WordPress. Currently, my team and I are working on creating a faster version of the platform.",
 		"bullet_points":[],
 		"loc":"Bronx, NY",
 		"link":"http://projectstem.net"
 	},{
 		"position":"Web Developer",
-		"date":"December 2015 - Present",
+		"date":"December 2015 - June 2016",
 		"place":"Climate Change Impact Studies",
-		"details":"I am currently developing a WordPress web site for a newly established environmental organization. So far, I have:",
+		"details":"Designed, developed and deployed a WordPress web site for a newly established environmental organization. This included:",
 		"bullet_points":[
 			{"bullet":"Designed and developed a homepage primarily composed of a Google Maps plugin and a sidebar"},
 			{"bullet":"Customized the plugin to serve the specific needs of the client"},
@@ -145,12 +157,12 @@ var experience = [
 		"link":"http://climate-change-impact-studies.org"
 	},{
 		"position":"Web Developer",
-		"date":"October 2015 - Present",
+		"date":"October 2015 - December 2015",
 		"place":"Electifi",
-		"details":"I am currently working on the landing page for a startup",
+		"details":"Created the landing page for a startup",
 		"bullet_points":[],
 		"loc":"Bronx, NY",
-		"link":"http://electifi.com/landingNotDone"
+		"link":"http://electifi.com"
 	},{
 		"position":"Mathematics Researcher & Programmer",
 		"date":"October 2015 - January 2016",
@@ -164,7 +176,7 @@ var experience = [
 		"link":""
 	},{
 		"position":"Academic Excellence Chair",
-		"date":"January 2016 - present",
+		"date":"January 2016 - June 2016",
 		"place":"National Society of Black Engineers",
 		"details":"I organize workshops and study groups revolving around computer science classes being offered by Lehman as well as interview preparation for students that are applying for internships and jobs",
 		"bullet_points":[],
