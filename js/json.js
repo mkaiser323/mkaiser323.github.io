@@ -132,7 +132,7 @@ var experience = [
 			{"bullet":"Working with REST and Salesforce APIs"},
 			{"bullet":"Collaborating with other teams to resolve defects and build failures"}
 		],
-		"loc":"Detroit,MI",
+		"loc":"Detroit, MI",
 		"link":""
 	},{
 		"position":"Web Developer",
