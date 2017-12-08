@@ -1,0 +1,171 @@
+<!Doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+		<!--Font Awesome-->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+		<!--Google Fonts-->
+		<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700" rel="stylesheet">
+
+		<!--Custom CSS-->
+		<link href='css/form.css' rel='stylesheet' type='text/css'>
+
+		<!--Favicon-->
+		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+ 
+		<title>Get an Estimate</title>
+
+	</head>
+	<body>
+		<section>
+
+
+
+			<!--FORM ELEMENTS:
+			Section 1: Basic personal Info
+			*First Name
+			*Last Name
+			*Email Address
+
+			Section 2: Tell me a little about your project:
+			*Are you looking to create a brand new web site or renovate an existing one? (if existing, enter link)
+			*What kind of web site is this? Radio Buttons{Blog, Personal Web Page, E-Commerce, Landing Page, Other}
+
+			Setion 3: Optional but Strongly Recommended: Can you tell me a little more about your web site? What do you hope to accomplish with it? do you hope to: {Sell a product, Advertise Products or services, Schedule appointments with Clients, Other}
+			-->
+
+
+			<div class="container">
+				<div class="row">
+
+					<div class="jumbotron">
+						<h1>Get a quote!</h1>
+						<p>It only takes 30 seconds, and I'll never sell your information!</p>
+
+					</div><!--/.jumbotron-->
+					<div class="col-md-12">
+					<form>
+
+						<div class="page-header">
+							<h1>First, some basic details about you....</h1>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="fname">First Name</label>
+								<input class="form-control" type="text" name="fname" placeholder="Enter first name...">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="lname">Last Name</label>
+								<input class="form-control" type="text" name="lname" placeholder="Enter last name...">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="email">Email Address</label>
+								<input class="form-control" type="email" name="email" placeholder="Enter an email address...">
+							</div>
+						</div>
+
+						<div class="page-header">
+							<h1>Next, I'd like to know a few things about your project....</h1>
+						</div>
+
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="idk">Are you looking to...</label>
+								<div class="radio">
+									<label><input type="radio"/>Build a brand new web site, or</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio"/>Renovate an existing one</label>
+								</div>							
+							</div>
+						</div>						
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="idk">What kind of web site do you want to build?</label>
+								<div class="radio">
+									<label><input type="radio"/>Blog</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio"/>E-Commerce</label>
+								</div>			
+								<div class="radio">
+									<label><input type="radio"/>Landing Page</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio"/>Other: </label><input class="form-control">
+								</div>
+							</div>
+						</div>
+
+
+						<div class="col-md-4">
+							<div class="form-group">
+								<label >What would you like the Web Site to do for you?</label>
+								<div class="checkbox">
+									<label><input type="checkbox"/>Sell a product directly through the web site</label>
+								</div>
+								<div class="checkbox">
+									<label><input type="checkbox"/>Advertise your business or brand</label>
+								</div>			
+								<div class="checkbox">
+									<label><input type="checkbox"/>Schedule appointments with clineds</label>
+								</div>
+								<div class="checkbox">
+									<label><input type="checkbox"/>Other: </label><input class="form-control">
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-12">
+							<div class="form-group">
+								<label for="details">Additional Details:</label>
+								<textarea class="form-control" style="min-width=100%;"></textarea>
+							</div>
+						</div>
+
+
+
+					</form>
+				</div><!--/.col-md-12-->
+
+				</div><!--/.row-->
+
+
+
+
+		</section>
+
+
+<!--JQUERY-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+	    <!-- Scrolling Nav JavaScript -->
+	    <script src="js/jquery.easing.min.js"></script>
+	    <script src="js/scrolling-nav.js"></script>
+
+	    <!--external json-->
+	    <script type="text/javascript" src = "js/json.js"></script>
+
+	    <!--My own custom JavaScript-->
+	    <!--
+		<script type="text/javascript" src = "js/script.js"></script>
+		<script type="text/javascript" src = "js/animation.js"></script>
+		<script type="text/javascript" src = "js/rendering.js"></script>
+		-->
+	</body>
+</html>

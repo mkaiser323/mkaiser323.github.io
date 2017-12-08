@@ -123,14 +123,19 @@ var awards = [
 
 var experience = [
 	{
-		"position":"Software Developer",
+		"position":"Software Engineer",
 		"date":"June 2016 - Present",
 		"place":"General Motors",
-		"details":"Currently working on automated testing for the new Infotainment system. Responsibilities include:",
+		"details":"Responsible for writing software for test automation team. Accomplishments include:",
 		"bullet_points":[
-			{"bullet":"Writing, running, and debugging unit tests using JUnit"},
-			{"bullet":"Working with REST and Salesforce APIs"},
-			{"bullet":"Collaborating with other teams to resolve defects and build failures"}
+			{"bullet":"Collaborated with a single teammate to design, develop & deploy Diagnostic Tool from start to finish"},
+			{"bullet":"Received Operational Excellence recognition for cutting defect resolution and data setup times by 30%"},
+			{"bullet":"Used AJAX and self-written AngularJS plugins to provide fast, smooth, and intuitive user experience"},
+			{"bullet":"Deployed Application in Weblogic and implemented SAML2 Single Sign On"},
+			{"bullet":"Continued maintenance and integration with new environments"},
+			{"bullet":"Responsible for creating automated tests for new Salesforce REST Apis using JUnit & Jenkins"},
+			{"bullet":"Migrated existing unit tests to Cucumber for improved business utility"},
+			{"bullet":"Cross-team collaboration to resolve defects"}
 		],
 		"loc":"Detroit, MI",
 		"link":""

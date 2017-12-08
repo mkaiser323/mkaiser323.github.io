@@ -44,12 +44,16 @@ h1{
 }
 
 h2{
+	font-size: 3em;
 	font-weight: bold;
 	color: #4CA6FF;
 }
 
+header h2 small{
+	color:#fff;
+}
+
 h2, h3{
-	font-size: 3.5em;
 	text-align: center;
 }
 
