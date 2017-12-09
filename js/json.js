@@ -32,6 +32,9 @@ var skills = [
 				"skill":"JavaScript",
 				"stars":4
 			},{
+				"skill":"AngularJS",
+				"stars":3
+			},{
 				"skill":"JQuery",
 				"stars":4
 			},{
@@ -66,13 +69,19 @@ var skills = [
 			}
 		]
 	},{
-		"section":"Software Packages",
+		"section":"Tools",
 		"skills":[
 			{
 				"skill":"Eclipse Enterprise Edition",
 				"stars":5
 			},{
 				"skill":"Git",
+				"stars":5
+			},{
+				"skill":"TortoiseSVN",
+				"stars":5
+			},{
+				"skill":"Postman",
 				"stars":5
 			},{
 				"skill":"MySQL Workbench",
@@ -143,9 +152,10 @@ var experience = [
 		"position":"Web Developer",
 		"date":"March 2016 - June 2016",
 		"place":"LSAMP",
-		"details":"In charge of designing, developing, testing and deploying various componenets of the projectSTEM platform using PHP, JavaScript, HTML, CSS and WordPress. Currently, my team and I are working on creating a faster version of the platform.",
-		"bullet_points":[],
-		"loc":"Bronx, NY",
+		"details":"In charge of designing, developing, testing and deploying various componenets of the projectSTEM platform using PHP, JavaScript, HTML, CSS and WordPress.",
+		"bullet_points":[
+		 {"bullet":"Migrated the platform to WordPress for faster loading"}],
+		"loc":"Manhattan, NY",
 		"link":"http://projectstem.net"
 	},{
 		"position":"Web Developer",
