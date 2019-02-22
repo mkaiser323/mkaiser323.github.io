@@ -18,48 +18,269 @@
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
 
 		<!--Favicon-->
-		<link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
+		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
  
-		<title>Full Stack Development</title>
+		<title>Become a full stack developer in 10 weeks</title>
 
-		<style>
-			.full-height { 
-				height: 100vh;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				background-color: #333;
-				margin: 0px;
-			}
-			.white {
-				color: white;
-			}
+    <style>
+      header, section {
+        min-height: 100vh;
+        width: 100vw;
+        padding-bottom: 30px;
+      }
 
-			h1.white {
-				font-size: 84px;
-				color: white;
-			}
+      header {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+      }
 
-			h2 {
-				font-size: 32px;
-				line-height: 1.5em;
-			}
-		</style>
+      .indent_1 {
+        margin-left: 50px;
+      }
+
+      .indent_2 {
+        margin-left: 100px;
+      }
+
+
+      h2 {
+        margin-bottom: 40px;
+      }
+
+      h3 {
+        font-size: 2.1em;
+        text-align: left;
+        margin-bottom: 15px;
+        margin-top: 30px;
+      }
+
+      h4 {
+        line-height: 1.25;
+      }
+
+      .footnote {
+        margin-top:30px;
+      }
+      .bg-black h3 {
+        color: white;
+      }
+
+      .bg-black {
+        background-color: black;
+        color: white;
+      }
+
+      .bg-white {
+        background-color: white;
+        color: black;
+      }
+
+      .bg-white h1{
+        color: #444;
+      }
+
+      .bg-black h1{
+        color: #4ca6ff;
+      }
+
+      .may_enjoy, .may_not_enjoy {
+        margin-top: 30px;
+      }
+
+      .may_enjoy h4, .may_not_enjoy h4{
+        margin-left: 30px;
+      }
+
+      h2.even-margins {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 2.7em;
+      }
+
+      #salary_distribution {
+        margin: 0 auto;
+        max-width: 100%;
+        margin-bottom: 80px;
+      }
+    </style>
 	</head>
 	<body>
-		<div class="jumbotron full-height">
-			<div class="container">
-				<h1 class="text-center white">Coming soon!</h1>
-				<h2 class="text-center white">Learn full stack development through a series of ten hands-on projects.</h2>
-				<h2 class="text-center white">Launching February 22nd, 2019.</h2>
+
+		<header class='bg-black'>
+			<div class = "container">
+				<div class = "row text-center">
+          <div class = "col-md-12">
+            <h1>Full Stack Engineering Bootcamp</h1>
+          </div>
 			</div>
-		</div>
+		</header>
+
+
+		<header class="subheader bg-white">
+			<div class = "container">
+				<div class = "row text-center">
+          <div class = "col-md-12">
+            <h1>What does a Software Engineer do?</h1>
+          </div>
+			</div>
+		</header>
+
+    <section class='bg-black'>
+      <div class="container">
+        <h2>Specializations</h2>
+
+        <h3>Software Engineer (Generalist)</h3>
+        <h4><span class='bold'>Salary Range: </span> $70K - $230K. Median: $118k.</h4>
+        <h4><span class='bold'>Job Demand: </span> Projected to increase by 24% from 2016-2026<span class='blue'>*</span></h4>
+
+        <h3>Web Designer</h3>
+        <h4><span class='bold'>Salary Range: </span> $45K - $93K. Median: $71k.</h4>
+        <h4><span class='bold'>Job Demand: </span> Projected to increase by 15% from 2016-2026<span class='blue'>*</span></h4>
+
+        <h3>Product Manager</h3>
+        <h4><span class='bold'>Salary Range: </span> $80K - $180K. Median: $126k.</h4>
+        <h4><span class='bold'>Job Demand: </span> Projected to increase by 10% from 2016-2026<span class='blue'>*</span></h4>
+
+        <h3>Data Scientist</h3>
+        <h4><span class='bold'>Salary Range: </span> $92K - $150K. Median: $116K.</h4>
+        <h4><span class='bold'>Job Demand: </span> Projected to increase by 11% from 2016-2026<span class='blue'>*</span></h4>
+
+        <p class='footnote text-center'><span class='blue'>*</span>National average for others jobs is only 11%</p>
+        
+      </div>
+    </section>
+
+    <section class='bg-white'>
+      <div class="container text-center">
+        <h2>Salary Distribution</h2>
+
+        <img id='salary_distribution' src='salary_distribution.png'/>
+
+        <div class='col-md-4'>
+          <h4><span class='bold'>Beginner:</span> $60k - $80k</h4>
+        </div>
+        <div class='col-md-4'>
+          <h4><span class='bold'>Intermediate:</span> $80k - $150k</h4>
+        </div>
+        <div class='col-md-4'>
+          <h4><span class='bold'>Advanced:</span> $150k+</h4>
+        </div>
+
+      </div>
+    </section>
+
+    <section class='bg-black'>
+      <div class="container">
+        <h2>Pros and Cons of Becoming a Software Engineer</h2>
+
+        <h3>Pros</h3>
+
+        <h4>1. High Pay</h4>
+        <h4>2. High Demand</h4>
+        <h4>3. Flexibility</h4>
+          <h4 class="indent_1">a. Remote Work</h4>
+          <h4 class="indent_1">b. Lots of options for work depending on what you lke</h4>
+            <h4 class="indent_2">- Work for a big company</h4>
+            <h4 class="indent_2">- Work for a startup</h4>
+            <h4 class="indent_2">- Work for yourself</h4>
+
+        <div class="may_enjoy">
+          <h3>You may enjoy Software Engineering if you:</h3>
+          <h4>
+            - Enjoy building things that other people will use and benefit from
+          </h4>
+          <h4>- Enjoy coming up with solutions to problems</h4>
+          <h4>- Enjoy being creative</h4>
+          <h4>- Enjoy working on challenging problems</h4>
+          <h4>
+            - Enjoy math, puzzles, problem solving, and other kinds of analytical tasks
+          </h4>
+          <h4>- Enjoy learning/doing new things every day</h4>
+        </div>
+
+        <h3>Cons</h3> 
+        <h4>1. Takes lots of hard work and patience to get really good at it</h4>
+        <h4>2. Technology is always changing. You need to continuously learn new things</h4>
+        <div class='may_not_enjoy'>
+          <h3>You may not enjoy Software Engineering if you:</h3>
+          <h4>
+            - Don't enjoy math, puzzles, problem solving, and other kinds of analytical tasks
+          </h4>
+          <h4>- Don't enjoy learning new things</h4>
+          <h4>- Are uncomfortable with not knowing things</h4>
+          <h4>- Can't tolerate being stuck on a problem</h4>
+        </div>
+      </div>
+    </section>
+    <section class='bg-white'>
+      <div class="container">
+        <h2>About the course</h2>
+
+        <h3>How it works</h3>
+        <h4>
+          1. The course is set up to help you learn things and build a portfolio at the same time.
+          Towards the end we'll work on interview and job search skills. We'll do the first 4
+          sessions before Ramadan. It'll mostly be front end development. If that goes well we
+          can do more advanced topics after Ramadan.
+        </h4>
+        <br/>
+
+        <h4>
+          2. Every class you'll get a project and we'll go over it the next class. You'll have a
+          project due for the first class.
+        </h4>
+        <br/>
+        <h4>
+          3. Because you need to learn how to learn things on your own, a lot of this will depend on
+          you doing the projects in your own time. During classes, I'll give you the basics and
+          review the previous session's project.
+        </h4>
+        <br/>
+        
+        <h3>How to succeed</h3>
+
+        <h4>1. Do the projects</h4>
+        <h4>2. Expect to spend at least 10-12 hours a week</h4>
+        <h4>3. If you get stuck, ask for help</h4>
+        <h4>4. And most importantly, be open to constantly learning new things...</h4>
+
+
+        <h3 class='text-center'>The #1 skill to work on to become a successful software engineer: </h3>
+        <h2 class='bold text-center even-margins'>The ability to quickly learn and implement new things</h2>
+        <h3 class='text-center'>This is something that can be learned with practice</h3>
+
+
+        <h3>What you'll learn (first 4 sessions)</h3>
+        <h4>1. Terminal Usage</h4>
+        <h4>2. Git</h4>
+        <h4>3. HTML</h4>
+        <h4>4. CSS</h4>
+        <h4>5. Bootstrap</h4>
+        <h4>6. JavaScript</h4>
+        <h4>7. React.js</h4>
+        <h4>8. Responsive Design</h4>
+        <h4>9. Material Design</h4>
+
+        <h3>Schedule</h3>
+        <div class = 'dates'>
+          <h4>March 8th: Project 1</h4>
+          <h4>March 22nd: Project 2</h4>
+          <h4>April 5th: Project 3</h4>
+          <h4>April 26th: Portfolio and Resume Review</h4>
+        </div>
+      </div>
+    </section>
 
 		<!--JQUERY-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+	    <!-- Scrolling Nav JavaScript -->
+	    <script src="js/jquery.easing.min.js"></script>
+	    <script src="js/scrolling-nav.js"></script>
 
 	</body>
 </html>
