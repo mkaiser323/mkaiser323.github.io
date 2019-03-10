@@ -1,0 +1,52 @@
+<!Doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+		<!--Font Awesome-->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+		<!--Google Fonts-->
+		<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+
+		<!--Custom CSS-->
+		<link rel="stylesheet" type="text/css" href="css/list.css">
+
+		<!--Favicon-->
+		<link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
+ 
+		<title>To do list</title>
+
+	</head>
+	<body>
+
+    <label>Task:</label>
+    <input id="listInput" type="text" placeholder="Enter task here" />
+    <label>Priority:</label>
+    <select id="priority">
+      <option value="-1" disabled selected>Select a value</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+    <button id="addButton">Add</button>
+    <h2>To Do:</h2>
+    <ul id='list'></ul>
+
+		<!--JQUERY-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+    <script src="js/list.js"></script>
+
+
+	</body>
+</html>

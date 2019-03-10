@@ -1,0 +1,24 @@
+body {
+  margin: 50px;
+}
+
+.priority {}
+.priority1 {
+  background-color: red;
+}
+.priority2 {
+  background-color: orange;
+}
+.priority3 {
+  background-color: yellow;
+}
+
+.fa-close {
+  cursor: pointer;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+#list li {
+  list-style-type: none;
+}
