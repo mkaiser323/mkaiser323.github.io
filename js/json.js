@@ -23,32 +23,48 @@ var skills = [
 		"section":"Web Development",
 		"skills":[
 			{
-				"skill":"HTML5",
+				"skill":"ReactJS",
+				"stars":4
+			},
+      {
+				"skill":"AngularJS",
+				"stars":4
+			},
+      {
+				"skill":"JQuery",
 				"stars":5
-			},{
-				"skill":"CSS3",
+			},
+			{
+				"skill":"HTML",
 				"stars":5
-			},{
+			},
+      {
+				"skill":"CSS",
+				"stars":5
+			},
+      {
+				"skill":"SASS",
+				"stars":5
+			},
+      {
 				"skill":"JavaScript",
 				"stars":4
-			},{
-				"skill":"AngularJS",
-				"stars":3
-			},{
-				"skill":"JQuery",
-				"stars":4
-			},{
+			},
+      {
 				"skill":"Bootstrap",
 				"stars":5
-			},{
-				"skill":"JSON",
-				"stars":5
-			},{
+			},
+      {
 				"skill":"WordPress",
 				"stars":4
-			},{
-				"skill":"Meteor.js",
-				"stars":2
+			},
+      {
+				"skill":"Weblogic",
+				"stars":3
+			},
+      {
+				"skill":"Webpack",
+				"stars":3
 			}
 		]
 	},{
@@ -56,16 +72,16 @@ var skills = [
 		"skills":[
 			{
 				"skill":"Java",
-				"stars":4
+				"stars":5
 			},{
 				"skill":"Python",
-				"stars":3
+				"stars":5
 			},{
 				"skill":"PHP",
 				"stars":3
 			},{
-				"skill":"SQL",
-				"stars":3
+				"skill":"MySQL",
+				"stars":5
 			}
 		]
 	},{
@@ -91,7 +107,32 @@ var skills = [
 				"stars":3
 			}
 		]
-	}
+	},
+  {
+    "section": "Other",
+    "skills": [
+      {
+        "skill": "SQLAlchemy",
+        "stars": 5
+      },
+      {
+        "skill": "Springboot",
+        "stars": 5
+      },
+      {
+        "skill": "JUnit",
+        "stars": 5
+      },
+      {
+        "skill": "Cucumber",
+        "stars": 4
+      },
+      {
+        "skill": "Elasticsearch",
+        "stars": 5
+      }
+    ]
+  }
 ];
 
 var awards = [

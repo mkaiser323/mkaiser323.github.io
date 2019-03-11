@@ -3,6 +3,10 @@
 	text-align: left;
 }
 
+#skills {
+  padding-bottom: 50px;
+}
+
 .skill{
 	margin: 0px;
 	font-size: 1.5em;
