@@ -134,7 +134,7 @@ var remove_classes = function(){
 		$('.nav li:nth-of-type(' + i + ') a').removeClass('highlighted');		
 	}
 };
-
+var loaded = false;
 var section_handler = function(){
 	var distance_to_summary = $('header')[0].scrollHeight,
 	distance_to_projects = distance_to_summary + $('#summary')[0].scrollHeight, 
@@ -185,6 +185,11 @@ var section_handler = function(){
 		$('nav').css("display", "block");
 		$('.back-to-top').css("display", "block");	
 		$('.nav li:nth-of-type(1) a').addClass('highlighted');
+    if (!loaded) {
+      $('body').css('background-image', 'url("img/background.jpeg")');
+      $('body').css('background-size', '100% 300%');
+      loaded = true
+    }
 	} else {
 		remove_classes();
 		$('body').css("background-position","0 0vh");
