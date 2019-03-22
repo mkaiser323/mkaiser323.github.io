@@ -1,0 +1,25 @@
+.calculator {
+  width: 320px;
+  margin: 0 auto;
+}
+
+.display {
+  padding: 0px 10px;
+  margin-top: 100px;
+  background: #dedede;
+  text-align: right;
+  font-size: 36px;
+  font-weight: bold;
+  color: #333333;
+}
+
+.display, .display p {
+  margin-bottom: 0px;
+}
+
+.button {
+  width: 80px;
+  border solid black 1px;
+}
+
+
