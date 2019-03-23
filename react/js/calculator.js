@@ -29,18 +29,17 @@ class Calculator extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      result: 0,
+      display: 0,
+      a: null,
+      b: null,
       operation: null
     }
   }
 
   performOperation(a, b, operation) {
-    console.log(operation)
-    console.log(a)
-    console.log(b)
 
     switch(operation) {
-      case "+":
+      case "+": 
         return a + b;
       default:
         alert("Unrecognized Operation: '" + operation + "' has not been implemented")
@@ -48,26 +47,46 @@ class Calculator extends React.Component {
     }
   }      
 
+  resetCalculator = () => {
+    this.setState({
+      display: 0,
+      a: null,
+      b: null,
+      operation: null
+    });
+  }
+
   updateCalculator = (value, type) => {
     const {
-      result,
+      display,
+      a,
+      b,
       operation
     } = this.state;
-    console.log(value)
-    console.log(type)
 
     if (type == "number") {
-      if(operation == null) {
-        value = result * 10 + value
+      this.setState({display: value});
+      //if a has not been set, set a. else set b
+      if (a == null) {
+        this.setState({a: value});
       } else {
-        value = this.performOperation(result, value, operation);
+        this.setState({b: value});
       }
-      this.setState({result: value});
-      this.setState({operation: null});
     }
 
     if (type == "operation") {
-      this.setState({operation: value});
+      if (a != null) {
+        //if b is also available, update the display
+        if (b != null) {
+          this.setState({
+            display: this.performOperation(a, b, operation),
+            a: this.performOperation(a, b, operation)
+          });
+        }
+        this.setState({operation: value});
+      } else {
+        this.resetCalculator();
+      }
     }
 
   }
@@ -76,7 +95,7 @@ class Calculator extends React.Component {
     return (
       <div className="calculator">
         <div className="display">
-          <p>{this.state.result}</p>
+          <p>{this.state.display}</p>
         </div>
         <div className="button_pad">
           <Button value="7" updateCalculator={this.updateCalculator} type="number" />
