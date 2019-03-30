@@ -20,6 +20,7 @@
 
 .section_title{
   margin-top: 10px !important;
+  font-size: 22px !important;
   color: #444;
 }
 
@@ -58,12 +59,12 @@
 	}	
 
 	#experience p{
-		margin-bottom: 20px;
 		margin-top: 20px;
 	}
 
 	#experience .date{
 		margin-top: 0px;
+    margin-bottom: 20px;
 	}
 
 	#experience .work_location{
