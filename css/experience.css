@@ -6,7 +6,6 @@
 	text-align: left;
 }
 .bullet {
-	margin-top: 10px;
 	margin-left: 15px;
 }
 
@@ -16,6 +15,12 @@
 #display_experience a:active,
 #display_experience a:link {
 	font-size: 20px;
+}
+
+
+.section_title{
+  margin-top: 10px !important;
+  color: #444;
 }
 
 #display_experience a:hover{

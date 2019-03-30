@@ -88,7 +88,23 @@ var display_projects = function(div_id){
 	}
 };
 
+var generate_bullet_group = function(header, bullet_points, sectioned){
+  var out = "";
+  classes = sectioned ? "section_title" : "work_description"
+  out += '<p class = '+classes+'>' + header + '</p>';
+  
+  //bullet points
+  out += '<ul>';
+  for(j = 0; j < bullet_points.length; j++){
+    out += '<li class = "bullet" >' + bullet_points[j].bullet + '</li>';
+  }
+  out += '</ul>';
+
+  return out;
+
+}
 var display_experience = function(div_id){
+
 	for(var i = 0; i < experience.length; i++){
 		var position = experience[i].position,
 		date = experience[i].date,
@@ -110,29 +126,49 @@ var display_experience = function(div_id){
 		out += '<p class = "date">' + date + '</p>';
 		out += '</div>';
 
-		//RIGHT COLUMN
+		//RIGHT COLUMN (header)
 		out += '<div class = "col-md-8">';
 		out += '<h3 class = "position">' + position + '</h3>';
-		out += '<p class = "work_description">' + details + '</p>';
+
+    //RIGHT COLUMN (body)
+    if(experience[i].hasOwnProperty("sectioned") && experience[i].sectioned) {
+      out += '<p class = "work_description">' + details + '</p>';
+      sections = experience[i].sections;
+      for(var s = 0; s < sections.length; s++){
+        section = sections[s]
+        header = section.title + " (" + section.date + ")"
+        out += generate_bullet_group(header, section.bullet_points, true);
+      }
+    } else {
+      out += generate_bullet_group(details, bullet_points);
+    }
+
+
+		//out += '<p class = "work_description">' + details + '</p>';
 		
 		//bullet points
-		out += '<ul>';
-		for(j = 0; j < bullet_points.length; j++){
-			out += '<li class = "bullet" >' + bullet_points[j].bullet + '</li>';
-		}
-		out += '</ul>';
+		//out += '<ul>';
+		//for(j = 0; j < bullet_points.length; j++){
+		//	out += '<li class = "bullet" >' + bullet_points[j].bullet + '</li>';
+		//}
+		//out += '</ul>';
+    //end body
+    
+    //footer (location and link)
 		out += '<p class = "work_location"><i class = "fa fa-map-marker"></i> ' + loc;
 		if(link != ""){
 			out += ' <span class = "pipe">|</span> <a class = "ubuntu" href = "' + link + '" target = "blank"> <i class = "fa fa-link"></i> ' + link + '</a></span></p>';
 		} else {
 			out += '</p>'
 		}
-		out += '</div>';
-		out += '</div>';
+
+		out += '</div>';//END RIGHT COLUMN
+		out += '</div>';//row
 
 		$(div_id).append(out);
 	}
 };
+
 
 var display_awards = function(div_id){
 	var out = '<ul class="timeline">';

@@ -172,21 +172,94 @@ var awards = [
 ];
 
 var experience = [
+  {
+    "position": "Software Engineer",
+    "date": "September 2018 - March 2019",
+    "place": "Bombfell (Startup)",
+    "details": "Worked closely with CTO, product manager, and 4 person dev team to perform all software development for the company. Worked with stakeholders to automate and optimize business processes. Performed all roles in development and took ownership of several projects.",
+    "sectioned": true,
+    "sections":[
+      {
+       "title":"Payment System Rewrite",
+       "date":"(September - March 2019)",
+       "bullet_points":[
+        {"bullet":"Saved the company an average of 10% per refund transaction by fixing bug in refund process"},
+        {"bullet":"Refactored payment system for improved code modularity and maintainability"},
+        {"bullet":"Implemented test framework for payment system for improved reliability"},
+       ]
+      },
+      {
+       "title":"Pagespeed Optimization",
+       "date":"February 2019 - March 2019",
+       "bullet_points":[
+        {"bullet":"Improved load time and search ranking by increasing Google Pagespeed score by 70 points (out of 100)"},
+        {"bullet":"Optimized webpack bundling using commons chunks and compression plugins"},
+        {"bullet":"Reorganized page structure and lazy-loaded below-the-fold contents using AJAX and JQuery events"}
+       ]
+      },
+      {
+       "title":"Bombfell Shop Launch",
+       "date":"September 2018 - December 2018",
+       "bullet_points":[
+        {"bullet":"Coordinated with Product Manager, Stylists, and 4 other developers to launch ecommerce shop in 2 months"},
+        {"bullet":"Wrote python code to search, sort, and cache shop items based on various filters and user preferences"},
+        {"bullet":"Developed multiple React components for shop pages"}
+       ]
+      },
+      {
+       "title":"Security &amp; Authentication",
+       "date":"December 2018 - February 2019",
+       "bullet_points":[
+        {"bullet":"Implemented Multi-factor Authentication for internal accounts using totp authentication"},
+        {"bullet":"Made accounts more brute-force resistant by implementing bcrypt password hashing"}
+       ]
+      },
+      {
+       "title":"Custom Reporting Calendar",
+       "date":"February 2019 - March 2019",
+       "bullet_points":[
+        {"bullet":"Improved business utility of reports by implementing custom reporting calendar API"},
+        {"bullet":"Designed and developed custom calendar API using python and SQLAlchemy based on Nation Retail Federation calendar and internally defined reporting periods"}
+       ]
+      },
+    ]
+  },
 	{
 		"position":"Software Engineer",
-		"date":"June 2016 - Present",
+		"date":"June 2016 - September 2018",
 		"place":"General Motors",
-		"details":"Responsible for writing software for test automation team. Accomplishments include:",
-		"bullet_points":[
-			{"bullet":"Collaborated with a single teammate to design, develop & deploy Diagnostic Tool from start to finish"},
-			{"bullet":"Received Operational Excellence recognition for cutting defect resolution and data setup times by 30%"},
-			{"bullet":"Used AJAX and self-written AngularJS plugins to provide fast, smooth, and intuitive user experience"},
-			{"bullet":"Deployed Application in Weblogic and implemented SAML2 Single Sign On"},
-			{"bullet":"Continued maintenance and integration with new environments"},
-			{"bullet":"Responsible for creating automated tests for new Salesforce REST Apis using JUnit & Jenkins"},
-			{"bullet":"Migrated existing unit tests to Cucumber for improved business utility"},
-			{"bullet":"Cross-team collaboration to resolve defects"}
-		],
+		"details":"Wrote software for test automation team. Received Operational Excellence Award for creating Data Setup & Diagnostics Tool.",
+    "sectioned":true,
+    "sections": [
+        {
+        "title":"Salesforce Rewrite Project",
+        "date": "January 2018 - April 2018",
+        "bullet_points": [
+          {"bullet":"Rewrote Salesforce APIs as in-house Springboot microservices to extend availability of services globally"},
+          {"bullet":"Collaborated with a team of 15 developers and architects to make microservices work together seamlessly"},
+          {"bullet":"Wrote comprehensive unit tests, component tests, andintegration tests to ensure code reliability and maintainability"}
+        ]
+      },
+      {
+        "title":"Data Setup & Diagnostics Tool",
+        "date":"February 2017 - September 2018",
+        "bullet_points":[
+        {"bullet":"Cut defect resolution and data setup times by 30% by eliminating bottlenecks in the process"},
+        {"bullet":"Collaborated with a single teammate to design, develop & deploy the tool in under 6 months"},
+        {"bullet":"Used AJAX and self-written AngularJS plugins to provide fast, smooth, and intuitive user experience"},
+        {"bullet":"Handled all DevOps related tasks including deploying application to WebLogic, implementing single sign on, setting up Elasticsearch pipeline, and writing cron jobs to manage memory and monitor system health"}
+        ]
+      },
+      {
+        "title":"Test Automation",
+        "date": "Jube 2016 - September 2018",
+        "bullet_points":[
+          {"bullet":"Responsible for creating automated tests for new Salesforce REST APIs using JUnit & Jenkins"},
+          {"bullet":"Improved readability and business utility of unit test results by migrating to Cucumber"},
+          {"bullet":"Minimized build failures by collaborating with multiple teams to resolve defects"}
+        ]
+      }
+    ],
 		"loc":"Detroit, MI",
 		"link":""
 	},{
