@@ -181,7 +181,7 @@ var experience = [
     "sections":[
       {
        "title":"Payment System Rewrite",
-       "date":"(September - March 2019)",
+       "date":"September - March 2019",
        "bullet_points":[
         {"bullet":"Saved the company an average of 10% per refund transaction by fixing bug in refund process"},
         {"bullet":"Refactored payment system for improved code modularity and maintainability"},
@@ -222,7 +222,9 @@ var experience = [
         {"bullet":"Designed and developed custom calendar API using python and SQLAlchemy based on Nation Retail Federation calendar and internally defined reporting periods"}
        ]
       },
-    ]
+    ],
+    "loc": "New York, NY",
+    "link": ""
   },
 	{
 		"position":"Software Engineer",
@@ -269,7 +271,7 @@ var experience = [
 		"details":"In charge of designing, developing, testing and deploying various componenets of the projectSTEM platform using PHP, JavaScript, HTML, CSS and WordPress.",
 		"bullet_points":[
 		 {"bullet":"Migrated the platform to WordPress for faster loading"}],
-		"loc":"Manhattan, NY",
+		"loc":"New York, NY",
 		"link":"http://projectstem.net"
 	},{
 		"position":"Web Developer",
@@ -322,7 +324,9 @@ var experience = [
 		],
 		"loc":"Bronx, NY",
 		"link":""
-	},{
+	}
+
+  /*{
 		"position":"Computer Lab Assistant",
 		"date":"January 2011 - May 2012",
 		"place":"Fordham University",
@@ -333,7 +337,7 @@ var experience = [
 		],
 		"loc":"Bronx, NY",
 		"link":""
-	}
+	}*/
 ];
 
 var projects = [

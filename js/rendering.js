@@ -192,7 +192,7 @@ var display_awards = function(div_id){
 		out += '<h4 class="subheading">' + award + '</h4>';
 		out += '</div>';
 		out += '<div class="timeline-body">';
-		out += '<p><i class = "fa fa-map-marker"><span class = "ubuntu">' + place + '</span></i></p>';
+		out += '<p><i class = "fa fa-map-marker"></i> <span class = "ubuntu">' + place + '</span></p>';
 		out += '</div>';
 		out += '</div>';
 
