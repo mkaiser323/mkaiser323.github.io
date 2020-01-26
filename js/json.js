@@ -26,11 +26,11 @@ var skills = [
 				"skill":"ReactJS",
 				"stars":4
 			},
-      {
+      		{
 				"skill":"AngularJS",
 				"stars":4
 			},
-      {
+      		{
 				"skill":"JQuery",
 				"stars":5
 			},
@@ -38,31 +38,31 @@ var skills = [
 				"skill":"HTML",
 				"stars":5
 			},
-      {
+      		{
 				"skill":"CSS",
 				"stars":5
 			},
-      {
+      		{
 				"skill":"SASS",
 				"stars":5
 			},
-      {
+      		{
 				"skill":"JavaScript",
 				"stars":4
 			},
-      {
+      		{
 				"skill":"Bootstrap",
 				"stars":5
 			},
-      {
+      		{
 				"skill":"WordPress",
 				"stars":4
 			},
-      {
+      		{
 				"skill":"Weblogic",
 				"stars":3
 			},
-      {
+      		{
 				"skill":"Webpack",
 				"stars":3
 			}
@@ -74,8 +74,14 @@ var skills = [
 				"skill":"Java",
 				"stars":5
 			},{
+				"skill":"Golang",
+				"stars":4
+			},{
 				"skill":"Python",
 				"stars":5
+			},{
+				"skill":"C#",
+				"stars":3
 			},{
 				"skill":"PHP",
 				"stars":3
@@ -130,6 +136,18 @@ var skills = [
       {
         "skill": "Elasticsearch",
         "stars": 5
+      },
+      {
+        "skill": "Kafka",
+        "stars": 4
+      },
+      {
+        "skill": "Docker",
+        "stars": 3
+      },
+      {
+        "skill": "Kubernetes",
+        "stars": 3
       }
     ]
   }
@@ -172,6 +190,35 @@ var awards = [
 ];
 
 var experience = [
+  {
+    "position": "Software Engineer",
+    "date": "May 2019 - Present",
+    "place": "Comcast Freewheel",
+    "details": "",
+    "sectioned": true,
+    "sections": [
+      {
+       "title":"Golang Microservice Rewrite",
+       "date":"May 2019 - Present",
+       "bullet_points":[
+        {"bullet":"Reduced technical debt and ticket resolution times by rewriting legacy C# service using good coding practices"},
+        {"bullet":"Independently designed and coded the solution in 4 months, with no prior experience in Golang"},
+        {"bullet":"Set standard for future microservice development by implementing Domain Driven Design and Clean Code Architecture"},
+       ]
+      },
+      {
+       "title":"Fullstack Developer",
+       "date":"May 2019 - Present",
+       "bullet_points":[
+        {"bullet":"Collaborated with a 14 member agile team to deliver features in a timely manner"},
+        {"bullet":"Worked with a variety of environments and languages, learning required skills on the fly"},
+        {"bullet":"Coordinated with local and Beijing teams to relay knowledge and implement cross-service features"},
+       ]
+      }
+    ],
+		"loc":"New York, NY",
+		"link":""
+  },
   {
     "position": "Software Engineer",
     "date": "September 2018 - March 2019",
