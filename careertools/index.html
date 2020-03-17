@@ -10,6 +10,12 @@
                 margin-bottom: 0px;
                 white-space: pre-wrap;
             }
+            input {
+                margin-bottom: 5px;
+            }
+            textarea {
+                resize: both;
+            }
         </style>
     </head>
 
@@ -20,13 +26,18 @@
                 <h2>Inputs</h2>
                 <div class="row">
                     <div class = "col-md-6">
-                        <p>Role: <input ng-model="role"></p>
-                        <p>Company: <input ng-model="company"></p>
-                        <p>What are they looking for in the job posting: <input ng-model="descriptionFromJobPosting"></p>
-                        <p>Why you would be a good fit for the position: <input ng-model="goodFitSummary"></p>
+                        <p>Link: <a href={{link}} target="_blank">{{link}}</a></p>
+                        <p>Job posting link: <input ng-model="link"></p>
+                        <p>Role: <input ng-model="role" ng-change="updateTitle()"></p>
+                        <p>Company: <input ng-model="company" ng-change="updateTitle()"></p>
+                        <p>What are they looking for in the job posting:</p>
+                        <textarea ng-model="descriptionFromJobPosting"></textarea>
                     </div>
                     <div class = "col-md-6">
-                        <p>Body</p><textarea ng-model="body"><textarea></textarea>
+                        <p>Why you would be a good fit for the position:</p>
+                        <textarea ng-model="goodFitSummary"></textarea>
+                        <p>Body</p>
+                        <textarea ng-model="body"></textarea>
                     </div>
                 </div>
             </div>
