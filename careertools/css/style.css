@@ -1,0 +1,10 @@
+p {
+    margin-bottom: 0px;
+    white-space: pre-wrap;
+}
+input {
+    margin-bottom: 5px;
+}
+textarea {
+    resize: both;
+}
