@@ -8,3 +8,10 @@ input {
 textarea {
     resize: both;
 }
+
+.show{
+    display: block;
+}
+.hide{
+    display: none;
+}
