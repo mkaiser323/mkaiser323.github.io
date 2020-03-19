@@ -60,4 +60,5 @@ function respondToAuthStateChange($scope){
 	}, function(error) {
 		console.log(error);
 	});
+	console.log("user:",$scope.user)
 }
