@@ -47,14 +47,14 @@ function respondToAuthStateChange($scope){
 		} else {
 			console.log("user is signed out")
 			// User is signed out.
-		}
+        }
+        console.log("user:",$scope.user)
+        $scope.signedIn = !!$scope.user
+        console.log("signedIn:", $scope.signedIn)
+        console.log("scope:", $scope)
 	}, function(error) {
 		console.log(error);
 	});
-	console.log("user:",$scope.user)
-    $scope.signedIn = !!$scope.user
-    console.log("signedIn:", $scope.signedIn)
-    console.log("scope:", $scope)
 }
 
 function signOut(){
