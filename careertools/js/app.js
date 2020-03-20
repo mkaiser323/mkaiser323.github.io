@@ -16,7 +16,7 @@ app.controller('myCtrl', function($scope) {
 	};
 
 	initFirebaseUI()
-	mockSignIn($scope)
+	// mockSignIn($scope)
 	respondToAuthStateChange($scope)
 	$scope.signOut = signOut()
 });
