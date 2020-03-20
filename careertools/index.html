@@ -26,9 +26,30 @@
 
     <body>
         <div ng-app="myApp" ng-controller="myCtrl" class="container">
-            <div id="firebaseui-auth-container"></div>
+            <div ng-class="signedIn ? 'hide' : 'show'" id="firebaseui-auth-container"></div>
 
+            <div ng-class="signedIn ? 'show' : 'hide'" id="firebaseui-auth-signout-container" lang="en">
+                <div class="firebaseui-container firebaseui-page-provider-sign-in firebaseui-id-page-provider-sign-in firebaseui-use-spinner">
+                    <div class="firebaseui-card-content">
+                        <ul class="firebaseui-idp-list">
+                            <li class="firebaseui-list-item">
+                                <button class="firebaseui-idp-button mdl-button mdl-js-button mdl-button--raised firebaseui-idp-google firebaseui-id-idp-button">
+                                    <span class="firebaseui-idp-icon-wrapper">
+                                        <img class="firebaseui-idp-icon" alt="" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg">
+                                    </span>
+                                    <span class="firebaseui-idp-text firebaseui-idp-text-long">Sign out</span>
+                                    <span class="firebaseui-idp-text firebaseui-idp-text-short">Google</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="firebaseui-card-footer firebaseui-provider-sign-in-footer"></div>
+                </div>
+            </div>
+
+            <!--
             <p class="text-center">{{ signedIn ? "You are signed in as " + user.displayName + " (" +user.email + ")" : "You are signed out"}}</p>
+            -->
             <div ng-if="signedIn">
                 <h1>Cover Letter Generator</h1>
                 <div class="col-md-12">
