@@ -23,8 +23,8 @@ function initFirebaseUI(){
 				console.log("redirectUrl", redirectUrl)
 				return false;//true == will redirect to given url
 			},
-			signInFlow: "popup"
-		}
+        },
+        signInFlow: "popup"
 	}
 	ui.start('#firebaseui-auth-container', uiConfig);
 }
