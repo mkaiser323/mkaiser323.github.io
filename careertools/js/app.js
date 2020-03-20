@@ -1,6 +1,6 @@
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
-	console.log("v2.0")
+	console.log("v3.0")
 	$scope.defaults=defaults;
 
 	var today = new Date();

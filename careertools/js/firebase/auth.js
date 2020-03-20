@@ -52,7 +52,9 @@ function respondToAuthStateChange($scope){
 		console.log(error);
 	});
 	console.log("user:",$scope.user)
-	$scope.signedIn = !!$scope.user
+    $scope.signedIn = !!$scope.user
+    console.log("signedIn:", $scope.signedIn)
+    console.log("scope:", $scope)
 }
 
 function signOut(){
