@@ -28,6 +28,8 @@ app.controller('myCtrl', function($scope) {
 	$scope.signOut = function(){
 		firebase.auth().signOut().then(function() {
 			signOut($scope)
+			location.reload()
+			//window.location.href="redirect destination"
 			console.log('Signed Out');
 		  }, function(error) {
 			console.error('Sign Out Error', error);
