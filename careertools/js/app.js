@@ -1,7 +1,7 @@
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
 	console.log(VERSION_TAG)
-	setUser($scope, APP_ID+"-user")
+	setUser($scope, getCookie(APP_ID+"-user"))
 	console.log("Logged in as: ", user)
 	$scope.defaults=defaults;
 
