@@ -36,7 +36,8 @@
         <div ng-app="myApp" ng-controller="myCtrl" class="container">
             <div ng-class="signedIn ? 'hide' : 'show'" id="firebaseui-auth-container"></div>
 
-            <div ng-class="signedIn ? 'show' : 'hide'" id="firebaseui-auth-signout-container" lang="en">
+            <!--TODO: move this into a template-->
+            <div ng-class="signedIn ? 'show' : 'hide'" id="firebaseui-auth-signout-container" lang="en" ng-click="signOut()">
                 <div class="firebaseui-container firebaseui-page-provider-sign-in firebaseui-id-page-provider-sign-in firebaseui-use-spinner">
                     <div class="firebaseui-card-content">
                         <ul class="firebaseui-idp-list">

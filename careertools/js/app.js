@@ -2,7 +2,6 @@ var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
 	console.log(VERSION_TAG)
 	setUser($scope, getCookie(APP_ID+"-user"))
-	console.log("Logged in as: ", $scope.user)
 	$scope.defaults=defaults;
 
 	var today = new Date();
@@ -18,16 +17,17 @@ app.controller('myCtrl', function($scope) {
 		document.title = constructTitle($scope.company, $scope.role);
 	};
 
-	initFirebaseUI()
+	initFirebaseUI($scope)
 	if (MOCK){
-		//mockSignIn($scope)
-		mockSignOut($scope)
+		mockSignIn($scope)
+		//signOut($scope)
 	} else {
 		respondToAuthStateChange($scope)
 	}
 
 	$scope.signOut = function(){
 		firebase.auth().signOut().then(function() {
+			signOut($scope)
 			console.log('Signed Out');
 		  }, function(error) {
 			console.error('Sign Out Error', error);
@@ -48,12 +48,12 @@ function mockSignIn($scope){
 	setCookie(APP_ID+"-user", $scope.user, SIGN_IN_LIFESPAN_DAYS)
 }
 
-function mockSignOut($scope){
+function signOut($scope){
 	setUser($scope, null)
 	deleteCookie(APP_ID+"-user")
 }
 
-function initFirebaseUI(){
+function initFirebaseUI($scope){
 	// Initialize the FirebaseUI Widget using Firebase: https://firebase.google.com/docs/auth/web/firebaseui
 	var ui = new firebaseui.auth.AuthUI(firebase.auth());
 	var uiConfig = {
@@ -68,6 +68,7 @@ function initFirebaseUI(){
 				console.log("sign in detected!")
 				console.log("authResult", authResult)
 				console.log("redirectUrl", redirectUrl)
+				setUser($scope, authResult.user)
 				setCookie(APP_ID+"-user", authResult.user, SIGN_IN_LIFESPAN_DAYS)
 				return false;//true == will redirect to given url
 			},
@@ -79,9 +80,9 @@ function initFirebaseUI(){
 function respondToAuthStateChange($scope){
 	//Auth State Change tracking:
 	firebase.auth().onAuthStateChanged(function(user) {
-		setUser($scope, user)
+		// setUser($scope, user)
 		if (user) {
-			setCookie(APP_ID+"-user", user, SIGN_IN_LIFESPAN_DAYS)
+			// setCookie(APP_ID+"-user", user, SIGN_IN_LIFESPAN_DAYS)
 			console.log("user is signed in:", user)
 			// User is signed in.
 			var displayName = user.displayName;
@@ -93,7 +94,7 @@ function respondToAuthStateChange($scope){
 			var providerData = user.providerData;
 
 		} else {
-			deleteCookie(APP_ID+"-user")
+			// deleteCookie(APP_ID+"-user")
 			console.log("user is signed out")
 			// User is signed out.
         }
