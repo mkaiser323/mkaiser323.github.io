@@ -35,10 +35,9 @@
 
     <body>
         <div ng-app="myApp" ng-controller="myCtrl" class="container">
-            <div ng-class="signedIn ? 'hide' : 'show'" id="firebaseui-auth-container"></div>
+            <div ng-hide="signedIn" id="firebaseui-auth-container"></div>
 
-            <!--TODO: move this into a template-->
-            <div ng-class="signedIn ? 'show' : 'hide'" id="firebaseui-auth-signout-container" lang="en" ng-click="signOut()">
+            <div ng-show="signedIn" id="firebaseui-auth-signout-container" lang="en" ng-click="signOut()">
                 <div class="firebaseui-container firebaseui-page-provider-sign-in firebaseui-id-page-provider-sign-in firebaseui-use-spinner">
                     <div class="firebaseui-card-content">
                         <ul class="firebaseui-idp-list">
@@ -57,10 +56,7 @@
                 </div>
             </div>
 
-            <!--
-            <p class="text-center">{{ signedIn ? "You are signed in as " + user.displayName + " (" +user.email + ")" : "You are signed out"}}</p>
-            -->
-            <div ng-if="signedIn">
+            <div ng-show="signedIn">
                 <h1>Cover Letter Generator</h1>
                 <div class="col-md-12">
                     <h2>Inputs</h2>

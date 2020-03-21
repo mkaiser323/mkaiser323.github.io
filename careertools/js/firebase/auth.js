@@ -22,7 +22,7 @@ function initFirebaseUI($scope){
 	}
     ui.start('#firebaseui-auth-container', uiConfig);
     
-    if (MOCK){
+    if (MOCK_SIGN_IN){
 		mockSignIn($scope)
 		//signOut($scope)
 	} else {
@@ -46,7 +46,6 @@ function respondToAuthStateChange($scope){
 			var uid = user.uid;
 			var phoneNumber = user.phoneNumber;
 			var providerData = user.providerData;
-
 		} else {
 			// deleteCookie(APP_ID+"-user")
 			console.log("user is signed out")
