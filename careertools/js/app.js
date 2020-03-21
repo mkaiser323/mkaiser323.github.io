@@ -1,6 +1,8 @@
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
 	console.log(VERSION_TAG)
+	setUser($scope, APP_ID+"-user")
+	console.log("Logged in as: ", user)
 	$scope.defaults=defaults;
 
 	var today = new Date();
