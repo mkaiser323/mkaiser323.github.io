@@ -18,3 +18,15 @@ textarea {
 
 .signOutBtn{
 }
+
+#signInPage{
+	background-color: #CCCCCC;
+	width: 100vw;
+	height: 100vh;
+}
+#firebaseui-auth-container{
+	position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+}

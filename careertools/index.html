@@ -29,73 +29,76 @@
         <script src="js/util/cookies.js"></script>
         <script src="js/defaults.js"></script>
         <script src="js/constants.js"></script>
-
         <script src="js/app.js"></script>
     </head>
 
     <body>
-        <div ng-app="myApp" ng-controller="myCtrl" class="container">
-            <div ng-hide="signedIn" id="firebaseui-auth-container"></div>
-
-            <div ng-show="signedIn" id="firebaseui-auth-signout-container" lang="en" ng-click="signOut()">
-                <div class="firebaseui-container firebaseui-page-provider-sign-in firebaseui-id-page-provider-sign-in firebaseui-use-spinner">
-                    <div class="firebaseui-card-content">
-                        <ul class="firebaseui-idp-list">
-                            <li class="firebaseui-list-item">
-                                <button class="firebaseui-idp-button mdl-button mdl-js-button mdl-button--raised firebaseui-idp-google firebaseui-id-idp-button">
-                                    <span class="firebaseui-idp-icon-wrapper">
-                                        <img class="firebaseui-idp-icon" alt="" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg">
-                                    </span>
-                                    <span class="firebaseui-idp-text firebaseui-idp-text-long">Sign out</span>
-                                    <span class="firebaseui-idp-text firebaseui-idp-text-short">Google</span>
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="firebaseui-card-footer firebaseui-provider-sign-in-footer"></div>
-                </div>
+        <div ng-app="myApp" ng-controller="myCtrl">
+            <div ng-hide="signedIn" id="signInPage">
+                <div id="firebaseui-auth-container"></div>
             </div>
 
-            <div ng-show="signedIn">
-                <h1>Cover Letter Generator</h1>
-                <div class="col-md-12">
-                    <h2>Inputs</h2>
-                    <div class="row">
-                        <div class = "col-md-6">
-                            <p>Link: <a href={{link}} target="_blank">{{link}}</a></p>
-                            <p>Job posting link: <input ng-model="link"></p>
-                            <p>Role: <input ng-model="role" ng-change="updateTitle()"></p>
-                            <p>Company: <input ng-model="company" ng-change="updateTitle()"></p>
-                            <p>What are they looking for in the job posting:</p>
-                            <textarea ng-model="descriptionFromJobPosting"></textarea>
-                        </div>
-                        <div class = "col-md-6">
-                            <p>Why you would be a good fit for the position:</p>
-                            <textarea ng-model="goodFitSummary"></textarea>
-                            <p>Body</p>
-                            <textarea ng-model="body"></textarea>
+            <div class="container">
+                <div ng-show="signedIn">
+                    <div id="firebaseui-auth-signout-container" lang="en" ng-click="signOut()">
+                        <div class="firebaseui-container firebaseui-page-provider-sign-in firebaseui-id-page-provider-sign-in firebaseui-use-spinner">
+                            <div class="firebaseui-card-content">
+                                <ul class="firebaseui-idp-list">
+                                    <li class="firebaseui-list-item">
+                                        <button class="firebaseui-idp-button mdl-button mdl-js-button mdl-button--raised firebaseui-idp-google firebaseui-id-idp-button">
+                                            <span class="firebaseui-idp-icon-wrapper">
+                                                <img class="firebaseui-idp-icon" alt="" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg">
+                                            </span>
+                                            <span class="firebaseui-idp-text firebaseui-idp-text-long">Sign out</span>
+                                            <span class="firebaseui-idp-text firebaseui-idp-text-short">Google</span>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="firebaseui-card-footer firebaseui-provider-sign-in-footer"></div>
                         </div>
                     </div>
-                </div>
-                <hr/>
-                <div class="col-md-12">
-                    <h2>Output</h2>
-                    <p>{{defaults.addr1}}</p>
-                    <p>{{defaults.addr2}}</p>
-                    <p>{{date}}</p>
-                    <br/>
-                    <p>Dear {{defaults.hiringManager}},</p>
-                    <br/>
-                    <p>I am interested in the role of {{role}} at {{company}}. Based on the description on the job posting, I understand that you are looking for {{descriptionFromJobPosting}}. I believe that I will be a good fit for this role because {{goodFitSummary}}. </p>
-                    <br/>
-                    <p>{{body}}</p>
-                    <br/>
-                    <p>I am eager to contribute my skills and experience to your organization. Should you have any further questions, you may reach out to me by phone ({{defaults.phone}}) or email ({{defaults.email}}). I look forward to speaking with you.</p>
-                    <br/>
-                    <p>Sincerely,</p>
-                    <p>{{defaults.name}}</p>
-                </div>
-            </div>            
+
+                    <h1>Cover Letter Generator</h1>
+                    <div class="col-md-12">
+                        <h2>Inputs</h2>
+                        <div class="row">
+                            <div class = "col-md-6">
+                                <p>Link: <a href={{link}} target="_blank">{{link}}</a></p>
+                                <p>Job posting link: <input ng-model="link"></p>
+                                <p>Role: <input ng-model="role" ng-change="updateTitle()"></p>
+                                <p>Company: <input ng-model="company" ng-change="updateTitle()"></p>
+                                <p>What are they looking for in the job posting:</p>
+                                <textarea ng-model="descriptionFromJobPosting"></textarea>
+                            </div>
+                            <div class = "col-md-6">
+                                <p>Why you would be a good fit for the position:</p>
+                                <textarea ng-model="goodFitSummary"></textarea>
+                                <p>Body</p>
+                                <textarea ng-model="body"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="col-md-12">
+                        <h2>Output</h2>
+                        <p>{{defaults.addr1}}</p>
+                        <p>{{defaults.addr2}}</p>
+                        <p>{{date}}</p>
+                        <br/>
+                        <p>Dear {{defaults.hiringManager}},</p>
+                        <br/>
+                        <p>I am interested in the role of {{role}} at {{company}}. Based on the description on the job posting, I understand that you are looking for {{descriptionFromJobPosting}}. I believe that I will be a good fit for this role because {{goodFitSummary}}. </p>
+                        <br/>
+                        <p>{{body}}</p>
+                        <br/>
+                        <p>I am eager to contribute my skills and experience to your organization. Should you have any further questions, you may reach out to me by phone ({{defaults.phone}}) or email ({{defaults.email}}). I look forward to speaking with you.</p>
+                        <br/>
+                        <p>Sincerely,</p>
+                        <p>{{defaults.name}}</p>
+                    </div>
+                </div> 
+            </div>           
         </div>
     </body>
 </html>

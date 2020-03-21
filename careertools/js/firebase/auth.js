@@ -1,4 +1,4 @@
-function initFirebaseUI($scope){
+function initFirebaseAuthUI($scope){
 	// Initialize the FirebaseUI Widget using Firebase: https://firebase.google.com/docs/auth/web/firebaseui
 	var ui = new firebaseui.auth.AuthUI(firebase.auth());
 	var uiConfig = {
