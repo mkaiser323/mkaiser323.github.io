@@ -72,7 +72,7 @@ function initFirebaseUI($scope){
 				return true;//true == will redirect to given url
 			},
 		},
-		redirectUrl: "careertools"
+		signInSuccessUrl: "careertools"
 	}
 	ui.start('#firebaseui-auth-container', uiConfig);
 }
