@@ -68,7 +68,7 @@ function initFirebaseUI(){
 				console.log("sign in detected!")
 				console.log("authResult", authResult)
 				console.log("redirectUrl", redirectUrl)
-				setCookie(APP_ID+"-user", user, SIGN_IN_LIFESPAN_DAYS)
+				setCookie(APP_ID+"-user", authResult.user, SIGN_IN_LIFESPAN_DAYS)
 				return false;//true == will redirect to given url
 			},
         }
