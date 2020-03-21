@@ -33,7 +33,6 @@ app.controller('myCtrl', function($scope) {
 			console.error('Sign Out Error', error);
 		  });
 	}
-
 });
 
 function constructTitle(company, role){
@@ -70,9 +69,10 @@ function initFirebaseUI($scope){
 				console.log("redirectUrl", redirectUrl)
 				setUser($scope, authResult.user)
 				setCookie(APP_ID+"-user", authResult.user, SIGN_IN_LIFESPAN_DAYS)
-				return false;//true == will redirect to given url
+				return true;//true == will redirect to given url
 			},
-        }
+		},
+		redirectUrl: "careertools"
 	}
 	ui.start('#firebaseui-auth-container', uiConfig);
 }
