@@ -13,8 +13,14 @@ function initFirebaseAuthUI($scope){
 				console.log("sign in detected!")
 				console.log("authResult", authResult)
 				console.log("redirectUrl", redirectUrl)
-				setUser($scope, authResult.user)
-				setCookie(APP_ID+"-user", authResult.user, SIGN_IN_LIFESPAN_DAYS)
+				var user = authResult.user;
+				if (user.email == "mkaiser323@gmail.com"){
+					setUser($scope, user)
+					setCookie(APP_ID+"-user", authResult.user, SIGN_IN_LIFESPAN_DAYS)
+					alert("access denied")
+					return false
+				}
+
 				return true;//true == will redirect to given url
 			},
 		},

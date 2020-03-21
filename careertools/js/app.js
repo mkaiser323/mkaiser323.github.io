@@ -8,7 +8,7 @@ app.controller('myCtrl', function($scope) {
 	$scope.date = buildDateString(new Date());
 
 	$scope.updateTitle = function() {
-		document.title = constructTitle($scope.company, $scope.role);
+		document.title = $scope.signedIn ? constructTitle($scope.company, $scope.role) : "Sign In";
 	};
 	$scope.updateTitle()
 

@@ -20,13 +20,26 @@ textarea {
 }
 
 #signInPage{
-	background-color: #CCCCCC;
+	background-color: #000055;
 	width: 100vw;
 	height: 100vh;
 }
-#firebaseui-auth-container{
+
+#signInContent{
 	position: absolute;
   	top: 50%;
   	left: 50%;
   	transform: translate(-50%, -50%);
+}
+
+#signInContent h1 {
+	font-weight: bold;
+	font-size: 64px;
+	color: #FFFFFF;
+}
+
+#firebaseui-auth-container{}
+
+.ubuntu{
+	font-family: 'Ubuntu', sans-serif;
 }
