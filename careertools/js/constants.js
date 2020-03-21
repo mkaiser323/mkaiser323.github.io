@@ -1,0 +1,8 @@
+const APP_ID="mahedi-kaiser";
+const SIGN_IN_LIFESPAN_DAYS=1;
+
+
+//Testing
+const VERSION_TAG="v6.0"
+const MOCK=false;
+const DEBUG=true;

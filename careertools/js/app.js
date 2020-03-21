@@ -1,6 +1,6 @@
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
-	console.log("v5.0")
+	console.log(VERSION_TAG)
 	$scope.defaults=defaults;
 
 	var today = new Date();
@@ -17,8 +17,13 @@ app.controller('myCtrl', function($scope) {
 	};
 
 	initFirebaseUI()
-	// mockSignIn($scope)
-	respondToAuthStateChange($scope)
+	if (MOCK){
+		//mockSignIn($scope)
+		mockSignOut($scope)
+	} else {
+		respondToAuthStateChange($scope)
+	}
+
 	$scope.signOut = function(){
 		firebase.auth().signOut().then(function() {
 			console.log('Signed Out');
@@ -26,18 +31,24 @@ app.controller('myCtrl', function($scope) {
 			console.error('Sign Out Error', error);
 		  });
 	}
+
 });
 
 function constructTitle(company, role){
 	return (company ? (company + "-") : "") + (role ? (role + " ") : "") + "Cover Letter";
 }
 
-
 function mockSignIn($scope){
-	$scope.user={
+	setUser($scope, {
 		displayName: "Mahedi Kaiser",
 		email: "mkaiser323@gmail.com"
-	}
+	})
+	setCookie(APP_ID+"-user", $scope.user, SIGN_IN_LIFESPAN_DAYS)
+}
+
+function mockSignOut($scope){
+	setUser($scope, null)
+	deleteCookie(APP_ID+"-user")
 }
 
 function initFirebaseUI(){
@@ -65,8 +76,9 @@ function initFirebaseUI(){
 function respondToAuthStateChange($scope){
 	//Auth State Change tracking:
 	firebase.auth().onAuthStateChanged(function(user) {
-		$scope.user=user;
+		setUser($scope, user)
 		if (user) {
+			setCookie(APP_ID+"-user", user, SIGN_IN_LIFESPAN_DAYS)
 			console.log("user is signed in:", user)
 			// User is signed in.
 			var displayName = user.displayName;
@@ -78,22 +90,22 @@ function respondToAuthStateChange($scope){
 			var providerData = user.providerData;
 
 		} else {
+			deleteCookie(APP_ID+"-user")
 			console.log("user is signed out")
 			// User is signed out.
         }
-        console.log("user:",$scope.user)
-        $scope.signedIn = !!$scope.user
-        console.log("signedIn:", $scope.signedIn)
-        console.log("scope:", $scope)
+
 	}, function(error) {
 		console.log(error);
 	});
 }
 
-function signOut(){
-	firebase.auth().signOut().then(function() {
-		console.log('Signed Out');
-	  }, function(error) {
-		console.error('Sign Out Error', error);
-	  });
+function setUser($scope, user){
+	$scope.user=user
+	$scope.signedIn = !!$scope.user
+	if (DEBUG){
+		console.log("user:",$scope.user)
+		console.log("signedIn:", $scope.signedIn)
+		console.log("scope:", $scope)
+	}
 }

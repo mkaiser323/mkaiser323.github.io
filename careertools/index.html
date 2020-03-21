@@ -23,9 +23,12 @@
         <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
         <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
         <script src="js/firebase/auth.js"></script>
+        <!-- auth before custom scripts allows access to user info-->
 
-        <!-- custom script after auth allows script to access user info-->
+        <script src="js/util/cookies.js"></script>
         <script src="js/defaults.js"></script>
+        <script src="js/constants.js"></script>
+
         <script src="js/app.js"></script>
     </head>
 
