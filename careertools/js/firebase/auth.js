@@ -16,9 +16,7 @@ function initFirebaseAuthUI($scope){
 				var user = authResult.user;
 				if (user.email == "mkaiser323@gmail.com"){
 					//check if the user exists, if not, add:
-					if (!doesUserExist(user)){
-						insertUser(user)
-					}
+					insertUserIfNotExist(user)
 					setUser($scope, user)
 					setCookie(APP_ID+"-user", authResult.user, SIGN_IN_LIFESPAN_DAYS)
 					return true

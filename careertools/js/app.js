@@ -12,5 +12,5 @@ app.controller('myCtrl', function($scope) {
 	};
 	$scope.updateTitle()
 
-	initFirebaseAuthUI($scope)
+	initFirebaseAuthUI($scope)//TODO: unrelated coupling here, needs to be fixed. 
 });
