@@ -1,5 +1,6 @@
 body {
-	background-color: #aaaaaa;
+	background-color: #fafafa;
+	color: #505055;
 }
 
 p {
@@ -24,7 +25,7 @@ textarea {
 }
 
 #signInPage{
-	background-color: #666666;
+	background-color: #fafafa;
 	width: 100vw;
 	height: 100vh;
 }
@@ -43,11 +44,15 @@ textarea {
 #signInContent h1 {
 	font-weight: bold;
 	font-size: 64px;
-	color: #FFFFFF;
+	color: #505055;
+}
+
+.firebaseui-idp-google, .firebaseui-idp-google:hover, .mdl-button.firebaseui-idp-google:active, .mdl-button.firebaseui-idp-google {
+    background-color: #505055;
 }
 
 .firebaseui-idp-google>.firebaseui-idp-text {
-    color: #454545;
+    color: #fafafa !important;
 }
 
 .nowrap {

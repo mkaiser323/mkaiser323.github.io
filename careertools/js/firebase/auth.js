@@ -24,7 +24,8 @@ function initFirebaseAuthUI($scope){
 				return true;//true == will redirect to given url
 			},
 		},
-		signInSuccessUrl: "/careertools"
+		signInSuccessUrl: "/careertools",
+		buttonColor: '#333333'
 	}
     ui.start('#firebaseui-auth-container', uiConfig);
     
