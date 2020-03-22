@@ -16,7 +16,6 @@ function initFirebaseAuthUI($scope){
 				var user = authResult.user;
 				if (user.email == "mkaiser323@gmail.com"){
 					//check if the user exists, if not, add:
-					insertUserIfNotExist(user)
 					setUser($scope, user)
 					setCookie(APP_ID+"-user", authResult.user, SIGN_IN_LIFESPAN_DAYS)
 					return true
@@ -53,6 +52,8 @@ function respondToAuthStateChange($scope){
 			var uid = user.uid;
 			var phoneNumber = user.phoneNumber;
 			var providerData = user.providerData;
+			insertUserIfNotExist(user)
+
 		} else {
 			// deleteCookie(APP_ID+"-user")
 			console.log("user is signed out")
