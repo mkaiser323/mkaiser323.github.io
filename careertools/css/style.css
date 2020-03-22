@@ -1,3 +1,7 @@
+body {
+	background-color: #aaaaaa;
+}
+
 p {
     margin-bottom: 0px;
     white-space: pre-wrap;
@@ -20,9 +24,13 @@ textarea {
 }
 
 #signInPage{
-	background-color: #000055;
+	background-color: #666666;
 	width: 100vw;
 	height: 100vh;
+}
+
+.text-blue {
+	color: #000055;
 }
 
 #signInContent{
@@ -38,7 +46,13 @@ textarea {
 	color: #FFFFFF;
 }
 
-#firebaseui-auth-container{}
+.firebaseui-idp-google>.firebaseui-idp-text {
+    color: #454545;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
 
 .ubuntu{
 	font-family: 'Ubuntu', sans-serif;
