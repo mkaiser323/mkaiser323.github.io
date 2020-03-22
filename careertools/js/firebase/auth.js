@@ -17,15 +17,13 @@ function initFirebaseAuthUI($scope){
 				if (user.email == "mkaiser323@gmail.com"){
 					setUser($scope, user)
 					setCookie(APP_ID+"-user", authResult.user, SIGN_IN_LIFESPAN_DAYS)
-					alert("access denied")
-					return false
+					return true
 				}
-
-				return true;//true == will redirect to given url
+				alert("access denied")
+				return false;//true == will redirect to given url
 			},
 		},
-		signInSuccessUrl: "/careertools",
-		buttonColor: '#333333'
+		signInSuccessUrl: "/careertools"
 	}
     ui.start('#firebaseui-auth-container', uiConfig);
     

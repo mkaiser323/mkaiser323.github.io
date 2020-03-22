@@ -47,8 +47,12 @@ textarea {
 	color: #505055;
 }
 
-.firebaseui-idp-google, .firebaseui-idp-google:hover, .mdl-button.firebaseui-idp-google:active, .mdl-button.firebaseui-idp-google {
+.firebaseui-idp-google, .firebaseui-idp-google:hover, .mdl-button.firebaseui-idp-google:active, .mdl-button.firebaseui-idp-google  {
     background-color: #505055;
+}
+
+.firebaseui-idp-google, .firebaseui-idp-google:hover, .mdl-button.firebaseui-idp-google:active, .mdl-button.firebaseui-idp-google:hover{
+    background-color: #333333;
 }
 
 .firebaseui-idp-google>.firebaseui-idp-text {
