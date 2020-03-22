@@ -1,31 +1,24 @@
 var db = firebase.firestore();
 
-function doesUserExist(user){
-	// db.collection("users").get().then((querySnapshot) => {
-	//     querySnapshot.forEach((doc) => {
-	//     	var data = doc.data()
-	//         console.log(`${doc.id} => ${data}`);
-	//         if (user.email == data.email && user.uid == data.uid){
-	//         	return true;
-	//         }
-	//     });
-	// });
+function insertUserIfNotExist(user){
+	findUser(user, function(querySnapshot){
+		if (querySnapshot.empty){
+			insertUser(user)
+		}
+	})
+}
 
+//private - how to enforce?
+function findUser(user, cb){
 	db.collection("users")
 	.where("email", "==", user.email)
 	.where("uid", "==", user.uid)
-    .get()
-    .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-            return true
-        });
+    .get().then(function(querySnapshot){
+    	cb(querySnapshot)
     })
     .catch(function(error) {
         console.log("Error getting documents: ", error);
     });
-    return false
 }
 
 function insertUser(user){

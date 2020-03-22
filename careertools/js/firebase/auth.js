@@ -67,10 +67,7 @@ function respondToAuthStateChange($scope){
 }
 
 function mockSignIn($scope){
-	setUser($scope, {
-		displayName: "Mahedi Kaiser",
-		email: "mkaiser323@gmail.com"
-	})
+	setUser($scope, MOCK_USER)
 	setCookie(APP_ID+"-user", $scope.user, SIGN_IN_LIFESPAN_DAYS)
 }
 
