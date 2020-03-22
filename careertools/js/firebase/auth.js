@@ -15,6 +15,10 @@ function initFirebaseAuthUI($scope){
 				console.log("redirectUrl", redirectUrl)
 				var user = authResult.user;
 				if (user.email == "mkaiser323@gmail.com"){
+					//check if the user exists, if not, add:
+					if (!doesUserExist(user)){
+						insertUser(user)
+					}
 					setUser($scope, user)
 					setCookie(APP_ID+"-user", authResult.user, SIGN_IN_LIFESPAN_DAYS)
 					return true
@@ -82,7 +86,6 @@ function signOut($scope){
 	});
 }
 
-
 function setUser($scope, user){
 	$scope.user=user
 	$scope.signedIn = !!$scope.user
@@ -91,4 +94,8 @@ function setUser($scope, user){
 		console.log("signedIn:", $scope.signedIn)
 		console.log("scope:", $scope)
 	}
+}
+
+function getCurrentLoggedInUser(){
+	return getCookie(APP_ID+"-user")
 }
