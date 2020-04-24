@@ -6,3 +6,16 @@ h1 {
 	text-align: center;
 	size: 32px;
 }
+
+.a4_landscape {
+	/* width: 842px;
+	height: 595px; */
+	/*used a factor of 1.35*/
+	width: 1137px;
+	height: 803px;
+}
+
+#calendar {
+	border: solid black 1px;
+	margin: 0 auto;
+}

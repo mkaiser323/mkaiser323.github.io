@@ -11,26 +11,59 @@ class Calendar{
   		return this.title + '.' + this.ext
   	}
 }
+const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+class Day {
+	constructor(date) {
+		this.date = date;
+		this.day = date.getDate();
+		this.weekday = weekdays[date.getDay()];
+	}
+
+	next() {
+		var result = new Date(this.date);
+  		result.setDate(result.getDate() + 1);
+		return new Day(result)
+	}
+}
+
+class Week {
+	constructor(startDate) {
+		//TODO: validation, startDate should be on a Sunday
+		this.startDate = startDate
+		
+
+	}
+}
+
+function getFirstDayOfCurrentMonth(){
+	var date = new Date();
+	var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+
+	return new Day(firstDay)
+}
 
 var save = true;
 app.controller('myCtrl', function($scope) {
 	calendar = generateCalendar()
 	console.log(calendar)
 
-	appendHtmlByID(calendar.body, '#calendar')
+	var d = getFirstDayOfCurrentMonth()
+	console.log(d)
+	console.log(d.next())
+	//$scope.title = calendar.title
+	$scope.weeks = ['week1', 'week2']
 
-	if (save){
-		saveToPdf(calendar.body, calendar.fileName)
+	$scope.save=function(){
+		saveAsPDF(calendar.fileName, '#calendar')
 	}
 });
 
-
-/*
-Try this:
-https://itnext.io/javascript-convert-html-css-to-pdf-print-supported-very-sharp-and-not-blurry-c5ffe441eb5e
-https://html2canvas.hertzen.com/ => https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js
-*/
-
+function saveAsPDF(filename, selector){
+	html2canvas(document.querySelector(selector)).then(function(canvas) {
+		saveImageAsPDF(canvas.toDataURL('image/png'), 0, 0, filename)
+	});
+}
 
 function generateCalendar(){
 	var title = "April 2020"
@@ -39,11 +72,12 @@ function generateCalendar(){
 	return new Calendar(title, body)
 }
 
-function saveToPdf(content, fileName){
+function saveImageAsPDF(imageData, width, height, fileName){
 	var doc = new jsPDF({
 		orientation: 'landscape',
+		unit: 'px',
 	})
-	doc.text(content, 10, 10)
+	doc.addImage(imageData, 'PNG', '0', '0', width, height, '', 'MEDIUM', 0)
 	doc.save(fileName)
 }
 
