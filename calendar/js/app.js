@@ -59,6 +59,7 @@ class Week {
 			this.days.push(day);
 			day = day.next();
 		} while (day.weekday != 'Sunday');
+		this.nextDay = day;
 	}
 }
 
@@ -97,10 +98,14 @@ function generateCalendar(){
 
 	var firstDay = getFirstDayOfCurrentMonth();
 	var weeks = [];
-	weeks.push(new Week(firstDay));
-	console.log(weeks)
+	var d = firstDay;
+	while (d.date.getMonth() == firstDay.date.getMonth()) {
+		var w = new Week(d)
+		weeks.push(w);
+		d = w.nextDay
+	}
 
-	return new Calendar(title, body)
+	return new Calendar(title, weeks)
 }
 
 function saveImageAsPDF(imageData, width, height, fileName){
