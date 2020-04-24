@@ -37,6 +37,11 @@ class Day {
 
 	setPrayerTimes(prayerTimes){
 		this.Fajr = this.sanitizeTimestamp(prayerTimes.Fajr)
+		this.Sunrise = this.sanitizeTimestamp(prayerTimes.Duha)
+		this.Zuhr = this.sanitizeTimestamp(prayerTimes.Dhuhr)
+		this.Asr = this.sanitizeTimestamp(prayerTimes.Asr)
+		this.Maghrib = this.sanitizeTimestamp(prayerTimes.Maghrib)
+		this.Isha = this.sanitizeTimestamp(prayerTimes.Isha)
 	}
 
 	sanitizeTimestamp(timestamp){
@@ -92,7 +97,7 @@ function getPrayerTimes($http, data, cb){
 	};
 	return $http.get('http://www.islamicfinder.us/index.php/api/prayer_times', config).then(
 		function(resp){
-			cb(resp)
+			return cb(resp)
 		}, function(err){
 			console.log("unable to get prayer times", err)
 		});
@@ -106,35 +111,16 @@ function getFirstDayOfCurrentMonth(){
 }
 
 var save = true;
-app.controller('myCtrl', function($scope, $http) {
+app.controller('myCtrl', function($scope, $http, $q) {
 	var get_ip = getIP($http)
 	
 	get_ip.then(function(locationData){
 		console.log(locationData)
 		return locationData.ip
 	}).then(function(ip){
-		return generateWeeks($http, ip)
-	}).then(function(resp){
-		var weeks=resp[0]
-		console.log(weeks)
-
-		day=weeks[0].days[0];
-		console.log(day)			
-
-		angular.forEach(weeks, function (week, key) { 
-			angular.forEach(week.days, function(day){
-				promises.push(getPrayerTimes($http,
-					{
-						user_ip: resp[2],
-						date: day.date
-					},
-					function(resp){
-						day.setPrayerTimes(resp.data.results);
-					}
-				))
-			})
-		})
-
+		return generateCalendar($http, $q, ip)
+	}).then(function(calendar){
+		console.log(calendar)
 		$scope.calendar = calendar
 		$scope.title = calendar.title
 	})
@@ -160,7 +146,7 @@ function saveAsPDF(filename, selector){
 	});
 }
 
-function generateWeeks($http, ip){
+function generateCalendar($http, $q, ip){
 	var firstDay = getFirstDayOfCurrentMonth();
 	var title = firstDay.month + " " + firstDay.year
 	var weeks = [];
@@ -172,15 +158,29 @@ function generateWeeks($http, ip){
 	}
 
 	var promises = []
+	angular.forEach(weeks, function (week, key) { 
+		angular.forEach(week.days, function(day){
+			promises.push(getPrayerTimes($http,
+				{
+					user_ip: ip,
+					date: day.date
+				},
+				function(resp){
+					return [day, resp.data.results]//TODO: make this strongly typed
+				}
+			))
+		})
+	})
 
+	return $q.all(promises).then(function(responses){
+		console.log("resolved first promise")
+		console.log(responses)
+		angular.forEach(responses, function(resp){
+			resp[0].setPrayerTimes(resp[1])
+		})
+		return new Calendar(title, weeks)
+	})
 
-	// return promises[0].then(function(){
-	// 	console.log("resolved first promise")
-	// 	console.log(weeks)
-	// 	return new Calendar(title, weeks)
-	// })
-
-	return [weeks, title, ip]
 	
 }
 
