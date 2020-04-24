@@ -1,9 +1,9 @@
 var app = angular.module('myApp', []);
 
 class Calendar{
-	constructor(title, body) {
+	constructor(title, weeks) {
     	this.title = title;
-    	this.body = body;
+    	this.weeks = weeks;
     	this.ext = 'pdf';
   	}
 
@@ -18,6 +18,7 @@ class Day {
 		this.date = date;
 		this.day = date.getDate();
 		this.weekday = weekdays[date.getDay()];
+		this.placeholder = false;
 	}
 
 	next() {
@@ -25,14 +26,39 @@ class Day {
   		result.setDate(result.getDate() + 1);
 		return new Day(result)
 	}
+
+	previous() {
+		var result = new Date(this.date);
+  		result.setDate(result.getDate() - 1);
+		return new Day(result)
+	}
 }
 
 class Week {
 	constructor(startDate) {
-		//TODO: validation, startDate should be on a Sunday
-		this.startDate = startDate
-		
+		this.startDate = startDate;
+		this.mostRecentSunday = this.getMostRecentSunday();
+		this.populateDays()
+	}
 
+	getMostRecentSunday() {
+		var day = this.startDate;
+		while (day.weekday != 'Sunday') {
+			day = day.previous()
+		}
+		return day;
+	}
+
+	populateDays() {
+		this.days = [this.mostRecentSunday];
+		var day = this.mostRecentSunday;
+		do {
+			if (day.date < this.startDate.date) {
+				day.placeholder = true;
+			}
+			this.days.push(day);
+			day = day.next();
+		} while (day.weekday != 'Sunday');
 	}
 }
 
@@ -66,8 +92,13 @@ function saveAsPDF(filename, selector){
 }
 
 function generateCalendar(){
-	var title = "April 2020"
+	var title = "April 2020";
 	var body = "<h1>" + title + "</h1>";
+
+	var firstDay = getFirstDayOfCurrentMonth();
+	var weeks = [];
+	weeks.push(new Week(firstDay));
+	console.log(weeks)
 
 	return new Calendar(title, body)
 }
