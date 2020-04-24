@@ -12,12 +12,14 @@ class Calendar{
   	}
 }
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
+const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 class Day {
 	constructor(date) {
 		this.date = date;
 		this.day = date.getDate();
 		this.weekday = weekdays[date.getDay()];
+		this.month = monthNames[date.getMonth()]
+		this.year = date.getFullYear()
 		this.placeholder = false;
 	}
 
@@ -53,7 +55,7 @@ class Week {
 		this.days = [];
 		var day = this.mostRecentSunday;
 		do {
-			if (day.date < this.startDate.date) {
+			if (this.startDate.date > day.date || this.startDate.date.getMonth() < day.date.getMonth()) {
 				day.placeholder = true;
 			}
 			this.days.push(day);
@@ -89,9 +91,8 @@ function saveAsPDF(filename, selector){
 }
 
 function generateCalendar(){
-	var title = "April 2020";
-
 	var firstDay = getFirstDayOfCurrentMonth();
+	var title = firstDay.month + " " + firstDay.year
 	var weeks = [];
 	var d = firstDay;
 	while (d.date.getMonth() == firstDay.date.getMonth()) {

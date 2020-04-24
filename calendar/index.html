@@ -17,7 +17,7 @@
 				<div class="calendar-body">
 					<div class="weekday-labels cell-width"></div>
 					<div ng-repeat="week in calendar.weeks" class="center">
-						<div ng-repeat="day in week.days" class="cell inline-block">
+						<div ng-repeat="day in week.days" class="cell inline-block" ng-class="{ 'cell-placeholder': day.placeholder }">
 							{{day.day}}
 						</div>
 					</div>
