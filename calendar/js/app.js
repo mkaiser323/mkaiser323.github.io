@@ -34,6 +34,14 @@ class Day {
   		result.setDate(result.getDate() - 1);
 		return new Day(result)
 	}
+
+	setPrayerTimes(prayerTimes){
+		this.Fajr = this.sanitizeTimestamp(prayerTimes.Fajr)
+	}
+
+	sanitizeTimestamp(timestamp){
+		return timestamp
+	}
 }
 
 class Week {
@@ -65,6 +73,31 @@ class Week {
 	}
 }
 
+class LocationData {
+	constructor(ip, lat, lon, countryCode, city, region){
+		this.ip = ip;
+		this.lat = lat;
+		this.lon = lon;
+		this.countryCode = countryCode;
+		this.city = city;
+		this.region = region
+	}
+}
+
+
+function getPrayerTimes($http, data, cb){	   
+	var config = {
+		params: data,
+		headers : {'Accept' : 'application/json'}
+	};
+	return $http.get('http://www.islamicfinder.us/index.php/api/prayer_times', config).then(
+		function(resp){
+			cb(resp)
+		}, function(err){
+			console.log("unable to get prayer times", err)
+		});
+}
+
 function getFirstDayOfCurrentMonth(){
 	var date = new Date();
 	var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
@@ -73,16 +106,53 @@ function getFirstDayOfCurrentMonth(){
 }
 
 var save = true;
-app.controller('myCtrl', function($scope) {
-	calendar = generateCalendar()
-	console.log(calendar)
-	$scope.calendar = calendar
-	$scope.title = calendar.title
+app.controller('myCtrl', function($scope, $http) {
+	var get_ip = getIP($http)
+	
+	get_ip.then(function(locationData){
+		console.log(locationData)
+		return locationData.ip
+	}).then(function(ip){
+		return generateWeeks($http, ip)
+	}).then(function(resp){
+		var weeks=resp[0]
+		console.log(weeks)
+
+		day=weeks[0].days[0];
+		console.log(day)			
+
+		angular.forEach(weeks, function (week, key) { 
+			angular.forEach(week.days, function(day){
+				promises.push(getPrayerTimes($http,
+					{
+						user_ip: resp[2],
+						date: day.date
+					},
+					function(resp){
+						day.setPrayerTimes(resp.data.results);
+					}
+				))
+			})
+		})
+
+		$scope.calendar = calendar
+		$scope.title = calendar.title
+	})
 
 	$scope.save=function(){
 		saveAsPDF(calendar.fileName, '#calendar')
 	}
 });
+
+
+
+function getIP($http){
+	return $http.get('https://extreme-ip-lookup.com/json/')
+		.then(function(resp){
+			var data=resp.data
+			return new LocationData(data.query, data.lat, data.lon, data.countryCode, data.city, data.region);
+		})
+}
 
 function saveAsPDF(filename, selector){
 	html2canvas(document.querySelector(selector)).then(function(canvas) {
@@ -90,7 +160,7 @@ function saveAsPDF(filename, selector){
 	});
 }
 
-function generateCalendar(){
+function generateWeeks($http, ip){
 	var firstDay = getFirstDayOfCurrentMonth();
 	var title = firstDay.month + " " + firstDay.year
 	var weeks = [];
@@ -101,7 +171,17 @@ function generateCalendar(){
 		d = w.nextDay
 	}
 
-	return new Calendar(title, weeks)
+	var promises = []
+
+
+	// return promises[0].then(function(){
+	// 	console.log("resolved first promise")
+	// 	console.log(weeks)
+	// 	return new Calendar(title, weeks)
+	// })
+
+	return [weeks, title, ip]
+	
 }
 
 function saveImageAsPDF(imageData, width, height, fileName){
