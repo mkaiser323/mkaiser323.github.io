@@ -16,7 +16,11 @@
 				<h1> {{title}} </h1>
 				<div class="calendar-body">
 					<div class="weekday-labels cell-width"></div>
-					<div ng-repeat="week in weeks">{{week}}</div>
+					<div ng-repeat="week in calendar.weeks" class="center">
+						<div ng-repeat="day in week.days" class="cell inline-block">
+							{{day.day}}
+						</div>
+					</div>
 
 				</div>
 			</div>

@@ -15,7 +15,30 @@ h1 {
 	height: 803px;
 }
 
+.inline-block {
+	display: inline-block;
+}
+
+.center {
+	margin: 0 auto;
+}
+
+.calendar-body {
+	width: 1100px;
+	margin: 0 auto;
+}
+
 #calendar {
 	border: solid black 1px;
 	margin: 0 auto;
+}
+
+.cell {
+	width: 155px;
+	height: 140px;
+	border: solid black 1px;
+}
+
+.cell-placeholder {
+
 }

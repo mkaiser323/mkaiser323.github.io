@@ -50,7 +50,7 @@ class Week {
 	}
 
 	populateDays() {
-		this.days = [this.mostRecentSunday];
+		this.days = [];
 		var day = this.mostRecentSunday;
 		do {
 			if (day.date < this.startDate.date) {
@@ -74,12 +74,8 @@ var save = true;
 app.controller('myCtrl', function($scope) {
 	calendar = generateCalendar()
 	console.log(calendar)
-
-	var d = getFirstDayOfCurrentMonth()
-	console.log(d)
-	console.log(d.next())
-	//$scope.title = calendar.title
-	$scope.weeks = ['week1', 'week2']
+	$scope.calendar = calendar
+	$scope.title = calendar.title
 
 	$scope.save=function(){
 		saveAsPDF(calendar.fileName, '#calendar')
@@ -94,7 +90,6 @@ function saveAsPDF(filename, selector){
 
 function generateCalendar(){
 	var title = "April 2020";
-	var body = "<h1>" + title + "</h1>";
 
 	var firstDay = getFirstDayOfCurrentMonth();
 	var weeks = [];
