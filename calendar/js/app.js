@@ -1,13 +1,13 @@
 var app = angular.module('myApp', []);
 //global configs
 const save = true;
-const TimeSource = {
+const TimeProvider = {
        ISLAMIC_FINDER: "IslamicFinder",
        AL_ADHAN: "AlAdhan"
 }
-const TIME_SOURCE = TimeSource.ISLAMIC_FINDER;
+const TIME_PROVIDER = TimeProvider.ISLAMIC_FINDER;
 app.controller('myCtrl', function($scope, $http, $q) {
-	generateCalendar($http, $q)
+	generateCalendar($http, $q, getTimeProvider())
 	.then(function(calendar){
 		console.log(calendar)
 		$scope.calendar = calendar
@@ -18,6 +18,16 @@ app.controller('myCtrl', function($scope, $http, $q) {
 		saveAsPDF(calendar.fileName, '#calendar')
 	}
 });
+
+function getTimeProvider(){
+	switch(TIME_PROVIDER){
+		case TimeProvider.ISLAMIC_FINDER:
+			return new IslamicFinderTimeProvider()
+		case TimeProvider.AL_ADHAN:
+			return new AlAdhanTimeProvider()
+	}
+}
+
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 class Day {
@@ -108,44 +118,71 @@ class LocationData {
 	}
 }
 
-class TimeResponse{
-	constructor(type, day, resp){
-		this.type=type;
-		this.day=day;
-		this.prayerTimes={}
-		switch (type){
-			case TimeSource.ISLAMIC_FINDER:
-				this.setPrayerTimes(resp.data.results)
-				break;
-			case TimeSource.AL_ADHAN:
-				break;
-		}
+class AlAdhanTimeProvider {
 
+}
+
+class IslamicFinderTimeProvider {
+	fetchPrayerTimes($http, data, cb){
+		var self = this;
+		var config = {
+			params: data,
+			headers : {'Accept' : 'application/json'}
+		};
+		return $http.get('http://www.islamicfinder.us/index.php/api/prayer_times', config).then(
+			function(resp){
+				return cb(new PrayerTimes(
+					self.sanitizeTimestamp(resp.data.results.Fajr),
+					self.sanitizeTimestamp(resp.data.results.Duha),
+					self.sanitizeTimestamp(resp.data.results.Dhuhr),
+					self.sanitizeTimestamp(resp.data.results.Asr),
+					self.sanitizeTimestamp(resp.data.results.Maghrib),
+					self.sanitizeTimestamp(resp.data.results.Isha)
+				))
+			}, function(err){
+				console.log("unable to get prayer times", err)
+			});
 	}
 
-	setPrayerTimes(prayerTimes){
-		switch (this.type){
-			case TimeSource.ISLAMIC_FINDER:
-				this.prayerTimes.Fajr = this.sanitizeTimestamp(prayerTimes.Fajr)
-				this.prayerTimes.Sunrise = this.sanitizeTimestamp(prayerTimes.Duha)
-				this.prayerTimes.Zuhr = this.sanitizeTimestamp(prayerTimes.Dhuhr)
-				this.prayerTimes.Asr = this.sanitizeTimestamp(prayerTimes.Asr)
-				this.prayerTimes.Maghrib = this.sanitizeTimestamp(prayerTimes.Maghrib)
-				this.prayerTimes.Isha = this.sanitizeTimestamp(prayerTimes.Isha)
-				break;
-			case TimeSource.AL_ADHAN:
-				break;
-		}
-
+	populateDaysWithTimes($http, weeks, ip){
+		var promises = []
+		var self = this
+		angular.forEach(weeks, function (week, key) {
+			angular.forEach(week.days, function(day){
+				promises.push(self.fetchPrayerTimes($http,
+					{
+						user_ip: ip,
+						date: day.date
+					},
+					function(prayerTimes){
+						return new DayTimeResponseTuple(day, prayerTimes)
+					}
+				))
+			})
+		})
+		return promises
 	}
 
 	sanitizeTimestamp(timestamp){
-		switch (this.type){
-			case TimeSource.ISLAMIC_FINDER:
-				return timestamp.replace("%am%", "AM").replace("%pm%", "PM")
-			case TimeSource.AL_ADHAN:
-				return timestamp;
-		}
+		return timestamp.replace("%am%", "AM").replace("%pm%", "PM")
+	}
+}
+
+class PrayerTimes {
+	constructor(fajr, sunrise, zuhr, asr, maghrib, isha){
+		this.Fajr = fajr
+		this.Sunrise = sunrise
+		this.Zuhr = zuhr
+		this.Asr = asr
+		this.Maghrib = maghrib
+		this.Isha = isha
+	}
+}
+
+class DayTimeResponseTuple {
+	constructor(day, prayerTimes){
+		this.day = day;
+		this.prayerTimes = prayerTimes;
 	}
 }
 
@@ -188,44 +225,7 @@ function getLocationData($http){
 		})
 }
 
-function populdateDaysWithTimes($http, weeks, ip){
-	var promises = []
-	switch (TIME_SOURCE){
-		case TimeSource.ISLAMIC_FINDER:
-			angular.forEach(weeks, function (week, key) {
-				angular.forEach(week.days, function(day){
-					promises.push(getPrayerTimes($http,
-						{
-							user_ip: ip,
-							date: day.date
-						},
-						function(resp){
-							return new TimeResponse(TIME_SOURCE, day, resp)
-						}
-					))
-				})
-			})
-			break;
-		case TimeSource.AL_ADHAN:
-			break;
-	}
-	return promises
-}
-
-function getPrayerTimes($http, data, cb){	   
-	var config = {
-		params: data,
-		headers : {'Accept' : 'application/json'}
-	};
-	return $http.get('http://www.islamicfinder.us/index.php/api/prayer_times', config).then(
-		function(resp){
-			return cb(resp)
-		}, function(err){
-			console.log("unable to get prayer times", err)
-		});
-}
-
-function generateCalendar($http, $q){
+function generateCalendar($http, $q, timeProvider){
 	var today = new Date();
 	var firstDay = getFirstDayOfMonth(today.getFullYear(), today.getMonth());
 	var title = firstDay.month + " " + firstDay.year
@@ -237,7 +237,7 @@ function generateCalendar($http, $q){
 		console.log(locationData)
 		return locationData.ip
 	}).then(function(ip){
-		var timePopulationPromises = populdateDaysWithTimes($http, weeks, ip);
+		var timePopulationPromises = timeProvider.populateDaysWithTimes($http, weeks, ip);
 		return $q.all(timePopulationPromises).then(function(responses){
 			console.log(`resolved ${timePopulationPromises.length} promises and received ${responses.length} responses:`)
 			console.log(responses)
