@@ -1,16 +1,5 @@
 var app = angular.module('myApp', []);
 
-class Calendar{
-	constructor(title, weeks) {
-    	this.title = title;
-    	this.weeks = weeks;
-    	this.ext = 'pdf';
-  	}
-
-  	get fileName(){
-  		return this.title + '.' + this.ext
-  	}
-}
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 class Day {
@@ -78,6 +67,18 @@ class Week {
 	}
 }
 
+class Calendar{
+	constructor(title, weeks) {
+    	this.title = title;
+    	this.weeks = weeks;
+    	this.ext = 'pdf';
+  	}
+
+  	get fileName(){
+  		return this.title + '.' + this.ext
+  	}
+}
+
 class LocationData {
 	constructor(ip, lat, lon, countryCode, city, region){
 		this.ip = ip;
@@ -89,37 +90,10 @@ class LocationData {
 	}
 }
 
-
-function getPrayerTimes($http, data, cb){	   
-	var config = {
-		params: data,
-		headers : {'Accept' : 'application/json'}
-	};
-	return $http.get('http://www.islamicfinder.us/index.php/api/prayer_times', config).then(
-		function(resp){
-			return cb(resp)
-		}, function(err){
-			console.log("unable to get prayer times", err)
-		});
-}
-
-function getFirstDayOfCurrentMonth(){
-	var date = new Date();
-	var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-
-	return new Day(firstDay)
-}
-
 var save = true;
 app.controller('myCtrl', function($scope, $http, $q) {
-	var get_ip = getIP($http)
-	
-	get_ip.then(function(locationData){
-		console.log(locationData)
-		return locationData.ip
-	}).then(function(ip){
-		return generateCalendar($http, $q, ip)
-	}).then(function(calendar){
+	generateCalendar($http, $q)
+	.then(function(calendar){
 		console.log(calendar)
 		$scope.calendar = calendar
 		$scope.title = calendar.title
@@ -130,15 +104,15 @@ app.controller('myCtrl', function($scope, $http, $q) {
 	}
 });
 
-
-
-function getIP($http){
-	return $http.get('https://extreme-ip-lookup.com/json/')
-		.then(function(resp){
-			var data=resp.data
-			return new LocationData(data.query, data.lat, data.lon, data.countryCode, data.city, data.region);
-		})
+function saveImageAsPDF(imageData, width, height, fileName){
+	var doc = new jsPDF({
+		orientation: 'landscape',
+		unit: 'px',
+	})
+	doc.addImage(imageData, 'PNG', '0', '0', width, height, '', 'MEDIUM', 0)
+	doc.save(fileName)
 }
+
 
 function saveAsPDF(filename, selector){
 	html2canvas(document.querySelector(selector)).then(function(canvas) {
@@ -146,9 +120,11 @@ function saveAsPDF(filename, selector){
 	});
 }
 
-function generateCalendar($http, $q, ip){
-	var firstDay = getFirstDayOfCurrentMonth();
-	var title = firstDay.month + " " + firstDay.year
+function getFirstDayOfMonth(year, month){
+	return new Day(new Date(year, month, 1))
+}
+
+function generateWeeks(firstDay){
 	var weeks = [];
 	var d = firstDay;
 	while (d.date.getMonth() == firstDay.date.getMonth()) {
@@ -156,7 +132,18 @@ function generateCalendar($http, $q, ip){
 		weeks.push(w);
 		d = w.nextDay
 	}
+	return weeks
+}
 
+function getLocationData($http){
+	return $http.get('https://extreme-ip-lookup.com/json/')
+		.then(function(resp){
+			var data=resp.data
+			return new LocationData(data.query, data.lat, data.lon, data.countryCode, data.city, data.region);
+		})
+}
+
+function populdateDaysWithTimes($http, weeks, ip){
 	var promises = []
 	angular.forEach(weeks, function (week, key) { 
 		angular.forEach(week.days, function(day){
@@ -171,27 +158,42 @@ function generateCalendar($http, $q, ip){
 			))
 		})
 	})
+	return promises
+}
 
-	return $q.all(promises).then(function(responses){
-		console.log("resolved first promise")
-		console.log(responses)
-		angular.forEach(responses, function(resp){
-			resp[0].setPrayerTimes(resp[1])
+function getPrayerTimes($http, data, cb){	   
+	var config = {
+		params: data,
+		headers : {'Accept' : 'application/json'}
+	};
+	return $http.get('http://www.islamicfinder.us/index.php/api/prayer_times', config).then(
+		function(resp){
+			return cb(resp)
+		}, function(err){
+			console.log("unable to get prayer times", err)
+		});
+}
+
+function generateCalendar($http, $q){
+	var today = new Date();
+	var firstDay = getFirstDayOfMonth(today.getFullYear(), today.getMonth());
+	var title = firstDay.month + " " + firstDay.year
+
+	var weeks = generateWeeks(firstDay);
+	var locationDataPromise = getLocationData($http)
+
+	return locationDataPromise.then(function(locationData){
+		console.log(locationData)
+		return locationData.ip
+	}).then(function(ip){
+		var timePopulationPromises = populdateDaysWithTimes($http, weeks, ip);
+		return $q.all(timePopulationPromises).then(function(responses){
+			console.log(`resolved ${timePopulationPromises.length} promises and received ${responses.length} responses:`)
+			console.log(responses)
+			angular.forEach(responses, function(resp){
+				resp[0].setPrayerTimes(resp[1])
+			})
+			return new Calendar(title, weeks)
 		})
-		return new Calendar(title, weeks)
 	})
-}
-
-function saveImageAsPDF(imageData, width, height, fileName){
-	var doc = new jsPDF({
-		orientation: 'landscape',
-		unit: 'px',
-	})
-	doc.addImage(imageData, 'PNG', '0', '0', width, height, '', 'MEDIUM', 0)
-	doc.save(fileName)
-}
-
-function appendHtmlByID(content, selector){
-	var myEl = angular.element(document.querySelector(selector));
-    myEl.append(content);  
 }
