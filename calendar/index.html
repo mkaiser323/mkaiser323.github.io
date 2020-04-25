@@ -19,6 +19,13 @@
 					<div ng-repeat="week in calendar.weeks" class="center">
 						<div ng-repeat="day in week.days" class="cell inline-block" ng-class="{ 'cell-placeholder': day.placeholder }">
 							{{day.day}}
+
+							<div class="pt pt-fajr">{{day.Fajr}}</div>
+							<div class="pt pt-sunrise">{{day.Sunrise}}</div>
+							<div class="pt">{{day.Zuhr}}</div>
+							<div class="pt">{{day.Asr}}</div>
+							<div class="pt pt-maghrib">{{day.Maghrib}}</div>
+							<div class="pt">{{day.Isha}}</div>
 						</div>
 					</div>
 

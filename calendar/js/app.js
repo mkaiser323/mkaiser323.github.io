@@ -45,7 +45,7 @@ class Day {
 	}
 
 	sanitizeTimestamp(timestamp){
-		return timestamp
+		return timestamp = timestamp.replace("%am%", "AM").replace("%pm%", "PM")
 	}
 }
 
@@ -180,8 +180,6 @@ function generateCalendar($http, $q, ip){
 		})
 		return new Calendar(title, weeks)
 	})
-
-	
 }
 
 function saveImageAsPDF(imageData, width, height, fileName){
@@ -192,7 +190,6 @@ function saveImageAsPDF(imageData, width, height, fileName){
 	doc.addImage(imageData, 'PNG', '0', '0', width, height, '', 'MEDIUM', 0)
 	doc.save(fileName)
 }
-
 
 function appendHtmlByID(content, selector){
 	var myEl = angular.element(document.querySelector(selector));
