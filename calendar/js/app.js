@@ -1,5 +1,23 @@
 var app = angular.module('myApp', []);
+//global configs
+const save = true;
+const TimeSource = {
+       ISLAMIC_FINDER: "IslamicFinder",
+       AL_ADHAN: "AlAdhan"
+}
+const TIME_SOURCE = TimeSource.ISLAMIC_FINDER;
+app.controller('myCtrl', function($scope, $http, $q) {
+	generateCalendar($http, $q)
+	.then(function(calendar){
+		console.log(calendar)
+		$scope.calendar = calendar
+		$scope.title = calendar.title
+	})
 
+	$scope.save=function(){
+		saveAsPDF(calendar.fileName, '#calendar')
+	}
+});
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 class Day {
@@ -25,16 +43,16 @@ class Day {
 	}
 
 	setPrayerTimes(prayerTimes){
-		this.Fajr = this.sanitizeTimestamp(prayerTimes.Fajr)
-		this.Sunrise = this.sanitizeTimestamp(prayerTimes.Duha)
-		this.Zuhr = this.sanitizeTimestamp(prayerTimes.Dhuhr)
-		this.Asr = this.sanitizeTimestamp(prayerTimes.Asr)
-		this.Maghrib = this.sanitizeTimestamp(prayerTimes.Maghrib)
-		this.Isha = this.sanitizeTimestamp(prayerTimes.Isha)
+		this.Fajr = prayerTimes.Fajr
+		this.Sunrise = prayerTimes.Sunrise
+		this.Zuhr = prayerTimes.Zuhr
+		this.Asr = prayerTimes.Asr
+		this.Maghrib = prayerTimes.Maghrib
+		this.Isha = prayerTimes.Isha
 	}
 
 	sanitizeTimestamp(timestamp){
-		return timestamp = timestamp.replace("%am%", "AM").replace("%pm%", "PM")
+		return timestamp.replace("%am%", "AM").replace("%pm%", "PM")
 	}
 }
 
@@ -90,19 +108,46 @@ class LocationData {
 	}
 }
 
-var save = true;
-app.controller('myCtrl', function($scope, $http, $q) {
-	generateCalendar($http, $q)
-	.then(function(calendar){
-		console.log(calendar)
-		$scope.calendar = calendar
-		$scope.title = calendar.title
-	})
+class TimeResponse{
+	constructor(type, day, resp){
+		this.type=type;
+		this.day=day;
+		this.prayerTimes={}
+		switch (type){
+			case TimeSource.ISLAMIC_FINDER:
+				this.setPrayerTimes(resp.data.results)
+				break;
+			case TimeSource.AL_ADHAN:
+				break;
+		}
 
-	$scope.save=function(){
-		saveAsPDF(calendar.fileName, '#calendar')
 	}
-});
+
+	setPrayerTimes(prayerTimes){
+		switch (this.type){
+			case TimeSource.ISLAMIC_FINDER:
+				this.prayerTimes.Fajr = this.sanitizeTimestamp(prayerTimes.Fajr)
+				this.prayerTimes.Sunrise = this.sanitizeTimestamp(prayerTimes.Duha)
+				this.prayerTimes.Zuhr = this.sanitizeTimestamp(prayerTimes.Dhuhr)
+				this.prayerTimes.Asr = this.sanitizeTimestamp(prayerTimes.Asr)
+				this.prayerTimes.Maghrib = this.sanitizeTimestamp(prayerTimes.Maghrib)
+				this.prayerTimes.Isha = this.sanitizeTimestamp(prayerTimes.Isha)
+				break;
+			case TimeSource.AL_ADHAN:
+				break;
+		}
+
+	}
+
+	sanitizeTimestamp(timestamp){
+		switch (this.type){
+			case TimeSource.ISLAMIC_FINDER:
+				return timestamp.replace("%am%", "AM").replace("%pm%", "PM")
+			case TimeSource.AL_ADHAN:
+				return timestamp;
+		}
+	}
+}
 
 function saveImageAsPDF(imageData, width, height, fileName){
 	var doc = new jsPDF({
@@ -145,19 +190,25 @@ function getLocationData($http){
 
 function populdateDaysWithTimes($http, weeks, ip){
 	var promises = []
-	angular.forEach(weeks, function (week, key) { 
-		angular.forEach(week.days, function(day){
-			promises.push(getPrayerTimes($http,
-				{
-					user_ip: ip,
-					date: day.date
-				},
-				function(resp){
-					return [day, resp.data.results]//TODO: make this strongly typed
-				}
-			))
-		})
-	})
+	switch (TIME_SOURCE){
+		case TimeSource.ISLAMIC_FINDER:
+			angular.forEach(weeks, function (week, key) {
+				angular.forEach(week.days, function(day){
+					promises.push(getPrayerTimes($http,
+						{
+							user_ip: ip,
+							date: day.date
+						},
+						function(resp){
+							return new TimeResponse(TIME_SOURCE, day, resp)
+						}
+					))
+				})
+			})
+			break;
+		case TimeSource.AL_ADHAN:
+			break;
+	}
 	return promises
 }
 
@@ -191,7 +242,7 @@ function generateCalendar($http, $q){
 			console.log(`resolved ${timePopulationPromises.length} promises and received ${responses.length} responses:`)
 			console.log(responses)
 			angular.forEach(responses, function(resp){
-				resp[0].setPrayerTimes(resp[1])
+				resp.day.setPrayerTimes(resp.prayerTimes)
 			})
 			return new Calendar(title, weeks)
 		})
