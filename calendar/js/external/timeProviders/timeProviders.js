@@ -61,7 +61,7 @@ class AlAdhanTimeProvider {
         var t = timestamp.replace(" (EDT)", "")
         var time_parts = t.split(":")
         var hour = parseInt(time_parts[0])
-        var minute = parseInt(time_parts[1])
+        var minute = time_parts[1]//we want to keep the leading 0
         var am_pm = 'am';
         if (hour > 12) {
             hour = hour - 12;
