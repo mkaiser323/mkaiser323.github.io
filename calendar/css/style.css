@@ -24,7 +24,7 @@ h1 {
 	/* width: 842px;
 	height: 595px; */
 	/*used a factor of 1.35*/
-	width: 1137px;
+	width: 1127px;
 	height: 803px;
 	padding: 10px;
 	padding-top: 20px;
@@ -44,7 +44,7 @@ h1 {
 }
 
 #calendar {
-	border: solid black 1px;
+	/* border: solid black 1px; */
 	margin: 0 auto;
 	color: #888888;
 }
