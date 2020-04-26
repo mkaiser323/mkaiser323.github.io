@@ -57,7 +57,7 @@ h1 {
 	width: 155px;
 	height: 140px;
 	border: solid black 1px;
-	overflow: hidden
+	overflow: hidden;
 }
 
 .cell-placeholder {
@@ -66,8 +66,24 @@ h1 {
 
 .date {
 	float: left;
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 32px;
+	line-height: 1;
+	margin: 10px;
 }
 
 .prayer-times {
 	float: right;
+	margin-right: 5px;
+	margin-top: 5px;
+}
+
+.pt {
+	text-align: right;
+	line-height: 1.5;
+	font-size: 14px;
+}
+
+.pt-label {
+	display: none;
 }
