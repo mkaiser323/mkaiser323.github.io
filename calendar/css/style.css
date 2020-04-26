@@ -45,6 +45,7 @@ h1 {
 #calendar {
 	border: solid black 1px;
 	margin: 0 auto;
+	color: #888888;
 }
 
 .week {
@@ -56,17 +57,17 @@ h1 {
 .cell {
 	width: 155px;
 	height: 140px;
-	border: solid black 1px;
+	border: solid #888888 1px;
 	overflow: hidden;
+	color: #888888;
 }
 
 .cell-placeholder {
-	background-color: gray;
+	background-color: #DDDDDD;
 }
 
 .date {
 	float: left;
-	font-family: 'Times New Roman', Times, serif;
 	font-size: 32px;
 	line-height: 1;
 	margin: 10px;
@@ -75,13 +76,80 @@ h1 {
 .prayer-times {
 	float: right;
 	margin-right: 5px;
-	margin-top: 5px;
+	margin-top: 4px;
 }
 
 .pt {
 	text-align: right;
-	line-height: 1.5;
+	line-height: 1.15;
+
 	font-size: 14px;
+
+	/* margin-bottom: 2px;
+	padding: 1px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border: solid black 1px;
+	border-radius: 5px; */
+}
+
+/* .pt-fajr {
+	border-color: #FFA000;
+	background-color: #FFA000;
+	color: #FFFFFF;
+}
+
+.pt-sunrise {
+	border: none;
+	color: #333333;
+}
+
+.pt-zuhr {
+	border-color: #0D47A1;
+	background-color: #0D47A1;
+	color: #FFFFFF;
+}
+
+.pt-asr {
+	border-color: #DD2C00;
+	background-color: #DD2C00;
+	color: #FFFFFF;
+}
+
+.pt-maghrib {
+	border-color: #33AA3C;
+	background-color: #33AA3C;
+	color: #FFFFFF;
+}
+
+.pt-isha {
+	border-color: #333333;
+	background-color: #333333;
+	color: #FFFFFF;
+} */
+
+.pt-fajr {
+	color: #FFA000;
+}
+
+.pt-sunrise {
+	color: #888888;
+}
+
+.pt-zuhr {
+	color: #0D47A1;
+}
+
+.pt-asr {
+	color: #DD2C00;
+}
+
+.pt-maghrib {
+	color: #33AA3C;
+}
+
+.pt-isha {
+	color: #333333;
 }
 
 .pt-label {
