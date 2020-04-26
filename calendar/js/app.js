@@ -5,7 +5,7 @@ const TimeProvider = {
        ISLAMIC_FINDER: "IslamicFinder",
        AL_ADHAN: "AlAdhan"
 }
-const TIME_PROVIDER = TimeProvider.ISLAMIC_FINDER;
+const TIME_PROVIDER = TimeProvider.AL_ADHAN;
 app.controller('myCtrl', function($scope, $http, $q) {
 	generateCalendar($http, $q, getTimeProvider())
 	.then(function(calendar){
@@ -119,7 +119,80 @@ class LocationData {
 }
 
 class AlAdhanTimeProvider {
+	fetchPrayerTimes($http, data, cb){
+		var config = {
+			params: data,
+			headers : {'Accept' : 'application/json'}
+		};
+		return $http.get("http://api.aladhan.com/v1/calendar", config).then(function(resp){
+			console.log("AlAdhanTimeProvider.fetchPrayerTimes")
+			console.log(resp);
+			return cb(resp)
+		}, function(err){
+			console.log("unable to get prayer times", err)
+		});
+	
+	}
 
+	populateDaysWithTimes($http, weeks, locationData){
+		console.log('AlAdhanTimeProvider.populateDaysWithTimes')
+		var self = this;
+		var p = this.fetchPrayerTimes($http,
+			{
+				latitude: locationData.lat,
+				longitude: locationData.lon,
+				month: weeks[0].startDate.date.month + 1,
+				method: 3,
+				school: 1,
+			},
+			function(resp){
+				//Match all the returned prayerTimes to days in weeks
+				console.log(resp)
+				var responseItem = resp.data.data
+				console.log(responseItem)
+				var dayCounter = 0;
+				var responseTuples = []
+				angular.forEach(weeks, function (week, key) {
+					angular.forEach(week.days, function(day){
+						if (!day.placeholder){
+							var timings = responseItem[dayCounter].timings
+							console.log(timings)
+							day.setPrayerTimes(
+								new PrayerTimes(
+									self.sanitizeTimestamp(timings.Fajr),
+									self.sanitizeTimestamp(timings.Sunrise),
+									self.sanitizeTimestamp(timings.Dhuhr),
+									self.sanitizeTimestamp(timings.Asr),
+									self.sanitizeTimestamp(timings.Maghrib),
+									self.sanitizeTimestamp(timings.Isha)
+								)
+							);
+							responseTuples.push(new DayTimeResponseTuple(
+								day,
+								new PrayerTimes(
+									self.sanitizeTimestamp(timings.Fajr),
+									self.sanitizeTimestamp(timings.Sunrise),
+									self.sanitizeTimestamp(timings.Dhuhr),
+									self.sanitizeTimestamp(timings.Asr),
+									self.sanitizeTimestamp(timings.Maghrib),
+									self.sanitizeTimestamp(timings.Isha)
+								)
+							));
+							dayCounter++;
+						}
+					})
+				});
+				return
+			}
+		)
+		var promises = [p]
+
+		return promises
+	}
+
+	sanitizeTimestamp(timestamp){
+		return timestamp
+	}
 }
 
 class IslamicFinderTimeProvider {
@@ -144,14 +217,14 @@ class IslamicFinderTimeProvider {
 			});
 	}
 
-	populateDaysWithTimes($http, weeks, ip){
+	populateDaysWithTimes($http, weeks, locationData){
 		var promises = []
 		var self = this
 		angular.forEach(weeks, function (week, key) {
 			angular.forEach(week.days, function(day){
 				promises.push(self.fetchPrayerTimes($http,
 					{
-						user_ip: ip,
+						user_ip: locationData.ip,
 						date: day.date
 					},
 					function(prayerTimes){
@@ -235,15 +308,15 @@ function generateCalendar($http, $q, timeProvider){
 
 	return locationDataPromise.then(function(locationData){
 		console.log(locationData)
-		return locationData.ip
-	}).then(function(ip){
-		var timePopulationPromises = timeProvider.populateDaysWithTimes($http, weeks, ip);
-		return $q.all(timePopulationPromises).then(function(responses){
-			console.log(`resolved ${timePopulationPromises.length} promises and received ${responses.length} responses:`)
-			console.log(responses)
-			angular.forEach(responses, function(resp){
-				resp.day.setPrayerTimes(resp.prayerTimes)
-			})
+		return locationData
+	}).then(function(locationData){
+		var timePopulationPromises = timeProvider.populateDaysWithTimes($http, weeks, locationData);
+		return $q.all(timePopulationPromises).then(function(){
+			console.log(`resolved ${timePopulationPromises.length} promises`)
+			// console.log(responses)
+			// angular.forEach(responses, function(resp){
+			// 	resp.day.setPrayerTimes(resp.prayerTimes)
+			// })
 			return new Calendar(title, weeks)
 		})
 	})

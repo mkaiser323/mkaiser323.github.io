@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-
+		<link rel="stylesheet" href="css/lib/bootstrap/bootstrap.min.css">
 		<link rel="stylesheet" href="css/style.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
@@ -16,19 +16,21 @@
 				<h1> {{title}} </h1>
 				<div class="calendar-body">
 					<div class="weekday-labels cell-width"></div>
-					<div ng-repeat="week in calendar.weeks" class="center">
+					<div ng-repeat="week in calendar.weeks" class="week">
 						<div ng-repeat="day in week.days" class="cell inline-block" ng-class="{ 'cell-placeholder': day.placeholder }">
-							{{day.day}}
-
-							<div class="pt pt-fajr">{{day.Fajr}}</div>
-							<div class="pt pt-sunrise">{{day.Sunrise}}</div>
-							<div class="pt">{{day.Zuhr}}</div>
-							<div class="pt">{{day.Asr}}</div>
-							<div class="pt pt-maghrib">{{day.Maghrib}}</div>
-							<div class="pt">{{day.Isha}}</div>
+							<div class="date">{{day.day}}</div>
+							<div ng-if="!day.placeholder">
+								<div class="prayer-times">
+									<div class="pt pt-fajr">F: {{day.Fajr}}</div>
+									<div class="pt pt-sunrise">S: {{day.Sunrise}}</div>
+									<div class="pt">Z: {{day.Zuhr}}</div>
+									<div class="pt">A: {{day.Asr}}</div>
+									<div class="pt pt-maghrib">M: {{day.Maghrib}}</div>
+									<div class="pt">I: {{day.Isha}}</div>
+								</div>
+							</div>									
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
