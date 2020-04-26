@@ -1,5 +1,17 @@
+@font-face{
+	font-family: 'Ubuntu';
+	src: url('./fonts/Ubuntu/Ubuntu-Regular.ttf')
+}
+
+@font-face{
+	font-family: 'Ubuntu-Mono';
+	src: url('./fonts/Ubuntu_Mono/UbuntuMono-Regular.ttf')
+}
+
+
+
 body {
-	font-family: ubuntu;
+	font-family: 'Ubuntu';
 	padding: 10px;
 }
 
@@ -8,7 +20,7 @@ h1 {
 	size: 32px;
 }
 
-.a4_landscape {
+.a4-landscape {
 	/* width: 842px;
 	height: 595px; */
 	/*used a factor of 1.35*/
