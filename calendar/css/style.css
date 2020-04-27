@@ -30,6 +30,16 @@ h1 {
 	padding-top: 20px;
 }
 
+.a4-portrait {
+	height: 1127px;
+	width: 803px;
+	padding: 10px;
+}
+
+.border {
+	border: solid black 1px;
+}
+
 .inline-block {
 	display: inline-block;
 }
@@ -43,16 +53,35 @@ h1 {
 	margin: 0 auto;
 }
 
+.quarter-calendar-body {
+	width: 780px;
+	margin: 0 auto;
+}
+
 #calendar {
 	/* border: solid black 1px; */
 	margin: 0 auto;
 	color: #888888;
 }
 
+.quarter-week {
+	height: 79px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
 .week {
 	height: 140px;
 	margin: 0 auto;
 	overflow: hidden;
+}
+
+.quarter-cell {
+	width: 95px;
+	height: 79px;
+	border: solid #888888 1px;
+	overflow: hidden;
+	color: #888888;
 }
 
 .cell {
@@ -74,6 +103,10 @@ h1 {
 	margin: 10px;
 }
 
+.quarter-calendar-body .date {
+	font-size: 16px;
+}
+
 .prayer-times {
 	float: right;
 	margin-right: 5px;
@@ -83,51 +116,8 @@ h1 {
 .pt {
 	text-align: right;
 	line-height: 1.15;
-
 	font-size: 14px;
-
-	/* margin-bottom: 2px;
-	padding: 1px;
-	padding-left: 5px;
-	padding-right: 5px;
-	border: solid black 1px;
-	border-radius: 5px; */
 }
-
-/* .pt-fajr {
-	border-color: #FFA000;
-	background-color: #FFA000;
-	color: #FFFFFF;
-}
-
-.pt-sunrise {
-	border: none;
-	color: #333333;
-}
-
-.pt-zuhr {
-	border-color: #0D47A1;
-	background-color: #0D47A1;
-	color: #FFFFFF;
-}
-
-.pt-asr {
-	border-color: #DD2C00;
-	background-color: #DD2C00;
-	color: #FFFFFF;
-}
-
-.pt-maghrib {
-	border-color: #33AA3C;
-	background-color: #33AA3C;
-	color: #FFFFFF;
-}
-
-.pt-isha {
-	border-color: #333333;
-	background-color: #333333;
-	color: #FFFFFF;
-} */
 
 .pt-fajr {
 	color: #FFA000;

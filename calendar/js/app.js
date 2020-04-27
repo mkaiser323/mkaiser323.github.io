@@ -11,7 +11,13 @@ app.controller('myCtrl', function($scope, $http, $q) {
 		$scope.title = calendar.title
 	})
 
-	$scope.save=function(){
-		saveSelectionAsPDF($scope.calendar.fileName, '#calendar')
+	$scope.quarterCalendar = generateCalendarForQuarter()
+	console.log(generateCalendarForQuarter())
+	$scope.saveLandscape=function(selection){
+		saveSelectionAsPDF($scope.calendar.fileName, selection, 'landscape')
+	}
+
+	$scope.savePortrait=function(selection){
+		saveSelectionAsPDF($scope.calendar.fileName, selection, 'portrait')
 	}
 });

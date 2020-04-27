@@ -41,8 +41,7 @@ function wrapSixthWeek(weeks, month){
 	return wrapped
 }
 
-function generateCalendar($http, $q, timeProvider, title, firstDay, lastDay){
-	var weeks = generateWeeks(firstDay, lastDay);
+function generateCalendarWithPrayerTimes($http, $q, timeProvider, title, weeks){
 	var locationDataPromise = getLocationData($http)
 
 	return locationDataPromise.then(function(locationData){
@@ -61,7 +60,8 @@ function generateCalendarForMonth($http, $q, timeProvider, year, month){
 	var firstDay = getFirstDayOfMonth(year, month);
 	var lastDay = getLastDayOfMonth(year, month);
 	var title = firstDay.month + " " + firstDay.year
-	return generateCalendar($http, $q, timeProvider, title, firstDay, lastDay)
+	var weeks = generateWeeks(firstDay, lastDay);
+	return generateCalendarWithPrayerTimes($http, $q, timeProvider, title, weeks)
 			.then(function(calendar){
 				if (calendar.weeks.length > 5) {
 					if (calendar.weeks.length > 6) {
@@ -73,3 +73,21 @@ function generateCalendarForMonth($http, $q, timeProvider, year, month){
 			})
 
 }
+function getQuarterByMonth(month){
+	for (var q = 0; q < quarters.length; q++){
+		for (var m = 0; m < quarters[q].length; m++){
+			if (month == quarters[q][m]){
+				return quarters[q];
+			}
+		}
+	}
+}
+
+function generateCalendarForQuarter(){
+	var today = new Date()
+	var quarter = getQuarterByMonth(today.getMonth());
+
+	var firstDay = getFirstDayOfMonth(today.getFullYear(), quarter[0])
+	var lastDay = getLastDayOfMonth(today.getFullYear(), quarter[2])
+	return new Calendar("Quarter Calendar", generateWeeks(firstDay, lastDay))
+} 
