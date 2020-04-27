@@ -23,15 +23,16 @@ class AlAdhanTimeProvider {
 	}
 
 	populateDaysWithTimes($http, weeks, locationData){
+        var params = {
+            latitude: locationData.lat,
+            longitude: locationData.lon,
+            month: weeks[0].startDate.date.getMonth() + 1,
+            method: 2,
+            school: 1,
+        }
 		var self = this;
 		return [this.fetchPrayerTimes($http,
-			{
-				latitude: locationData.lat,
-				longitude: locationData.lon,
-				month: weeks[0].startDate.date.month + 1,
-				method: 2,
-				school: 1,
-			},
+			params,
 			function(resp){
 				var dayCounter = 0;
 				angular.forEach(weeks, function (week) {
@@ -58,7 +59,7 @@ class AlAdhanTimeProvider {
 	}
 
 	sanitizeTimestamp(timestamp){
-        var t = timestamp.replace(" (EDT)", "")
+        var t = timestamp.replace(" (EDT)", "").replace(" (EST)", "")
         var time_parts = t.split(":")
         var hour = parseInt(time_parts[0])
         var minute = time_parts[1]//we want to keep the leading 0
