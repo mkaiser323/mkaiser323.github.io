@@ -21,9 +21,8 @@ function getLocationData($http){
 		})
 }
 
-function generateCalendar($http, $q, timeProvider){
-	var today = new Date();
-	var firstDay = getFirstDayOfMonth(today.getFullYear(), today.getMonth());
+function generateCalendar($http, $q, timeProvider, year, month){
+	var firstDay = getFirstDayOfMonth(year, month);
 	var title = firstDay.month + " " + firstDay.year
 
 	var weeks = generateWeeks(firstDay);
