@@ -29,7 +29,7 @@ class AlAdhanTimeProvider {
 				latitude: locationData.lat,
 				longitude: locationData.lon,
 				month: weeks[0].startDate.date.month + 1,
-				method: 3,
+				method: 2,
 				school: 1,
 			},
 			function(resp){
@@ -37,7 +37,7 @@ class AlAdhanTimeProvider {
 				angular.forEach(weeks, function (week) {
 					angular.forEach(week.days, function(day){
 						if (!day.placeholder){
-							var timings = resp.data.data[dayCounter].timings
+                            var timings = resp.data.data[dayCounter].timings
 							day.setPrayerTimes(
 								new PrayerTimes(
 									self.sanitizeTimestamp(timings.Fajr),
@@ -78,7 +78,7 @@ class IslamicFinderTimeProvider {
 	fetchPrayerTimes($http, data, cb){
 		var config = {
 			params: data,
-			headers : {'Accept' : 'application/json'}
+            headers : {'Accept' : 'application/json'}
 		};
 		return $http.get('http://www.islamicfinder.us/index.php/api/prayer_times', config)
 		.then(function(resp){
@@ -95,7 +95,9 @@ class IslamicFinderTimeProvider {
 			angular.forEach(week.days, function(day){
 				promises.push(self.fetchPrayerTimes($http,
 					{
-						user_ip: locationData.ip,
+                        user_ip: locationData.ip,
+                        juristic: 1,
+                        method: 3,
 						date: day.date
 					},
 					function(resp){
