@@ -2,10 +2,15 @@ function getFirstDayOfMonth(year, month){
 	return new Day(new Date(year, month, 1))
 }
 
-function generateWeeks(firstDay){
+function getLastDayOfMonth(year, month){
+	var firstDayOfNextMonth = getFirstDayOfMonth(year, month+1);
+	return firstDayOfNextMonth.previous()
+}
+
+function generateWeeks(firstDay, lastDay){
 	var weeks = [];
 	var d = firstDay;
-	while (d.date.getMonth() == firstDay.date.getMonth()) {
+	while (d.date <= lastDay.date) {
 		var w = new Week(d)
 		weeks.push(w);
 		d = w.nextDay
@@ -21,11 +26,8 @@ function getLocationData($http){
 		})
 }
 
-function generateCalendar($http, $q, timeProvider, year, month){
-	var firstDay = getFirstDayOfMonth(year, month);
-	var title = firstDay.month + " " + firstDay.year
-
-	var weeks = generateWeeks(firstDay);
+function generateCalendar($http, $q, timeProvider, title, firstDay, lastDay){
+	var weeks = generateWeeks(firstDay, lastDay);
 	var locationDataPromise = getLocationData($http)
 
 	return locationDataPromise.then(function(locationData){
@@ -38,4 +40,11 @@ function generateCalendar($http, $q, timeProvider, year, month){
 			return new Calendar(title, weeks)
 		})
 	})
+}
+
+function generateCalendarForMonth($http, $q, timeProvider, year, month){
+	var firstDay = getFirstDayOfMonth(year, month);
+	var lastDay = getLastDayOfMonth(year, month);
+	var title = firstDay.month + " " + firstDay.year
+	return generateCalendar($http, $q, timeProvider, title, firstDay, lastDay)
 }
