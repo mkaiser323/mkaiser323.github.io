@@ -26,6 +26,21 @@ function getLocationData($http){
 		})
 }
 
+function wrapSixthWeek(weeks, month){
+	wrapped = weeks.slice(0, 5)
+
+	var overflowDays = weeks[5].days
+	for (var d = 0; d < overflowDays.length; d++){
+		if (overflowDays[d].month == monthNames[month]) {
+			if (wrapped[0].days[d].month == monthNames[month]) {
+				throw "something went wrong"
+			}
+			wrapped[0].days[d] = overflowDays[d];
+		}
+	}
+	return wrapped
+}
+
 function generateCalendar($http, $q, timeProvider, title, firstDay, lastDay){
 	var weeks = generateWeeks(firstDay, lastDay);
 	var locationDataPromise = getLocationData($http)
@@ -47,4 +62,14 @@ function generateCalendarForMonth($http, $q, timeProvider, year, month){
 	var lastDay = getLastDayOfMonth(year, month);
 	var title = firstDay.month + " " + firstDay.year
 	return generateCalendar($http, $q, timeProvider, title, firstDay, lastDay)
+			.then(function(calendar){
+				if (calendar.weeks.length > 5) {
+					if (calendar.weeks.length > 6) {
+						throw `month cannot have ${calendar.weeks.length}`
+					}
+					calendar.weeks = wrapSixthWeek(calendar.weeks, month)
+				}
+				return calendar
+			})
+
 }
