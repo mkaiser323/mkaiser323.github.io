@@ -23,6 +23,7 @@ class AlAdhanTimeProvider {
 	}
 
 	populateDaysWithTimes($http, weeks, locationData){
+		console.log("populating weeks:", weeks)
         var params = {
             latitude: locationData.lat,
             longitude: locationData.lon,

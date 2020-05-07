@@ -17,7 +17,11 @@
 
 	<body>
 		<div ng-app="myApp" ng-controller="myCtrl">
-			<button ng-click="saveLandscape('#calendar')">Save</button>
+			<div class="toolbar center">
+				<button ng-click="saveLandscape('#calendar')">Save</button>
+				<input ng-model="month" type="number" ng-change="regenerateCalendar()" placeholder="month"></input>
+				<input ng-model="year" type="number" ng-change="regenerateCalendar()" placeholder="year"></input>
+			</div>
 			<div id="calendar" class="a4-landscape">
 				<h1> {{title}} </h1>
 				<div class="calendar-body">

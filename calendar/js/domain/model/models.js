@@ -58,9 +58,6 @@ class Week {
 		this.days = [];
 		var day = this.mostRecentSunday;
 		do {
-			if (this.startDate.date > day.date || this.startDate.date.getMonth() < day.date.getMonth()) {
-				day.placeholder = true;
-			}
 			this.days.push(day);
 			day = day.next();
 		} while (day.weekday != 'Sunday');

@@ -15,6 +15,16 @@ function generateWeeks(firstDay, lastDay){
 		weeks.push(w);
 		d = w.nextDay
 	}
+
+	weeks.forEach(function(w){
+		w.days.forEach(function(d){
+			if(d.date < firstDay.date || d.date > lastDay.date) {
+				d.placeholder = true;
+			}
+		})
+	})
+
+	console.log("weeks:", weeks)
 	return weeks
 }
 
