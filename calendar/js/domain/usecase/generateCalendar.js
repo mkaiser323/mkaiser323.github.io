@@ -53,7 +53,6 @@ function wrapSixthWeek(weeks, month){
 
 function generateCalendarWithPrayerTimes($http, $q, timeProvider, title, weeks){
 	var locationDataPromise = getLocationData($http)
-
 	return locationDataPromise.then(function(locationData){
 		console.log(locationData)
 		return locationData
@@ -75,10 +74,21 @@ function generateCalendarForMonth($http, $q, timeProvider, year, month){
 			.then(function(calendar){
 				if (calendar.weeks.length > 5) {
 					if (calendar.weeks.length > 6) {
-						throw `month cannot have ${calendar.weeks.length}`
+						throw `month cannot have ${calendar.weeks.length} weeks`
 					}
 					calendar.weeks = wrapSixthWeek(calendar.weeks, month)
 				}
+
+				calendar.weeks.forEach(function(w){
+					w.days.forEach(function(d){
+						if (d.date.getTime() == firstDay.date.getTime()){
+							calendar.setFirstDay(d);
+						}
+						if (d.date.getTime() == lastDay.date.getTime()){
+							calendar.setLastDay(d);
+						}
+					})
+				})
 				return calendar
 			})
 

@@ -50,6 +50,14 @@ class AlAdhanTimeProvider {
 									self.sanitizeTimestamp(timings.Isha)
 								)
 							);
+							var hijri = resp.data.data[dayCounter].date.hijri;
+							day.setHijriData(new HijriData(
+								self.sanitizeDayString(hijri.day),
+								hijri.month.en,
+								hijri.year,
+								hijri.month.ar,
+								hijri.holidays,
+							));
 							dayCounter++;
 						}
 					})
@@ -73,6 +81,10 @@ class AlAdhanTimeProvider {
         var sanitized = `${hour}:${minute} ${am_pm}`
         return sanitized
 
+	}
+
+	sanitizeDayString(dayString){
+		return parseInt(dayString)
 	}
 }
 

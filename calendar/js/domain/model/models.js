@@ -37,6 +37,10 @@ class Day {
 		this.Maghrib = prayerTimes.Maghrib
 		this.Isha = prayerTimes.Isha
 	}
+
+	setHijriData(hijriData){
+		this.hijri = hijriData;
+	}
 }
 
 class Week {
@@ -75,7 +79,15 @@ class Calendar{
 
   	get fileName(){
   		return this.title + '.' + this.ext
-  	}
+	}
+	  
+	setFirstDay(firstDay){
+		this.firstDay = firstDay;
+	}
+
+	setLastDay(lastDay){
+		this.lastDay = lastDay;
+	}
 }
 
 class LocationData {
@@ -97,5 +109,15 @@ class PrayerTimes {
 		this.Asr = asr
 		this.Maghrib = maghrib
 		this.Isha = isha
+	}
+}
+
+class HijriData {
+	constructor(day, month, year, monthArabicText, holidays){
+		this.day = day;
+		this.month = month;
+		this.year = year;
+		this.monthArabicText = monthArabicText;
+		this.holidays = holidays;
 	}
 }

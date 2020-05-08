@@ -13,9 +13,25 @@ body {
 	padding: 10px;
 }
 
-h1 {
-	text-align: center;
-	size: 32px;
+.title {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.title .gregorian {
+	font-size: 36px;
+	float: left;
+}
+
+.title .hijri {
+	font-size: 24px;
+	font-weight: bold;
+	float: right;
+	margin-top: 18px;
+}
+
+.hijri {
+	color: #33aa50;
 }
 
 .a4-landscape {

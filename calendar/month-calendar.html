@@ -2,7 +2,6 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="css/lib/bootstrap/bootstrap.min.css">
-		<link rel="stylesheet" href="vendor/fontawesome-free-5.13.0-web/css/all.min.css">
 		<link rel="stylesheet" href="css/style.css">
 		<script src="js/lib/angularjs/1.7.9/angular.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
@@ -24,9 +23,30 @@
 				<input ng-model="year" type="number" ng-change="regenerateCalendar()" placeholder="year"></input>
 			</div>
 			<div id="calendar" class="a4-landscape border">
-				<h1> {{title}} </h1>
+				<div class="title"> 
+					<span class="gregorian">{{calendar.firstDay.month}} {{calendar.firstDay.year}} </span>
+					<span class="hijri">
+						{{calendar.firstDay.hijri.month}} {{calendar.firstDay.hijri.year}} - {{calendar.lastDay.hijri.month}} {{calendar.lastDay.hijri.year}}
+					</span>
+					<div class="clearfix"></div>
+				</div>
 				<div class="calendar-body">
 					<div class="weekday-labels cell-width"></div>
+					<div ng-repeat="week in calendar.weeks" class="week">
+						<div ng-repeat="day in week.days" class="cell inline-block" ng-class="{ 'cell-placeholder': day.placeholder }">
+							<div ng-if="!day.placeholder">
+								<div class="date">{{day.day}}</div>
+								<div class="prayer-times">
+									<div class="pt pt-fajr"><span class="pt-label">F</span> {{day.Fajr}}</div>
+									<div class="pt pt-sunrise"><span class="pt-label">S</span> {{day.Sunrise}}</div>
+									<div class="pt pt-zuhr"><span class="pt-label">Z</span> {{day.Zuhr}}</div>
+									<div class="pt pt-asr"><span class="pt-label">A</span> {{day.Asr}}</div>
+									<div class="pt pt-maghrib"><span class="pt-label">M</span> {{day.Maghrib}}</div>
+									<div class="pt pt-isha"><span class="pt-label">I</span> {{day.Isha}}</div>
+								</div>
+							</div>									
+						</div>
+					</div>
 					<div class="calendar-header">
 						<div class="legend text-center">
 							<span class="pt-fajr">Fajr</span>
@@ -42,22 +62,6 @@
 							<span class="pt-isha">Isha</span>
 						</div>
 						<div class="location">Prayer times for {{calendar.locationData.city}}, {{calendar.locationData.region}} ({{calendar.locationData.countryCode}})</div>
-					</div>
-					<div class="clearfix"></div>
-					<div ng-repeat="week in calendar.weeks" class="week">
-						<div ng-repeat="day in week.days" class="cell inline-block" ng-class="{ 'cell-placeholder': day.placeholder }">
-							<div ng-if="!day.placeholder">
-								<div class="date">{{day.day}}</div>
-								<div class="prayer-times">
-									<div class="pt pt-fajr"><span class="pt-label">F</span> {{day.Fajr}}</div>
-									<div class="pt pt-sunrise"><span class="pt-label">S</span> {{day.Sunrise}}</div>
-									<div class="pt pt-zuhr"><span class="pt-label">Z</span> {{day.Zuhr}}</div>
-									<div class="pt pt-asr"><span class="pt-label">A</span> {{day.Asr}}</div>
-									<div class="pt pt-maghrib"><span class="pt-label">M</span> {{day.Maghrib}}</div>
-									<div class="pt pt-isha"><span class="pt-label">I</span> {{day.Isha}}</div>
-								</div>
-							</div>									
-						</div>
 					</div>
 				</div>
 			</div>
