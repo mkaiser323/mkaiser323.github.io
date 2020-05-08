@@ -179,8 +179,16 @@ body {
 	margin: 0 10px;
 }
 
+.calendar-footer {
+	margin: 0 2px;
+}
+
 .legend {
 	float: left;
+}
+
+.legend .label {
+	margin-right: 10px;
 }
 
 .location {
