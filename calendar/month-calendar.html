@@ -22,7 +22,7 @@
 				<input ng-model="month" type="number" ng-change="regenerateCalendar()" placeholder="month"></input>
 				<input ng-model="year" type="number" ng-change="regenerateCalendar()" placeholder="year"></input>
 			</div>
-			<div id="calendar" class="a4-landscape">
+			<div id="calendar" class="a4-landscape border">
 				<h1> {{title}} </h1>
 				<div class="calendar-body">
 					<div class="weekday-labels cell-width"></div>
@@ -40,6 +40,9 @@
 								</div>
 							</div>									
 						</div>
+					</div>
+					<div class="calendar-footer">
+						<div class="location text-center">Prayer times for {{calendar.locationData.city}}, {{calendar.locationData.region}} ({{calendar.locationData.countryCode}})</div>
 					</div>
 				</div>
 			</div>

@@ -61,7 +61,7 @@ function generateCalendarWithPrayerTimes($http, $q, timeProvider, title, weeks){
 		var timePopulationPromises = timeProvider.populateDaysWithTimes($http, weeks, locationData);
 		return $q.all(timePopulationPromises).then(function(){
 			console.log(`resolved ${timePopulationPromises.length} promises`)
-			return new Calendar(title, weeks)
+			return new Calendar(title, weeks, locationData)
 		})
 	})
 }
@@ -99,5 +99,5 @@ function generateCalendarForQuarter(){
 
 	var firstDay = getFirstDayOfMonth(today.getFullYear(), quarter[0])
 	var lastDay = getLastDayOfMonth(today.getFullYear(), quarter[2])
-	return new Calendar("Quarter Calendar", generateWeeks(firstDay, lastDay))
+	return new Calendar("Quarter Calendar", generateWeeks(firstDay, lastDay), {})
 } 

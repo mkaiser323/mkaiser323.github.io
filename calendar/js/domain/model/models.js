@@ -66,10 +66,11 @@ class Week {
 }
 
 class Calendar{
-	constructor(title, weeks) {
+	constructor(title, weeks, locationData) {
     	this.title = title;
     	this.weeks = weeks;
-    	this.ext = 'pdf';
+		this.ext = 'pdf';
+		this.locationData = locationData;
   	}
 
   	get fileName(){
