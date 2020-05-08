@@ -8,8 +8,6 @@
 	src: url('./fonts/Ubuntu_Mono/UbuntuMono-Regular.ttf')
 }
 
-
-
 body {
 	font-family: 'Ubuntu';
 	padding: 10px;
@@ -27,13 +25,17 @@ h1 {
 	width: 1127px;
 	height: 803px;
 	padding: 10px;
-	padding-top: 20px;
+	padding-top: 10px;
 }
 
 .a4-portrait {
 	height: 1127px;
 	width: 803px;
 	padding: 10px;
+}
+
+.hidden {
+	display: none;
 }
 
 .border {
@@ -150,4 +152,17 @@ h1 {
 
 .pt-label {
 	display: none;
+}
+
+.divider::after {
+	content: '-';
+	margin: 0 10px;
+}
+
+.legend {
+	float: left;
+}
+
+.location {
+	float: right;
 }

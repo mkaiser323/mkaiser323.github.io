@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="css/lib/bootstrap/bootstrap.min.css">
+		<link rel="stylesheet" href="vendor/fontawesome-free-5.13.0-web/css/all.min.css">
 		<link rel="stylesheet" href="css/style.css">
 		<script src="js/lib/angularjs/1.7.9/angular.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
@@ -26,6 +27,23 @@
 				<h1> {{title}} </h1>
 				<div class="calendar-body">
 					<div class="weekday-labels cell-width"></div>
+					<div class="calendar-header">
+						<div class="legend text-center">
+							<span class="pt-fajr">Fajr</span>
+							<i class="divider"></i>
+							<span class="pt-sunrise">Sunrise</span>
+							<i class="divider"></i>
+							<span class="pt-zuhr">Zuhr</span>
+							<i class="divider"></i>
+							<span class="pt-asr">Asr</span>
+							<i class="divider"></i>
+							<span class="pt-maghrib">Maghrib</span>
+							<i class="divider"></i>
+							<span class="pt-isha">Isha</span>
+						</div>
+						<div class="location">Prayer times for {{calendar.locationData.city}}, {{calendar.locationData.region}} ({{calendar.locationData.countryCode}})</div>
+					</div>
+					<div class="clearfix"></div>
 					<div ng-repeat="week in calendar.weeks" class="week">
 						<div ng-repeat="day in week.days" class="cell inline-block" ng-class="{ 'cell-placeholder': day.placeholder }">
 							<div ng-if="!day.placeholder">
@@ -41,12 +59,8 @@
 							</div>									
 						</div>
 					</div>
-					<div class="calendar-footer">
-						<div class="location text-center">Prayer times for {{calendar.locationData.city}}, {{calendar.locationData.region}} ({{calendar.locationData.countryCode}})</div>
-					</div>
 				</div>
 			</div>
 		</div>
-
 	</body>
 </html>
