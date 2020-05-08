@@ -40,12 +40,14 @@ function wrapSixthWeek(weeks, month){
 	wrapped = weeks.slice(0, 5)
 
 	var overflowDays = weeks[5].days
+	overflowDays[0].firstDayWrapped = true;
 	for (var d = 0; d < overflowDays.length; d++){
 		if (overflowDays[d].month == monthNames[month]) {
 			if (wrapped[0].days[d].month == monthNames[month]) {
 				throw "something went wrong"
 			}
 			wrapped[0].days[d] = overflowDays[d];
+			wrapped[0].days[d].wrapped = true;
 		}
 	}
 	return wrapped
