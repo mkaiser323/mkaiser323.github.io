@@ -1,20 +1,15 @@
 var app = angular.module('myApp', []);
 //global configs
 app.controller('myCtrl', function($scope, $http, $q) {
-	var today = new Date();
-	$scope.year = today.getFullYear()// 4 digit
-	$scope.month = today.getMonth();// 0-based
-
+	$scope.today = new Day(new Date())
 	regenerateCalendar($scope, $http, $q);
 
 	$scope.regenerateCalendar = function(){
-		console.log("regenerating calendar with: ", $scope)
 		regenerateCalendar($scope, $http, $q)
 	}
 
 
 	$scope.quarterCalendar = generateCalendarForQuarter()
-	console.log(generateCalendarForQuarter())
 	$scope.saveLandscape=function(selection){
 		saveSelectionAsPDF($scope.calendar.fileName, selection, 'landscape')
 	}
@@ -25,8 +20,11 @@ app.controller('myCtrl', function($scope, $http, $q) {
 });
 
 function regenerateCalendar($scope, $http, $q){
-	generateCalendarForMonth($http, $q, getTimeProvider(), $scope.year, $scope.month)
+	generateCalendarForMonth($http, $q, getTimeProvider(), $scope.today.year, $scope.today.monthNum)
 	.then(function(calendar){
+		if(MARK_TODAY){
+			calendar.markDayAsToday($scope.today);
+		}
 		console.log(calendar)
 		$scope.calendar = calendar
 		$scope.title = calendar.title

@@ -13,6 +13,7 @@ class Day {
 		this.day = date.getDate();
 		this.weekday = weekdays[date.getDay()];
 		this.month = monthNames[date.getMonth()]
+		this.monthNum = date.getMonth();
 		this.year = date.getFullYear()
 		this.placeholder = false;
 	}
@@ -40,6 +41,10 @@ class Day {
 
 	setHijriData(hijriData){
 		this.hijri = hijriData;
+	}
+
+	equals(day){
+		return this.day == day.day && this.month == day.month && this.year == day.year;
 	}
 }
 
@@ -87,6 +92,18 @@ class Calendar{
 
 	setLastDay(lastDay){
 		this.lastDay = lastDay;
+	}
+
+	markDayAsToday(day){
+		console.log("marking today", day)
+		this.weeks.forEach(function(w){
+			w.days.forEach(function(d){
+				if (d.equals(day)){
+					d.today = true;
+					console.log("found:", d)
+				}
+			});
+		});
 	}
 }
 

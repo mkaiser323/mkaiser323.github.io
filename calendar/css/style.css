@@ -119,6 +119,15 @@ body {
 	background-color: #DDDDDD;
 }
 
+.cell-today {
+	background-color: #fdfffd;
+	border: solid #33bb50 4px;
+}
+
+.cell-today .date {
+	color: #444444;
+}
+
 .date {
 	float: left;
 	font-size: 32px;

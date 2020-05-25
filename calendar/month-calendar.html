@@ -19,8 +19,8 @@
 		<div ng-app="myApp" ng-controller="myCtrl">
 			<div class="toolbar center">
 				<button ng-click="saveLandscape('#calendar')">Save</button>
-				<input ng-model="month" type="number" ng-change="regenerateCalendar()" placeholder="month"></input>
-				<input ng-model="year" type="number" ng-change="regenerateCalendar()" placeholder="year"></input>
+				<input ng-model="today.monthNum" type="number" ng-change="regenerateCalendar()" placeholder="month"></input>
+				<input ng-model="today.year" type="number" ng-change="regenerateCalendar()" placeholder="year"></input>
 			</div>
 			<div id="calendar" class="a4-landscape border">
 				<div class="title"> 
@@ -33,7 +33,7 @@
 				<div class="calendar-body">
 					<div class="weekday-labels cell-width"></div>
 					<div ng-repeat="week in calendar.weeks" class="week">
-						<div ng-repeat="day in week.days" class="cell inline-block" ng-class="{ 'cell-placeholder': day.placeholder }">
+						<div ng-repeat="day in week.days" class="cell inline-block" ng-class="{ 'cell-placeholder': day.placeholder, 'cell-today' : day.today }">
 							<div ng-if="!day.placeholder">
 								<div class="date">{{day.day}}</div>
 								<div class="prayer-times">
