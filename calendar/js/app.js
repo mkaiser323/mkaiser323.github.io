@@ -1,6 +1,7 @@
 var app = angular.module('myApp', []);
 //global configs
 app.controller('myCtrl', function($scope, $http, $q) {
+	$scope.nightMode=NIGHT_MODE;
 	$scope.today = new Day(new Date())
 	console.log($scope.today)
 	$scope.quarter = $scope.today.quarter.ordinal
@@ -22,6 +23,10 @@ app.controller('myCtrl', function($scope, $http, $q) {
 
 	$scope.savePortrait=function(selection){
 		saveSelectionAsPDF($scope.calendar.fileName, selection, 'portrait')
+	}
+
+	$scope.toggleNightMode = function() {
+		$scope.nightMode = !$scope.nightMode;
 	}
 });
 

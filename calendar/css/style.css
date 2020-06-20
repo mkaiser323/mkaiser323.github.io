@@ -10,7 +10,14 @@
 
 body {
 	font-family: 'Ubuntu';
-	padding: 10px;
+}
+
+.toolbar {
+	width: 500px;
+}
+
+.wrapper {
+	padding: 50px;
 }
 
 .title {
@@ -84,7 +91,7 @@ body {
 	/* border: solid black 1px; */
 	margin: 0 auto;
 	color: #888888;
-	margin-top: 50pt;
+	margin-top: 25px;
 }
 
 .quarter-week {
