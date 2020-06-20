@@ -19,7 +19,6 @@ class AlAdhanTimeProvider {
 		}, function(err){
 			console.log("unable to get prayer times", err)
 		});
-	
 	}
 
 	populateDaysWithTimes($http, weeks, locationData){
@@ -28,8 +27,8 @@ class AlAdhanTimeProvider {
             latitude: locationData.lat,
             longitude: locationData.lon,
             month: weeks[0].startDate.date.getMonth() + 1,
-            method: 2,
-            school: 1,
+            method: AlAdhanCalculationMethod,
+            school: AlAdhanAsrCalculation,
         }
 		var self = this;
 		return [this.fetchPrayerTimes($http,
@@ -80,7 +79,6 @@ class AlAdhanTimeProvider {
 
         var sanitized = `${hour}:${minute} ${am_pm}`
         return sanitized
-
 	}
 
 	sanitizeDayString(dayString){

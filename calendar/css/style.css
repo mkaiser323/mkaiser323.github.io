@@ -207,3 +207,7 @@ body {
 .firstDayOfMonthInQuarter {
 	color: #1166BB;
 }
+
+.dark-mode {
+	background-color: black;
+}
