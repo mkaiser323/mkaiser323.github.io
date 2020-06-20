@@ -105,11 +105,8 @@ function getQuarterByMonth(month){
 	}
 }
 
-function generateCalendarForQuarter(){
-	var today = new Date()
-	var quarter = getQuarterByMonth(today.getMonth());
-
-	var firstDay = getFirstDayOfMonth(today.getFullYear(), quarter[0])
-	var lastDay = getLastDayOfMonth(today.getFullYear(), quarter[2])
+function generateCalendarForQuarter(year, quarterOrdinal){
+	var firstDay = getFirstDayOfMonth(year, quarters[quarterOrdinal][0])
+	var lastDay = getLastDayOfMonth(year, quarters[quarterOrdinal][2])
 	return new Calendar("Quarter Calendar", generateWeeks(firstDay, lastDay), {})
 } 

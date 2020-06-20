@@ -14,6 +14,7 @@ class Day {
 		this.weekday = weekdays[date.getDay()];
 		this.month = monthNames[date.getMonth()]
 		this.monthNum = date.getMonth();
+		this.quarter = new Quarter(this.monthNum)
 		this.year = date.getFullYear()
 		this.placeholder = false;
 	}
@@ -71,6 +72,19 @@ class Week {
 			day = day.next();
 		} while (day.weekday != 'Sunday');
 		this.nextDay = day;
+	}
+}
+
+class Quarter {
+	constructor(month) {
+		for (var q = 0; q < quarters.length; q++){
+			for (var m = 0; m < quarters[q].length; m++){
+				if (month == quarters[q][m]){
+					this.months = quarters[q];
+					this.ordinal = q
+				}
+			}
+		}
 	}
 }
 

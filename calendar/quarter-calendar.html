@@ -18,12 +18,16 @@
 	<body>
 		<div ng-app="myApp" ng-controller="myCtrl">
 			<button ng-click="savePortrait('#calendar')">Save</button>
+			<input ng-model="quarter" type="number" ng-change="regenerateQuarterCalendar()" placeholder="quarter"></input>
+			<input ng-model="year" type="number" ng-change="regenerateQuarterCalendar()" placeholder="year"></input>
 			<div id="calendar" class="a4-portrait border">
 				<div class="quarter-calendar-body">
 					<div class="weekday-labels cell-width"></div>
 					<div ng-repeat="week in quarterCalendar.weeks" class="quarter-week">
 						<div ng-repeat="day in week.days" class="quarter-cell inline-block" >
-							<div class="date">{{day.day == 1 ? day.month + "-"+day.day: day.day}}</div>
+							<div class="date">
+								<p ng-class="{'firstDayOfMonthInQuarter' : day.day == 1 }">{{day.day == 1 ? day.month + "-"+day.day: day.day}}</p>
+							</div>
 						</div>
 					</div>
 				</div>

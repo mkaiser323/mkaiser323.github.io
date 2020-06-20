@@ -203,3 +203,7 @@ body {
 .location {
 	float: right;
 }
+
+.firstDayOfMonthInQuarter {
+	color: #1166BB;
+}
