@@ -1,3 +1,8 @@
+const HOLIDAYS_WHITELIST = [
+	"Eid-ul-Adha",
+	"Eid-ul-Fitr",
+]
+
 function getFirstDayOfMonth(year, month){
 	return new Day(new Date(year, month, 1))
 }
@@ -36,23 +41,6 @@ function getLocationData($http){
 		})
 }
 
-function wrapSixthWeek(weeks, month){
-	wrapped = weeks.slice(0, 5)
-
-	var overflowDays = weeks[5].days
-	overflowDays[0].firstDayWrapped = true;
-	for (var d = 0; d < overflowDays.length; d++){
-		if (overflowDays[d].month == monthNames[month]) {
-			if (wrapped[0].days[d].month == monthNames[month]) {
-				throw "something went wrong"
-			}
-			wrapped[0].days[d] = overflowDays[d];
-			wrapped[0].days[d].wrapped = true;
-		}
-	}
-	return wrapped
-}
-
 function generateCalendarWithPrayerTimes($http, $q, timeProvider, title, weeks){
 	var locationDataPromise = getLocationData($http)
 	return locationDataPromise.then(function(locationData){
@@ -74,6 +62,7 @@ function generateCalendarForMonth($http, $q, timeProvider, year, month){
 	var weeks = generateWeeks(firstDay, lastDay);
 	return generateCalendarWithPrayerTimes($http, $q, timeProvider, title, weeks)
 			.then(function(calendar){
+				//post processing
 				if (calendar.weeks.length > 5) {
 					if (calendar.weeks.length > 6) {
 						throw `month cannot have ${calendar.weeks.length} weeks`
@@ -81,6 +70,7 @@ function generateCalendarForMonth($http, $q, timeProvider, year, month){
 					calendar.weeks = wrapSixthWeek(calendar.weeks, month)
 				}
 
+				//there are different scenarios where we may need to know the first and last day of the (Gregorian) month
 				calendar.weeks.forEach(function(w){
 					w.days.forEach(function(d){
 						if (d.date.getTime() == firstDay.date.getTime()){
@@ -90,6 +80,12 @@ function generateCalendarForMonth($http, $q, timeProvider, year, month){
 							calendar.setLastDay(d);
 						}
 					})
+				})
+
+				applyToEachDay(calendar, function(day){
+					if(day.hijri){
+						setHijriLabel(day)
+					}
 				})
 				return calendar
 			})
@@ -110,3 +106,50 @@ function generateCalendarForQuarter(year, quarterOrdinal){
 	var lastDay = getLastDayOfMonth(year, quarters[quarterOrdinal][2])
 	return new Calendar("Quarter Calendar", generateWeeks(firstDay, lastDay), {})
 } 
+
+//post processing
+function applyToEachDay(calendar, fn) {
+	angular.forEach(calendar.weeks, function(week){
+		angular.forEach(week.days, function(day){
+			fn(day)
+		})
+	})
+}
+
+function setHijriLabel(day){
+	day.hijriLabel = day.hijri.day
+
+	var whitelistedHolidays = HOLIDAYS_WHITELIST.filter(function(d){
+		if (day.hijri.holidays.indexOf(d) != -1) {
+			return true
+		}
+		return false
+	})
+
+	if (whitelistedHolidays.length > 0){
+		day.hijriLabel += " - " + whitelistedHolidays[0]
+		day.holiday = true
+		return
+	}
+
+	if (day.hijri.day == 1 || day.day == 1 || day.firstDayWrapped){
+		day.hijriLabel += " - " + day.hijri.month
+	}
+}
+
+function wrapSixthWeek(weeks, month){
+	wrapped = weeks.slice(0, 5)
+
+	var overflowDays = weeks[5].days
+	overflowDays[0].firstDayWrapped = true;
+	for (var d = 0; d < overflowDays.length; d++){
+		if (overflowDays[d].month == monthNames[month]) {
+			if (wrapped[0].days[d].month == monthNames[month]) {
+				throw "something went wrong"
+			}
+			wrapped[0].days[d] = overflowDays[d];
+			wrapped[0].days[d].wrapped = true;
+		}
+	}
+	return wrapped
+}
