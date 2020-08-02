@@ -27,16 +27,30 @@ function saveSelectionAsPDF(filename, selector, orientation){
 		if (orientation == 'landscape'){
 			canvas = rotateCanvas(canvas)
 		}
-		saveImageAsPDF(canvas, 792, 612, filename, orientation)
+		saveImageAsPDF(canvas, computeDimesions('letter', 792), filename, orientation)
 	});
 }
 
-function saveImageAsPDF(imageData, height, width, fileName, orientation){
+function saveImageAsPDF(imageData, dimensions, fileName, orientation){
 	var doc = new jsPDF({
 		orientation: 'portrait',
 		unit: 'pt',
 		format: 'letter'
 	})
-	doc.addImage(imageData, 'PNG', '0', '0', width, height, '', 'MEDIUM', 0)
+	doc.addImage(imageData, 'PNG', '0', '0', dimensions.width, dimensions.length, '', 'MEDIUM', 0)
 	doc.save(fileName)
+}
+
+function computeDimesions(type, len){
+	var ratio = 1//square
+	switch(type){
+		case 'letter':
+			ratio = 8.5/11
+	}
+	console.log(ratio)
+
+	return {
+		length: len,
+		width: ratio*len
+	}
 }
