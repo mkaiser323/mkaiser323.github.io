@@ -53,8 +53,9 @@ class AlAdhanTimeProvider {
 							day.setHijriData(new HijriData(
 								self.sanitizeDayString(hijri.day),
 								hijri.month.en,
-								hijri.year,
+								parseInt(hijri.year),
 								hijri.month.ar,
+								hijri.month.number,
 								hijri.holidays,
 							));
 							dayCounter++;

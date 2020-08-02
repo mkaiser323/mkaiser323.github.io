@@ -144,11 +144,12 @@ class PrayerTimes {
 }
 
 class HijriData {
-	constructor(day, month, year, monthArabicText, holidays){
+	constructor(day, month, year, monthArabicText, monthNum, holidays){
 		this.day = day;
 		this.month = month;
 		this.year = year;
 		this.monthArabicText = monthArabicText;
+		this.monthNum = monthNum;
 		this.holidays = holidays;
 	}
 }

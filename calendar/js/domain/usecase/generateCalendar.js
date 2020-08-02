@@ -1,7 +1,15 @@
-const HOLIDAYS_WHITELIST = [
-	"Eid-ul-Adha",
-	"Eid-ul-Fitr",
-]
+//DD-MM => Holiday
+const HOLIDAYS = {
+	"01-10": {
+		label: "Eid-ul-Fitr"
+	},
+	"09-12": {
+		label: "Arafah"
+	},
+	"10-12": {
+		label: "Eid-ul-Adha"
+	}
+}
 
 function getFirstDayOfMonth(year, month){
 	return new Day(new Date(year, month, 1))
@@ -29,7 +37,6 @@ function generateWeeks(firstDay, lastDay){
 		})
 	})
 
-	console.log("weeks:", weeks)
 	return weeks
 }
 
@@ -49,7 +56,6 @@ function generateCalendarWithPrayerTimes($http, $q, timeProvider, title, weeks){
 	}).then(function(locationData){
 		var timePopulationPromises = timeProvider.populateDaysWithTimes($http, weeks, locationData);
 		return $q.all(timePopulationPromises).then(function(){
-			console.log(`resolved ${timePopulationPromises.length} promises`)
 			return new Calendar(title, weeks, locationData)
 		})
 	})
@@ -118,16 +124,9 @@ function applyToEachDay(calendar, fn) {
 
 function setHijriLabel(day){
 	day.hijriLabel = day.hijri.day
-
-	var whitelistedHolidays = HOLIDAYS_WHITELIST.filter(function(d){
-		if (day.hijri.holidays.indexOf(d) != -1) {
-			return true
-		}
-		return false
-	})
-
-	if (whitelistedHolidays.length > 0){
-		day.hijriLabel += " - " + whitelistedHolidays[0]
+	k = padDate(day.hijri.day) + "-" + padDate(day.hijri.monthNum)
+	if (k in HOLIDAYS) {
+		day.hijriLabel += " - " + HOLIDAYS[k].label
 		day.holiday = true
 		return
 	}
@@ -152,4 +151,12 @@ function wrapSixthWeek(weeks, month){
 		}
 	}
 	return wrapped
+}
+
+function padDate(d){
+	padded = d.toString()
+	if (d < 10){
+		padded = "0"+padded
+	}
+	return padded
 }
