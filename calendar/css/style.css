@@ -146,6 +146,10 @@ body {
 	margin: 10px;
 }
 
+.hijri-holiday {
+	color: #FFA000;
+}
+
 .quarter-calendar-body .date {
 	font-size: 16px;
 }

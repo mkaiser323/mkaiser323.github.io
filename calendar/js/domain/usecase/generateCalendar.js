@@ -8,6 +8,9 @@ const HOLIDAYS = {
 	},
 	"10-12": {
 		label: "Eid-ul-Adha"
+	},
+	"10-01": {
+		label: "Ashura"
 	}
 }
 
@@ -131,7 +134,7 @@ function setHijriLabel(day){
 		return
 	}
 
-	if (day.hijri.day == 1 || day.day == 1 || day.firstDayWrapped){
+	if (day.hijri.day == 1 || day.day == 1){
 		day.hijriLabel += " - " + day.hijri.month
 	}
 }
