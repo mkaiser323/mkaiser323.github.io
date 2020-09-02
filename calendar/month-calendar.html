@@ -33,7 +33,7 @@
 				<div id="calendar" class="a4-landscape border">
 					<div class="title"> 
 						<span class="gregorian">{{calendar.firstDay.month}} {{calendar.firstDay.year}} </span>
-						<span class="hijri">
+						<span class="hijri" ng-class="{ 'pt-light': calendar.black_and_white }">
 							{{calendar.firstDay.hijri.month}} {{calendar.firstDay.hijri.year}} - {{calendar.lastDay.hijri.month}} {{calendar.lastDay.hijri.year}}
 						</span>
 						<div class="clearfix"></div>
@@ -45,19 +45,37 @@
 								<div ng-if="!day.placeholder">
 									<div class="date">{{day.day}}</div>
 									<div class="prayer-times">
-										<div class="pt pt-fajr"><span class="pt-label">F</span> {{day.Fajr}}</div>
-										<div class="pt pt-sunrise"><span class="pt-label">S</span> {{day.Sunrise}}</div>
-										<div class="pt pt-zuhr"><span class="pt-label">Z</span> {{day.Zuhr}}</div>
-										<div class="pt pt-asr"><span class="pt-label">A</span> {{day.Asr}}</div>
-										<div class="pt pt-maghrib"><span class="pt-label">M</span> {{day.Maghrib}}</div>
-										<div class="pt pt-isha"><span class="pt-label">I</span> {{day.Isha}}</div>
+										<div class="pt pt-fajr" ng-class="{ 'pt-light': calendar.black_and_white }">
+											{{day.Fajr}}
+											<span class="pt-label" ng-class="{ 'pt-label-hide': !calendar.black_and_white }"> F </span> 
+										</div>
+										<div class="pt pt-sunrise" ng-class="{ 'pt-dark': calendar.black_and_white }">
+											{{day.Sunrise}}
+											<span class="pt-label" ng-class="{ 'pt-label-hide': !calendar.black_and_white }"> S </span> 
+										</div>
+										<div class="pt pt-zuhr" ng-class="{ 'pt-light': calendar.black_and_white }">
+											{{day.Zuhr}}
+											<span class="pt-label" ng-class="{ 'pt-label-hide': !calendar.black_and_white }"> Z </span> 
+										</div>
+										<div class="pt pt-asr" ng-class="{ 'pt-dark': calendar.black_and_white }">
+											{{day.Asr}}
+											<span class="pt-label" ng-class="{ 'pt-label-hide': !calendar.black_and_white }"> A </span> 
+										</div>
+										<div class="pt pt-maghrib" ng-class="{ 'pt-light': calendar.black_and_white }">
+											{{day.Maghrib}}
+											<span class="pt-label" ng-class="{ 'pt-label-hide': !calendar.black_and_white }"> M </span> 
+										</div>
+										<div class="pt pt-isha" ng-class="{ 'pt-dark': calendar.black_and_white }">
+											{{day.Isha}}
+											<span class="pt-label" ng-class="{ 'pt-label-hide': !calendar.black_and_white }"> I </span> 
+										</div>
 									</div>
 									<div class="clearfix"></div>
-									<div class="hijri hijri-date" ng-class="{ 'hijri-holiday': day.holiday }">{{day.hijriLabel}}</div>
+									<div class="hijri hijri-date" ng-class="{ 'hijri-holiday': day.holiday, 'pt-dark': calendar.black_and_white }">{{day.hijriLabel}}</div>
 								</div>									
 							</div>
 						</div>
-						<div class="calendar-footer">
+						<div class="calendar-footer" ng-show="!calendar.black_and_white">
 							<div class="legend text-center">
 								<strong class="label">Color Code: </strong>
 								<span class="pt-fajr">Fajr</span>

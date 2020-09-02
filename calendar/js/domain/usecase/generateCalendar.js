@@ -100,6 +100,7 @@ function generateCalendarForMonth($http, $q, timeProvider, year, month){
 			})
 
 }
+
 function getQuarterByMonth(month){
 	for (var q = 0; q < quarters.length; q++){
 		for (var m = 0; m < quarters[q].length; m++){

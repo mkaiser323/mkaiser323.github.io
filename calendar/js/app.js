@@ -41,6 +41,7 @@ function regenerateCalendar($scope, $http, $q){
 			calendar.markDayAsToday($scope.today);
 		}
 		console.log(calendar)
+		calendar.black_and_white = BLACK_AND_WHITE_BY_DEFAULT
 		$scope.calendar = calendar
 		$scope.title = calendar.title
 	})

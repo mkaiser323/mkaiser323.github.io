@@ -191,6 +191,19 @@ body {
 }
 
 .pt-label {
+	font-family: 'Ubuntu-Mono';
+	margin-left: 5px;
+}
+
+.pt-dark {
+	color: #333333;
+}
+
+.pt-light {
+	color: #888888;
+}
+
+.pt-label-hide {
 	display: none;
 }
 
