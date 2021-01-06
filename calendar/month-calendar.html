@@ -28,6 +28,17 @@
 						<div class="input-group-append">
 							<button class="btn btn-dark night-mode" type="button" ng-click="toggleNightMode()">Toggle Night Mode</button>
 						</div>
+						<div class="input-group-append">
+							<button class="btn color-toggle" type="button" ng-click="toggleColor()">
+								<div ng-if="calendar.black_and_white">
+									<span class="pt-fajr text-condense text-medium">C</span>
+									<span class="pt-zuhr text-condense text-medium">o</span>
+									<span class="pt-asr text-condense text-medium">l</span>
+									<span class="pt-maghrib text-condense text-medium">o</span>
+									<span class="pt-isha text-condense text-medium">r</span>
+								</div>
+								<div ng-if="!calendar.black_and_white">Black & White</div>
+						</div>
 					</div>
 				</div>
 				<div id="calendar" class="a4-landscape border">
@@ -75,8 +86,8 @@
 								</div>									
 							</div>
 						</div>
-						<div class="calendar-footer" ng-show="!calendar.black_and_white">
-							<div class="legend text-center">
+						<div class="calendar-footer">
+							<div class="legend text-center" ng-show="!calendar.black_and_white">
 								<strong class="label">Color Code: </strong>
 								<span class="pt-fajr">Fajr</span>
 								<i class="divider"></i>

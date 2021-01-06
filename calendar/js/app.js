@@ -28,6 +28,12 @@ app.controller('myCtrl', function($scope, $http, $q) {
 	$scope.toggleNightMode = function() {
 		$scope.nightMode = !$scope.nightMode;
 	}
+
+	$scope.toggleColor = function() {
+		if ($scope.calendar) {
+			$scope.calendar.black_and_white = !$scope.calendar.black_and_white;
+		}
+	}
 });
 
 function regenerateQuarterCalendar($scope){

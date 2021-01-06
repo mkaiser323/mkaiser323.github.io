@@ -19,4 +19,4 @@ const AlAdhanCalculationMethod = AlAdhan.CalculationMethod.ISNA;
 const save = true;//verify usage
 const MARK_TODAY = false;//TODO: enable marking of today and make it not show for print
 const NIGHT_MODE = false;
-const BLACK_AND_WHITE_BY_DEFAULT = true;
+const BLACK_AND_WHITE_BY_DEFAULT = false;

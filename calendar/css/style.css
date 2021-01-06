@@ -4,6 +4,11 @@
 }
 
 @font-face{
+	font-family: 'Ubuntu-Medium';
+	src: url('./fonts/Ubuntu/Ubuntu-Medium.ttf')
+}
+
+@font-face{
 	font-family: 'Ubuntu-Mono';
 	src: url('./fonts/Ubuntu_Mono/UbuntuMono-Regular.ttf')
 }
@@ -234,4 +239,22 @@ body {
 
 .dark-mode {
 	background-color: black;
+}
+
+.hide {
+	display: none;
+}
+
+.color-toggle {
+	width: 130px;
+	border: solid black 1px;
+}
+
+.text-condense {
+	margin-right: -2px;
+	margin-left: -1px;
+}
+
+.text-medium {
+	font-family: 'Ubuntu-Medium';
 }
