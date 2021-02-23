@@ -51,11 +51,13 @@ function getLocationData($http){
 		})
 }
 
-function generateCalendarWithPrayerTimes($http, $q, timeProvider, title, weeks){
+function generateCalendarWithPrayerTimes($http, $q, timeProvider, title, weeks, defaultLocation=null){
 	var locationDataPromise = getLocationData($http)
 	return locationDataPromise.then(function(locationData){
-		console.log(locationData)
-		return locationData
+		var location = defaultLocation ? defaultLocation : locationData
+		location = new LocationData("68.80.23.23", "39.94875654100655", "-75.2588708144357", "US", "Upper Darby", "Pennsylvania") // TODO: this should come from config
+		console.log(location)
+		return location
 	}).then(function(locationData){
 		var timePopulationPromises = timeProvider.populateDaysWithTimes($http, weeks, locationData);
 		return $q.all(timePopulationPromises).then(function(){
