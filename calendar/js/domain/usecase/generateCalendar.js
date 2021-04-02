@@ -140,6 +140,10 @@ function setHijriLabel(day){
 	if (day.hijri.day == 1 || day.day == 1){
 		day.hijriLabel += " - " + day.hijri.month
 	}
+
+	if (day.hijri.monthNum == 9) {
+		day.highlight = "highlight-green"
+	}
 }
 
 function wrapSixthWeek(weeks, month){
