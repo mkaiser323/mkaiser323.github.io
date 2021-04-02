@@ -58,9 +58,10 @@
 						<!-- CELL ROWS -->
 						<div ng-repeat="week in calendar.weeks" class="week">
 							<!-- CELLS -->
-							<div ng-repeat="day in week.days" class="cell inline-block" ng-class="{ 'cell-placeholder': day.placeholder, 'cell-today' : day.today, 'dark-mode' : nightMode }">
+							<div ng-repeat="day in week.days" class="cell inline-block" 
+									ng-class="{ 'cell-placeholder': day.placeholder, 'cell-today' : day.today, 'dark-mode' : nightMode, 'cell-{{day.highlight}}': day.highlight }">
 								<div ng-if="!day.placeholder">
-									<div class="date">{{day.day}}</div>
+									<div class="date" ng-class="{'cell-{{day.highlight}}': day.highlight }">{{day.day}}</div>
 									<div class="prayer-times">
 										<div class="pt pt-fajr" ng-class="{ 'pt-light': calendar.black_and_white }">
 											{{day.Fajr}}

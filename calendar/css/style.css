@@ -140,6 +140,13 @@ body {
 	color: #444444;
 }
 
+.cell-highlight-green {
+	/*background-color: #33AA3C;
+	background-color: #fafffa;
+	border: solid #33AA3C 2px;*/
+	color: #33AA3C;
+}
+
 .date {
 	float: left;
 	font-size: 32px;
