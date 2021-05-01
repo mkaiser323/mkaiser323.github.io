@@ -1,0 +1,21 @@
+body {
+    background-image: url('../img/background.png');
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    padding-bottom: 50px;
+}
+
+
+
+.gdoc {
+    resize:both; 
+    margin: 0 auto; 
+    display: block;
+    width: 80%;
+    height: 600px;
+    margin-top: 50px;
+}
+
+.gdoc-full-screen{
+    height: 1000px;
+}
