@@ -1,19 +1,27 @@
 body {
-    background-image: url('../img/background.png');
+    background-image: url('../img/background.jpg');
     background-attachment: fixed;
     background-size: 100% 100%;
-    padding-bottom: 50px;
 }
 
+.wrapper {
+    background-color: rgba(255, 255, 255, .95);
+    height: 100vh;
+    padding-bottom: 50px;
+    overflow: auto;
+}
 
+.cards {
+    padding: 50px;
+    padding-top: 20px;
+}
 
 .gdoc {
     resize:both; 
     margin: 0 auto; 
     display: block;
-    width: 80%;
+    width: 100%;
     height: 600px;
-    margin-top: 50px;
 }
 
 .gdoc-full-screen{

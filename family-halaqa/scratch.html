@@ -3,10 +3,7 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="../lib/bootstrap/5.0.1/css/bootstrap.min.css">
 
 		<!--Font Awesome-->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -24,24 +21,47 @@
 
 	</head>
 	<body>
-		<nav class="navbar navbar-default">
-			<div class="container">
-				<ul class="nav navbar-nav">
-					<li><a href="index.html">All</a></li>
-					<li><a href="scheduling.html">Scheduling</a></li>
-					<li><a href="availability.html">Availability</a></li>
-					<li><a href="incentives.html">Incentives</a></li>
-					<li><a href="template.html">Template</a></li>
-					<li><a href="scratch.html">Scratch</a></li>
-				</ul>
-			</div>
-		  </nav>
+		<div class="container wrapper">
+			<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+				<div class="container-fluid">
+					<!--<a class="navbar-brand" href="#">Navbar</a>-->
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNavDropdown">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link" aria-current="page" href="index.html">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="template.html">Meeting Template</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="schedule.html">Meeting Schedule</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link availability" href="availability.html">Availability</a>
+							</li>
+							<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Other
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+								<li><a class="dropdown-item" href="incentives.html">Points</a></li>
+								<li><a class="dropdown-item active" href="scratch.html">Scratch</a></li>
+							</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<!--Scratch-->
+			<iframe
+				class="gdoc gdoc-full-screen"
+				src="https://docs.google.com/document/d/1wNC84t8YJcstcyqqE__SNNZzhQe8KZc-w4bWxOGdOis/edit?usp=sharing">
+			</iframe>
+		</div>
 	
-		<!--Scratch-->
-		<iframe
-			class="gdoc gdoc-full-screen"
-			src="https://docs.google.com/document/d/1wNC84t8YJcstcyqqE__SNNZzhQe8KZc-w4bWxOGdOis/edit?usp=sharing">
-		</iframe>
 		<!--<div class = "back-to-top">
 			<a class = "page-scroll" href="header"><i class = "fa fa-arrow-up"></i></a>
 		</div>-->
@@ -50,6 +70,6 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<script src="../lib/bootstrap/5.0.1/js/bootstrap.min.js"></script>
 	</body>
 </html>
