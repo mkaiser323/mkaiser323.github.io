@@ -39,16 +39,29 @@ function generateWeeks(firstDay, lastDay){
 			}
 		})
 	})
-
 	return weeks
 }
 
-function getLocationData($http){
+function getIpAddress($http) {
 	return $http.get('https://extreme-ip-lookup.com/json/')
-		.then(function(resp){
-			var data=resp.data
-			return new LocationData(data.query, data.lat, data.lon, data.countryCode, data.city, data.region);
-		})
+	.then(function(resp){
+		console.log("location data")
+		console.log(resp)
+		return resp.data.query
+		//return new LocationData(data.query, data.lat, data.lon, data.countryCode, data.city, data.region);
+	})
+}
+
+function getLocationData($http){
+	var ipAddressPromise = getIpAddress($http)
+	return ipAddressPromise.then(function(ipAddress){
+		return $http.get(`http://ip-api.com/json/${ipAddress}`)
+	}).then(function(resp){
+		console.log("lat lon from ip")
+		console.log(resp)
+		var data = resp.data
+		return new LocationData(data.query, data.lat, data.lon, data.countryCode, data.city, data.region)
+	})
 }
 
 function generateCalendarWithPrayerTimes($http, $q, timeProvider, title, weeks, defaultLocation=null){

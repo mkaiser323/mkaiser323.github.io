@@ -37,7 +37,8 @@ const DefaultLocations = {
 		CC: "US",
 		CITY: "Morrisville",
 		REGION: "Pennsylvania"
-	}
+	},
+	Null: null
 }
 
-const defaultLocation = DefaultLocations.Morrisville
+const defaultLocation = DefaultLocations.Null
