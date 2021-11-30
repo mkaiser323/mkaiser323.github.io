@@ -1,5 +1,6 @@
 var app = angular.module('myApp', []);
 //global configs
+const defaultLocationData = new LocationData(defaultLocation.IP, defaultLocation.LAT, defaultLocation.LON, defaultLocation.CC, defaultLocation.CITY, defaultLocation.REGION)
 app.controller('myCtrl', function($scope, $http, $q) {
 	$scope.nightMode=NIGHT_MODE;
 	$scope.today = new Day(new Date())
@@ -41,7 +42,7 @@ function regenerateQuarterCalendar($scope){
 }
 
 function regenerateCalendar($scope, $http, $q){
-	generateCalendarForMonth($http, $q, getTimeProvider(), $scope.today.year, $scope.today.monthNum)
+	generateCalendarForMonth($http, $q, getTimeProvider(), $scope.today.year, $scope.today.monthNum, defaultLocationData)
 	.then(function(calendar){
 		if(MARK_TODAY){
 			calendar.markDayAsToday($scope.today);

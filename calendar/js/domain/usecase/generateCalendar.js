@@ -55,7 +55,7 @@ function generateCalendarWithPrayerTimes($http, $q, timeProvider, title, weeks, 
 	var locationDataPromise = getLocationData($http)
 	return locationDataPromise.then(function(locationData){
 		var location = defaultLocation ? defaultLocation : locationData
-		location = new LocationData("68.80.23.23", "39.94875654100655", "-75.2588708144357", "US", "Upper Darby", "Pennsylvania") // TODO: this should come from config
+		//location = new LocationData("68.80.23.23", "39.94875654100655", "-75.2588708144357", "US", "Upper Darby", "Pennsylvania") // TODO: this should come from config
 		console.log(location)
 		return location
 	}).then(function(locationData){
@@ -66,12 +66,12 @@ function generateCalendarWithPrayerTimes($http, $q, timeProvider, title, weeks, 
 	})
 }
 
-function generateCalendarForMonth($http, $q, timeProvider, year, month){
+function generateCalendarForMonth($http, $q, timeProvider, year, month, defaultLocation=null){
 	var firstDay = getFirstDayOfMonth(year, month);
 	var lastDay = getLastDayOfMonth(year, month);
 	var title = firstDay.month + " " + firstDay.year
 	var weeks = generateWeeks(firstDay, lastDay);
-	return generateCalendarWithPrayerTimes($http, $q, timeProvider, title, weeks)
+	return generateCalendarWithPrayerTimes($http, $q, timeProvider, title, weeks, defaultLocation)
 			.then(function(calendar){
 				//post processing
 				if (calendar.weeks.length > 5) {
