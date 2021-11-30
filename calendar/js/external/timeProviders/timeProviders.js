@@ -1,12 +1,3 @@
-function getTimeProvider(){
-	switch(TIME_PROVIDER){
-		case TimeProvider.ISLAMIC_FINDER:
-			return new IslamicFinderTimeProvider()
-		case TimeProvider.AL_ADHAN:
-			return new AlAdhanTimeProvider()
-	}
-}
-
 class AlAdhanTimeProvider {
 	fetchPrayerTimes($http, data, cb){
 		var config = {

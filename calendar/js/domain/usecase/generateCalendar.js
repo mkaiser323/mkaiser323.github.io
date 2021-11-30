@@ -45,10 +45,7 @@ function generateWeeks(firstDay, lastDay){
 function getIpAddress($http) {
 	return $http.get('https://extreme-ip-lookup.com/json/')
 	.then(function(resp){
-		console.log("location data")
-		console.log(resp)
 		return resp.data.query
-		//return new LocationData(data.query, data.lat, data.lon, data.countryCode, data.city, data.region);
 	})
 }
 
@@ -57,19 +54,15 @@ function getLocationData($http){
 	return ipAddressPromise.then(function(ipAddress){
 		return $http.get(`http://ip-api.com/json/${ipAddress}`)
 	}).then(function(resp){
-		console.log("lat lon from ip")
-		console.log(resp)
 		var data = resp.data
 		return new LocationData(data.query, data.lat, data.lon, data.countryCode, data.city, data.region)
 	})
 }
 
-function generateCalendarWithPrayerTimes($http, $q, timeProvider, title, weeks, defaultLocation=null){
-	var locationDataPromise = getLocationData($http)
+function generateCalendarWithPrayerTimes($http, $q, timeProvider, locationProvider, title, weeks, defaultLocation=null){
+	var locationDataPromise = locationProvider.getLocationData($http)
 	return locationDataPromise.then(function(locationData){
 		var location = defaultLocation ? defaultLocation : locationData
-		//location = new LocationData("68.80.23.23", "39.94875654100655", "-75.2588708144357", "US", "Upper Darby", "Pennsylvania") // TODO: this should come from config
-		console.log(location)
 		return location
 	}).then(function(locationData){
 		var timePopulationPromises = timeProvider.populateDaysWithTimes($http, weeks, locationData);
@@ -79,12 +72,12 @@ function generateCalendarWithPrayerTimes($http, $q, timeProvider, title, weeks, 
 	})
 }
 
-function generateCalendarForMonth($http, $q, timeProvider, year, month, defaultLocation=null){
+function generateCalendarForMonth($http, $q, timeProvider, locationProvider, year, month, defaultLocation=null){
 	var firstDay = getFirstDayOfMonth(year, month);
 	var lastDay = getLastDayOfMonth(year, month);
 	var title = firstDay.month + " " + firstDay.year
 	var weeks = generateWeeks(firstDay, lastDay);
-	return generateCalendarWithPrayerTimes($http, $q, timeProvider, title, weeks, defaultLocation)
+	return generateCalendarWithPrayerTimes($http, $q, timeProvider, locationProvider, title, weeks, defaultLocation)
 			.then(function(calendar){
 				//post processing
 				if (calendar.weeks.length > 5) {

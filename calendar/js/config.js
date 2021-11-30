@@ -41,4 +41,4 @@ const DefaultLocations = {
 	Null: null
 }
 
-const defaultLocation = DefaultLocations.Null
+const defaultLocation = DefaultLocations.Morrisville

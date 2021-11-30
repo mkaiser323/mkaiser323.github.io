@@ -36,19 +36,12 @@ app.controller('myCtrl', function($scope, $http, $q) {
 	}
 });
 
-function resolveDefaultLocationFromConfig() {
-	if (!defaultLocation) {
-		return null
-	}
-	return new LocationData(defaultLocation.IP, defaultLocation.LAT, defaultLocation.LON, defaultLocation.CC, defaultLocation.CITY, defaultLocation.REGION)
-}
-
 function regenerateQuarterCalendar($scope){
 	$scope.quarterCalendar = generateCalendarForQuarter($scope.year, $scope.quarter)
 }
 
 function regenerateCalendar($scope, $http, $q){
-	generateCalendarForMonth($http, $q, getTimeProvider(), $scope.today.year, $scope.today.monthNum, resolveDefaultLocationFromConfig())
+	generateCalendarForMonth($http, $q, wire.timeProvider, wire.locationProvider, $scope.today.year, $scope.today.monthNum, wire.defaultLocation)
 	.then(function(calendar){
 		if(MARK_TODAY){
 			calendar.markDayAsToday($scope.today);
