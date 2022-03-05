@@ -12,8 +12,7 @@ class AlAdhanTimeProvider {
 		});
 	}
 
-	populateDaysWithTimes($http, weeks, locationData){
-		console.log("populating weeks:", weeks)
+	populateDaysWithTimes($http, weeks, locationData){//TODO: pass in month and year instead; rename function
         var params = {
             latitude: locationData.lat,
             longitude: locationData.lon,
@@ -22,40 +21,39 @@ class AlAdhanTimeProvider {
             school: AlAdhanAsrCalculation,
         }
 		var self = this;
-		return [this.fetchPrayerTimes($http,
+		return this.fetchPrayerTimes($http,
 			params,
 			function(resp){
-				var dayCounter = 0;
-				angular.forEach(weeks, function (week) {
-					angular.forEach(week.days, function(day){
-						if (!day.placeholder){
-                            var timings = resp.data.data[dayCounter].timings
-							day.setPrayerTimes(
-								new PrayerTimes(
-									self.sanitizeTimestamp(timings.Fajr),
-									self.sanitizeTimestamp(timings.Sunrise),
-									self.sanitizeTimestamp(timings.Dhuhr),
-									self.sanitizeTimestamp(timings.Asr),
-									self.sanitizeTimestamp(timings.Maghrib),
-									self.sanitizeTimestamp(timings.Isha)
-								)
-							);
-							var hijri = resp.data.data[dayCounter].date.hijri;
-							day.setHijriData(new HijriData(
-								self.sanitizeDayString(hijri.day),
-								hijri.month.en,
-								parseInt(hijri.year),
-								hijri.month.ar,
-								hijri.month.number,
-								hijri.holidays,
-							));
-							dayCounter++;
-						}
-					})
-				});
-				return
+				console.log("api response")
+				console.log(resp)
+				var response = resp.data.data.map(function(day){
+					var timings = day.timings
+					var hijri = day.date.hijri;
+					return new ApiDayInfo(
+						new PrayerTimes(
+							self.sanitizeTimestamp(timings.Fajr),
+							self.sanitizeTimestamp(timings.Sunrise),
+							self.sanitizeTimestamp(timings.Dhuhr),
+							self.sanitizeTimestamp(timings.Asr),
+							self.sanitizeTimestamp(timings.Maghrib),
+							self.sanitizeTimestamp(timings.Isha)
+						),
+						new HijriData(
+							self.sanitizeDayString(hijri.day),
+							hijri.month.en,
+							parseInt(hijri.year),
+							hijri.month.ar,
+							hijri.month.number,
+							hijri.holidays,
+						)
+					)
+				})
+
+				console.log("mapped response")
+				console.log(response)
+				return response
 			}
-		)]
+		)
 	}
 
 	sanitizeTimestamp(timestamp){

@@ -14,34 +14,6 @@ const HOLIDAYS = {
 	}
 }
 
-function getFirstDayOfMonth(year, month){
-	return new Day(new Date(year, month, 1))
-}
-
-function getLastDayOfMonth(year, month){
-	var firstDayOfNextMonth = getFirstDayOfMonth(year, month+1);
-	return firstDayOfNextMonth.previous()
-}
-
-function generateWeeks(firstDay, lastDay){
-	var weeks = [];
-	var d = firstDay;
-	while (d.date <= lastDay.date) {
-		var w = new Week(d)
-		weeks.push(w);
-		d = w.nextDay
-	}
-
-	weeks.forEach(function(w){
-		w.days.forEach(function(d){
-			if(d.date < firstDay.date || d.date > lastDay.date) {
-				d.placeholder = true;
-			}
-		})
-	})
-	return weeks
-}
-
 function getIpAddress($http) {
 	return $http.get('https://extreme-ip-lookup.com/json/')
 	.then(function(resp){
@@ -59,15 +31,15 @@ function getLocationData($http){
 	})
 }
 
-function generateCalendarWithPrayerTimes($http, $q, timeProvider, locationProvider, title, weeks, defaultLocation=null){
+function generateCalendarWithPrayerTimes($http, $q, timeProvider, locationProvider, title, weeks, year, month, defaultLocation=null){
 	var locationDataPromise = locationProvider.getLocationData($http)
 	return locationDataPromise.then(function(locationData){
 		var location = defaultLocation ? defaultLocation : locationData
 		return location
 	}).then(function(locationData){
-		var timePopulationPromises = timeProvider.populateDaysWithTimes($http, weeks, locationData);
-		return $q.all(timePopulationPromises).then(function(){
-			return new Calendar(title, weeks, locationData)
+		var promise = timeProvider.populateDaysWithTimes($http, weeks, locationData);
+		return promise.then(function(apiResponse){
+			return new NewCalendarFromApiResponse(title, apiResponse, locationData, year, month)
 		})
 	})
 }
@@ -77,7 +49,7 @@ function generateCalendarForMonth($http, $q, timeProvider, locationProvider, yea
 	var lastDay = getLastDayOfMonth(year, month);
 	var title = firstDay.month + " " + firstDay.year
 	var weeks = generateWeeks(firstDay, lastDay);
-	return generateCalendarWithPrayerTimes($http, $q, timeProvider, locationProvider, title, weeks, defaultLocation)
+	return generateCalendarWithPrayerTimes($http, $q, timeProvider, locationProvider, title, weeks, year, month, defaultLocation)
 			.then(function(calendar){
 				//post processing
 				if (calendar.weeks.length > 5) {
@@ -88,7 +60,7 @@ function generateCalendarForMonth($http, $q, timeProvider, locationProvider, yea
 				}
 
 				//there are different scenarios where we may need to know the first and last day of the (Gregorian) month
-				calendar.weeks.forEach(function(w){
+				calendar.weeks.forEach(function(w){//TODO: may now be able to do this in NewCalendarFromApiResponse
 					w.days.forEach(function(d){
 						if (d.date.getTime() == firstDay.date.getTime()){
 							calendar.setFirstDay(d);

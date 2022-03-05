@@ -1,0 +1,16 @@
+
+canvas{
+    border: 1px black solid;
+}
+#textCanvas{
+    display: none;
+    color: white;
+}
+
+input {
+    font-size: 30px;
+}
+
+.white {
+    color: white;
+}

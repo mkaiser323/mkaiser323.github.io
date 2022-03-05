@@ -19,13 +19,13 @@ class Day {
 		this.placeholder = false;
 	}
 
-	next() {
+	createNext() {
 		var result = new Date(this.date);
   		result.setDate(result.getDate() + 1);
 		return new Day(result)
 	}
 
-	previous() {
+	createPrevious() {
 		var result = new Date(this.date);
   		result.setDate(result.getDate() - 1);
 		return new Day(result)
@@ -44,6 +44,18 @@ class Day {
 		this.hijri = hijriData;
 	}
 
+	numDaysSince(day) {
+		return Math.round((this.date.getTime() - day.date.getTime()) / (1000 * 3600 * 24));
+	}
+
+	before(day){
+		return this.date < day.date
+	}
+
+	after(day){
+		return this.date > day.date
+	}
+
 	equals(day){
 		return this.day == day.day && this.month == day.month && this.year == day.year;
 	}
@@ -56,10 +68,15 @@ class Week {
 		this.populateDays()
 	}
 
+	setNext(week){
+		this.next = week
+		this.days[6].next=week.days[0]
+	}
+
 	getMostRecentSunday() {
 		var day = this.startDate;
 		while (day.weekday != 'Sunday') {
-			day = day.previous()
+			day = day.createPrevious()
 		}
 		return day;
 	}
@@ -69,9 +86,32 @@ class Week {
 		var day = this.mostRecentSunday;
 		do {
 			this.days.push(day);
-			day = day.next();
+			var next = day.createNext();
+			if (next.equals(this.startDate)){
+				next = this.startDate//retain the reference
+			}
+			day.next = next
+			day = next
 		} while (day.weekday != 'Sunday');
 		this.nextDay = day;
+	}
+
+	containsEquivalentDate(day) {
+		return this.days[0].equals(day) || this.days[0].before(day) && this.days[6].after(day) || this.days[6].equals(day)
+	}
+
+	setDay(day) {
+		this.days.forEach(function(d, index, days){
+			if(days[index].equals(day)){
+				days[index] = day
+				if (index < days.length){
+					day.next=days[index+1]
+				}
+				if (index > 0){
+					days[index-1].next=day
+				}
+			}
+		})
 	}
 }
 
@@ -109,15 +149,80 @@ class Calendar{
 	}
 
 	markDayAsToday(day){
-		console.log("marking today", day)
 		this.weeks.forEach(function(w){
 			w.days.forEach(function(d){
 				if (d.equals(day)){
 					d.today = true;
-					console.log("found:", d)
 				}
 			});
 		});
+	}
+}
+
+function NewCalendarFromApiResponse(title, apiResponseDays, locationData, year, month){
+	var firstDay = getFirstDayOfMonth(year, month)
+	var lastDay = getLastDayOfMonth(year, month)
+	var weeks = generateWeeks(firstDay, lastDay)
+
+	console.assert(apiResponseDays.length == (lastDay.numDaysSince(firstDay) + 1), apiResponseDays, firstDay, lastDay,
+	`api returned data for ${apiResponseDays.length} days but calendar expects ${lastDay.numDaysSince(firstDay)+1} days`) 
+
+	var d = firstDay
+	apiResponseDays.forEach(function(apiDayInfo){
+		d.setPrayerTimes(apiDayInfo.prayerTimes)
+		d.setHijriData(apiDayInfo.hijriData)
+		d=d.next
+	})
+
+	return new Calendar(title, weeks, locationData)
+}
+
+function generateWeeks(firstDay, lastDay) {
+	var weeks = [];
+	var d = firstDay;
+	while(d.date <= lastDay.date) {
+		var w = new Week(d)
+		//if this is going to be the final week, use lastDay reference
+		if (w.containsEquivalentDate(lastDay)){
+			console.log("if statement")
+			w.setDay(lastDay)
+		}
+		if (weeks.length){
+			//take the last element and connect it to the new one that was just created
+			weeks[weeks.length-1].setNext(w)
+		}
+		weeks.push(w);
+		d = w.nextDay
+	}
+
+	//set placeholders before firstDay and after lastDay
+	var d=weeks[0].days[0]
+	while (d.before(firstDay)){
+		d.placeholder = true
+		d=d.next
+	}
+	var d=lastDay.next
+	while (d.before(weeks[weeks.length-1].nextDay)){
+		d.placeholder = true
+		d=d.next
+	}
+
+	return weeks
+}
+
+function getFirstDayOfMonth(year, month){
+	return new Day(new Date(year, month, 1))
+}
+
+function getLastDayOfMonth(year, month){
+	var firstDayOfNextMonth = getFirstDayOfMonth(year, month+1);
+	return firstDayOfNextMonth.createPrevious()
+}
+
+class ApiDayInfo {
+	constructor(prayerTimes, hijriData){
+		this.prayerTimes = prayerTimes
+		this.hijriData = hijriData
 	}
 }
 
