@@ -62,7 +62,7 @@ function generateWeeks(firstDay, lastDay) {
 		d=d.next
 	}
 	var d=lastDay.next
-	while (d.before(weeks[weeks.length-1].nextDay)){
+	while (d && d.before(weeks[weeks.length-1].nextDay)){
 		d.placeholder = true
 		d=d.next
 	}
