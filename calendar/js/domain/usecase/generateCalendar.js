@@ -14,6 +14,73 @@ const HOLIDAYS = {
 	}
 }
 
+function NewCalendarFromApiResponse(title, apiResponseDays, locationData, year, month){
+	var firstDay = getFirstDayOfMonth(year, month)
+	var lastDay = getLastDayOfMonth(year, month)
+	var weeks = generateWeeks(firstDay, lastDay)
+
+	console.assert(apiResponseDays.length == (lastDay.numDaysSince(firstDay) + 1), apiResponseDays, firstDay, lastDay,
+	`api returned data for ${apiResponseDays.length} days but calendar expects ${lastDay.numDaysSince(firstDay)+1} days`) 
+
+	var d = firstDay
+	apiResponseDays.forEach(function(apiDayInfo){
+		d.setPrayerTimes(apiDayInfo.prayerTimes)
+		d.setHijriData(apiDayInfo.hijriData)
+		applyHijriFormattingRules(d)
+		d=d.next
+	})
+
+	//NOTE: here onwards is specific to the printable month calendars. May make sense to eventually move it out
+	console.assert(weeks.length >=4 && weeks.length <=6, `number of weeks should be between 4 and 6; instead got: ${weeks.length}`)
+	if (weeks.length == 6){
+		weeks=wrapSixthWeek(weeks, month)
+	}
+	return new Calendar(title, weeks, firstDay, lastDay, locationData)
+}
+
+function generateWeeks(firstDay, lastDay) {
+	var weeks = [];
+	var d = firstDay;
+	while(d.date <= lastDay.date) {
+		var w = new Week(d)
+		//if this is going to be the final week, use lastDay reference
+		if (w.containsEquivalentDate(lastDay)){
+			w.setDay(lastDay)
+		}
+		if (weeks.length){
+			//take the last element and connect it to the new one that was just created
+			weeks[weeks.length-1].setNext(w)
+		}
+		weeks.push(w);
+		d = w.nextDay
+	}
+
+	//set placeholders before firstDay and after lastDay
+	var d=weeks[0].days[0]
+	while (d.before(firstDay)){
+		d.placeholder = true
+		d=d.next
+	}
+	var d=lastDay.next
+	while (d.before(weeks[weeks.length-1].nextDay)){
+		d.placeholder = true
+		d=d.next
+	}
+
+	return weeks
+}
+
+function getFirstDayOfMonth(year, month){
+	return new Day(new Date(year, month, 1))
+}
+
+function getLastDayOfMonth(year, month){
+	var firstDayOfNextMonth = getFirstDayOfMonth(year, month+1);
+	return firstDayOfNextMonth.createPrevious()
+}
+
+
+
 function getIpAddress($http) {
 	return $http.get('https://extreme-ip-lookup.com/json/')
 	.then(function(resp){
@@ -31,51 +98,25 @@ function getLocationData($http){
 	})
 }
 
-function generateCalendarWithPrayerTimes($http, $q, timeProvider, locationProvider, title, weeks, year, month, defaultLocation=null){
+function generateCalendarWithPrayerTimes($http, timeProvider, locationProvider, title, weeks, month, year, defaultLocation=null){
 	var locationDataPromise = locationProvider.getLocationData($http)
 	return locationDataPromise.then(function(locationData){
 		var location = defaultLocation ? defaultLocation : locationData
 		return location
 	}).then(function(locationData){
-		var promise = timeProvider.populateDaysWithTimes($http, weeks, locationData);
-		return promise.then(function(apiResponse){
+		return timeProvider.getPrayerTimes($http, month, year, locationData).then(function(apiResponse){
 			return new NewCalendarFromApiResponse(title, apiResponse, locationData, year, month)
 		})
 	})
 }
 
-function generateCalendarForMonth($http, $q, timeProvider, locationProvider, year, month, defaultLocation=null){
+function generateCalendarForMonth($http, timeProvider, locationProvider, month, year, defaultLocation=null){
 	var firstDay = getFirstDayOfMonth(year, month);
 	var lastDay = getLastDayOfMonth(year, month);
 	var title = firstDay.month + " " + firstDay.year
 	var weeks = generateWeeks(firstDay, lastDay);
-	return generateCalendarWithPrayerTimes($http, $q, timeProvider, locationProvider, title, weeks, year, month, defaultLocation)
+	return generateCalendarWithPrayerTimes($http, timeProvider, locationProvider, title, weeks, month, year, defaultLocation)
 			.then(function(calendar){
-				//post processing
-				if (calendar.weeks.length > 5) {
-					if (calendar.weeks.length > 6) {
-						throw `month cannot have ${calendar.weeks.length} weeks`
-					}
-					calendar.weeks = wrapSixthWeek(calendar.weeks, month)
-				}
-
-				//there are different scenarios where we may need to know the first and last day of the (Gregorian) month
-				calendar.weeks.forEach(function(w){//TODO: may now be able to do this in NewCalendarFromApiResponse
-					w.days.forEach(function(d){
-						if (d.date.getTime() == firstDay.date.getTime()){
-							calendar.setFirstDay(d);
-						}
-						if (d.date.getTime() == lastDay.date.getTime()){
-							calendar.setLastDay(d);
-						}
-					})
-				})
-
-				applyToEachDay(calendar, function(day){
-					if(day.hijri){
-						setHijriLabel(day)
-					}
-				})
 				return calendar
 			})
 
@@ -106,20 +147,20 @@ function applyToEachDay(calendar, fn) {
 	})
 }
 
-function setHijriLabel(day){
+function applyHijriFormattingRules(day){
 	day.hijriLabel = day.hijri.day
 	k = padDate(day.hijri.day) + "-" + padDate(day.hijri.monthNum)
-	if (k in HOLIDAYS) {
+	if (k in HOLIDAYS) {//special formatting for holidays
 		day.hijriLabel += " - " + HOLIDAYS[k].label
 		day.holiday = true
 		return
 	}
 
-	if (day.hijri.day == 1 || day.day == 1){
+	if (day.hijri.day == 1 || day.day == 1){//show month number for first day of hijri month
 		day.hijriLabel += " - " + day.hijri.month
 	}
 
-	if (day.hijri.monthNum == 9) {
+	if (day.hijri.monthNum == 9) {//special styling for Ramadan
 		day.highlight = "highlight-green"
 	}
 }
@@ -131,9 +172,9 @@ function wrapSixthWeek(weeks, month){
 	overflowDays[0].firstDayWrapped = true;
 	for (var d = 0; d < overflowDays.length; d++){
 		if (overflowDays[d].month == monthNames[month]) {
-			if (wrapped[0].days[d].month == monthNames[month]) {
-				throw "something went wrong"
-			}
+			console.assert(wrapped[0].days[d].month != monthNames[month], 
+				`wrapped day ${overflowDays[d]} collides with day of same month in same spot: ${wrapped[0].days[d]}`)
+			
 			wrapped[0].days[d] = overflowDays[d];
 			wrapped[0].days[d].wrapped = true;
 		}

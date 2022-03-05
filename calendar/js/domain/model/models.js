@@ -129,26 +129,20 @@ class Quarter {
 }
 
 class Calendar{
-	constructor(title, weeks, locationData) {
+	constructor(title, weeks, firstDay, lastDay, locationData) {
     	this.title = title;
     	this.weeks = weeks;
+		this.firstDay = firstDay
+		this.lastDay = lastDay
 		this.ext = 'pdf';
 		this.locationData = locationData;
   	}
 
-  	get fileName(){
+  	getFileName(){
   		return this.title + '.' + this.ext
 	}
 	  
-	setFirstDay(firstDay){
-		this.firstDay = firstDay;
-	}
-
-	setLastDay(lastDay){
-		this.lastDay = lastDay;
-	}
-
-	markDayAsToday(day){
+	markDayAsToday(day){//TODO: this will move to iterator
 		this.weeks.forEach(function(w){
 			w.days.forEach(function(d){
 				if (d.equals(day)){
@@ -157,66 +151,6 @@ class Calendar{
 			});
 		});
 	}
-}
-
-function NewCalendarFromApiResponse(title, apiResponseDays, locationData, year, month){
-	var firstDay = getFirstDayOfMonth(year, month)
-	var lastDay = getLastDayOfMonth(year, month)
-	var weeks = generateWeeks(firstDay, lastDay)
-
-	console.assert(apiResponseDays.length == (lastDay.numDaysSince(firstDay) + 1), apiResponseDays, firstDay, lastDay,
-	`api returned data for ${apiResponseDays.length} days but calendar expects ${lastDay.numDaysSince(firstDay)+1} days`) 
-
-	var d = firstDay
-	apiResponseDays.forEach(function(apiDayInfo){
-		d.setPrayerTimes(apiDayInfo.prayerTimes)
-		d.setHijriData(apiDayInfo.hijriData)
-		d=d.next
-	})
-
-	return new Calendar(title, weeks, locationData)
-}
-
-function generateWeeks(firstDay, lastDay) {
-	var weeks = [];
-	var d = firstDay;
-	while(d.date <= lastDay.date) {
-		var w = new Week(d)
-		//if this is going to be the final week, use lastDay reference
-		if (w.containsEquivalentDate(lastDay)){
-			console.log("if statement")
-			w.setDay(lastDay)
-		}
-		if (weeks.length){
-			//take the last element and connect it to the new one that was just created
-			weeks[weeks.length-1].setNext(w)
-		}
-		weeks.push(w);
-		d = w.nextDay
-	}
-
-	//set placeholders before firstDay and after lastDay
-	var d=weeks[0].days[0]
-	while (d.before(firstDay)){
-		d.placeholder = true
-		d=d.next
-	}
-	var d=lastDay.next
-	while (d.before(weeks[weeks.length-1].nextDay)){
-		d.placeholder = true
-		d=d.next
-	}
-
-	return weeks
-}
-
-function getFirstDayOfMonth(year, month){
-	return new Day(new Date(year, month, 1))
-}
-
-function getLastDayOfMonth(year, month){
-	var firstDayOfNextMonth = getFirstDayOfMonth(year, month+1);
-	return firstDayOfNextMonth.createPrevious()
 }
 
 class ApiDayInfo {

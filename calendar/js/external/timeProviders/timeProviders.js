@@ -1,4 +1,5 @@
 class AlAdhanTimeProvider {
+	/*  https://aladhan.com/prayer-times-api */
 	fetchPrayerTimes($http, data, cb){
 		var config = {
 			params: data,
@@ -12,11 +13,13 @@ class AlAdhanTimeProvider {
 		});
 	}
 
-	populateDaysWithTimes($http, weeks, locationData){//TODO: pass in month and year instead; rename function
+	getPrayerTimes($http, month, year, locationData){//TODO: rename function
         var params = {
             latitude: locationData.lat,
             longitude: locationData.lon,
-            month: weeks[0].startDate.date.getMonth() + 1,
+            month: month + 1,
+			year: year,
+			annual: false, //if true, will ignore month and return times for whole year
             method: AlAdhanCalculationMethod,
             school: AlAdhanAsrCalculation,
         }

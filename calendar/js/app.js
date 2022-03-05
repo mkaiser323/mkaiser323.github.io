@@ -40,8 +40,8 @@ function regenerateQuarterCalendar($scope){
 	$scope.quarterCalendar = generateCalendarForQuarter($scope.year, $scope.quarter)
 }
 
-function regenerateCalendar($scope, $http, $q){
-	generateCalendarForMonth($http, $q, wire.timeProvider, wire.locationProvider, $scope.today.year, $scope.today.monthNum, wire.defaultLocation)
+function regenerateCalendar($scope, $http){
+	generateCalendarForMonth($http, wire.timeProvider, wire.locationProvider, $scope.today.monthNum, $scope.today.year, wire.defaultLocation)
 	.then(function(calendar){
 		if(MARK_TODAY){
 			calendar.markDayAsToday($scope.today);
