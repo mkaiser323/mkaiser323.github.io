@@ -22,6 +22,14 @@ const NIGHT_MODE = false;
 const BLACK_AND_WHITE_BY_DEFAULT = false;
 
 const SavedLocations = {
+	Morrisville: {
+		IP: "69.253.59.255",
+		LAT: "40.20935666922363",
+		LON: "-74.79279438678957",
+		CC: "US",
+		CITY: "Morrisville",
+		REGION: "Pennsylvania"
+	},
 	UpperDarby: {
 		IP: "68.80.23.23",
 		LAT: "39.94875654100655",
@@ -30,13 +38,29 @@ const SavedLocations = {
 		CITY: "Upper Darby",
 		REGION: "Pennsylvania"
 	},
-	Morrisville: {
-		IP: "69.253.59.255",
-		LAT: "40.20935666922363",
-		LON: "-74.79279438678957",
+	Lansdale: {
+		IP: "73.81.31.194",
+		LAT: "40.24972619541977",
+		LON: "-75.26949821576011",
 		CC: "US",
-		CITY: "Morrisville",
+		CITY: "Lansdale",
 		REGION: "Pennsylvania"
+	},
+	Bronx: {
+		IP: "TODO",
+		LAT: "40.88141434956781",
+		LON: "-73.90444279257854",
+		CC: "US",
+		CITY: "Bronx",
+		REGION: "New York"
+	},
+	Danbury: {
+		IP: "TODO",
+		LAT: "41.42976345040008",
+		LON: "-73.42440749072004",
+		CC: "US",
+		CITY: "Danbury",
+		REGION: "Connecticut"
 	}
 }
 
