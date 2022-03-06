@@ -48,11 +48,11 @@ class Day {
 		return Math.round((this.date.getTime() - day.date.getTime()) / (1000 * 3600 * 24));
 	}
 
-	before(day){
+	isBefore(day){
 		return this.date < day.date
 	}
 
-	after(day){
+	isAfter(day){
 		return this.date > day.date
 	}
 
@@ -97,7 +97,7 @@ class Week {
 	}
 
 	containsEquivalentDate(day) {
-		return this.days[0].equals(day) || this.days[0].before(day) && this.days[6].after(day) || this.days[6].equals(day)
+		return this.days[0].equals(day) || this.days[0].isBefore(day) && this.days[6].isAfter(day) || this.days[6].equals(day)
 	}
 
 	setDay(day) {

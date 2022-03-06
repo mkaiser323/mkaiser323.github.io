@@ -52,8 +52,6 @@ class AlAdhanTimeProvider {
 					)
 				})
 
-				console.log("mapped response")
-				console.log(response)
 				return response
 			}
 		)

@@ -1,20 +1,34 @@
-//DD-MM => Holiday
-const HOLIDAYS = {
-	"01-10": {
-		label: "Eid-ul-Fitr"
-	},
-	"09-12": {
-		label: "Arafah"
-	},
-	"10-12": {
-		label: "Eid-ul-Adha"
-	},
-	"10-01": {
-		label: "Ashura"
+//Usecases
+function generateCalendarForMonth($http, timeProvider, locationProvider, month, year, defaultLocation=null){
+	var locationDataPromise = locationProvider.getLocationData($http)
+	return locationDataPromise.then(function(locationData){
+		var location = defaultLocation ? defaultLocation : locationData
+		return location
+	}).then(function(locationData){
+		return timeProvider.getPrayerTimes($http, month, year, locationData).then(function(apiResponse){
+			return new NewCalendarFromApiResponse(apiResponse, locationData, year, month)
+		})
+	})
+}
+
+function getQuarterByMonth(month){
+	for (var q = 0; q < quarters.length; q++){
+		for (var m = 0; m < quarters[q].length; m++){
+			if (month == quarters[q][m]){
+				return quarters[q];
+			}
+		}
 	}
 }
 
-function NewCalendarFromApiResponse(title, apiResponseDays, locationData, year, month){
+function generateCalendarForQuarter(year, quarterOrdinal){
+	var firstDay = getFirstDayOfMonth(year, quarters[quarterOrdinal][0])
+	var lastDay = getLastDayOfMonth(year, quarters[quarterOrdinal][2])
+	return new Calendar("Quarter Calendar", generateWeeks(firstDay, lastDay), {})
+}
+
+//Constructor
+function NewCalendarFromApiResponse(apiResponseDays, locationData, year, month){
 	var firstDay = getFirstDayOfMonth(year, month)
 	var lastDay = getLastDayOfMonth(year, month)
 	var weeks = generateWeeks(firstDay, lastDay)
@@ -35,6 +49,7 @@ function NewCalendarFromApiResponse(title, apiResponseDays, locationData, year, 
 	if (weeks.length == 6){
 		weeks=wrapSixthWeek(weeks, month)
 	}
+	var title = `${firstDay.month} ${firstDay.year}`
 	return new Calendar(title, weeks, firstDay, lastDay, locationData)
 }
 
@@ -57,12 +72,12 @@ function generateWeeks(firstDay, lastDay) {
 
 	//set placeholders before firstDay and after lastDay
 	var d=weeks[0].days[0]
-	while (d.before(firstDay)){
+	while (d.isBefore(firstDay)){
 		d.placeholder = true
 		d=d.next
 	}
 	var d=lastDay.next
-	while (d && d.before(weeks[weeks.length-1].nextDay)){
+	while (d && d.isBefore(weeks[weeks.length-1].nextDay)){
 		d.placeholder = true
 		d=d.next
 	}
@@ -70,6 +85,7 @@ function generateWeeks(firstDay, lastDay) {
 	return weeks
 }
 
+//time/calendar util?
 function getFirstDayOfMonth(year, month){
 	return new Day(new Date(year, month, 1))
 }
@@ -79,72 +95,22 @@ function getLastDayOfMonth(year, month){
 	return firstDayOfNextMonth.createPrevious()
 }
 
+//Formatting
 
-
-function getIpAddress($http) {
-	return $http.get('https://extreme-ip-lookup.com/json/')
-	.then(function(resp){
-		return resp.data.query
-	})
-}
-
-function getLocationData($http){
-	var ipAddressPromise = getIpAddress($http)
-	return ipAddressPromise.then(function(ipAddress){
-		return $http.get(`http://ip-api.com/json/${ipAddress}`)
-	}).then(function(resp){
-		var data = resp.data
-		return new LocationData(data.query, data.lat, data.lon, data.countryCode, data.city, data.region)
-	})
-}
-
-function generateCalendarWithPrayerTimes($http, timeProvider, locationProvider, title, weeks, month, year, defaultLocation=null){
-	var locationDataPromise = locationProvider.getLocationData($http)
-	return locationDataPromise.then(function(locationData){
-		var location = defaultLocation ? defaultLocation : locationData
-		return location
-	}).then(function(locationData){
-		return timeProvider.getPrayerTimes($http, month, year, locationData).then(function(apiResponse){
-			return new NewCalendarFromApiResponse(title, apiResponse, locationData, year, month)
-		})
-	})
-}
-
-function generateCalendarForMonth($http, timeProvider, locationProvider, month, year, defaultLocation=null){
-	var firstDay = getFirstDayOfMonth(year, month);
-	var lastDay = getLastDayOfMonth(year, month);
-	var title = firstDay.month + " " + firstDay.year
-	var weeks = generateWeeks(firstDay, lastDay);
-	return generateCalendarWithPrayerTimes($http, timeProvider, locationProvider, title, weeks, month, year, defaultLocation)
-			.then(function(calendar){
-				return calendar
-			})
-
-}
-
-function getQuarterByMonth(month){
-	for (var q = 0; q < quarters.length; q++){
-		for (var m = 0; m < quarters[q].length; m++){
-			if (month == quarters[q][m]){
-				return quarters[q];
-			}
-		}
+//DD-MM => Holiday
+const HOLIDAYS = {
+	"01-10": {
+		label: "Eid-ul-Fitr"
+	},
+	"09-12": {
+		label: "Arafah"
+	},
+	"10-12": {
+		label: "Eid-ul-Adha"
+	},
+	"10-01": {
+		label: "Ashura"
 	}
-}
-
-function generateCalendarForQuarter(year, quarterOrdinal){
-	var firstDay = getFirstDayOfMonth(year, quarters[quarterOrdinal][0])
-	var lastDay = getLastDayOfMonth(year, quarters[quarterOrdinal][2])
-	return new Calendar("Quarter Calendar", generateWeeks(firstDay, lastDay), {})
-} 
-
-//post processing
-function applyToEachDay(calendar, fn) {
-	angular.forEach(calendar.weeks, function(week){
-		angular.forEach(week.days, function(day){
-			fn(day)
-		})
-	})
 }
 
 function applyHijriFormattingRules(day){

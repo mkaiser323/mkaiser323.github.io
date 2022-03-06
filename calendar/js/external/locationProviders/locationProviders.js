@@ -12,7 +12,7 @@ class IpApiLocationProvider {
     }
     
     getLocationData($http){
-        var ipAddressPromise = self.getIpAddress($http)
+        var ipAddressPromise = this.getIpAddress($http)
         return ipAddressPromise.then(function(ipAddress){
             return $http.get(`http://ip-api.com/json/${ipAddress}`)
         }).then(function(resp){
