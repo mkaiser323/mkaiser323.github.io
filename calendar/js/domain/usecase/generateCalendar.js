@@ -1,30 +1,28 @@
-//Usecases
-function generateCalendarForMonth($http, timeProvider, locationProvider, month, year, defaultLocation=null){
-	var locationDataPromise = locationProvider.getLocationData($http)
-	return locationDataPromise.then(function(locationData){
-		var location = defaultLocation ? defaultLocation : locationData
-		return location
-	}).then(function(locationData){
-		return timeProvider.getPrayerTimes($http, month, year, locationData).then(function(apiResponse){
-			return new NewCalendarFromApiResponse(apiResponse, locationData, year, month)
-		})
-	})
-}
-
-function getQuarterByMonth(month){
-	for (var q = 0; q < quarters.length; q++){
-		for (var m = 0; m < quarters[q].length; m++){
-			if (month == quarters[q][m]){
-				return quarters[q];
-			}
-		}
+class CalendarGenerator {
+	constructor(timeProvider, locationProvider, defaultLocation=null) {
+		this.timeProvider = timeProvider
+		this.locationProvider = locationProvider
+		this.defaultLocation = defaultLocation
 	}
-}
 
-function generateCalendarForQuarter(year, quarterOrdinal){
-	var firstDay = getFirstDayOfMonth(year, quarters[quarterOrdinal][0])
-	var lastDay = getLastDayOfMonth(year, quarters[quarterOrdinal][2])
-	return new Calendar("Quarter Calendar", generateWeeks(firstDay, lastDay), {})
+	generateCalendarForMonth($http, month, year){
+		var locationDataPromise = this.locationProvider.getLocationData($http)
+		var self = this
+		return locationDataPromise.then(function(locationData){
+			var location = self.defaultLocation ? self.defaultLocation : locationData
+			return location
+		}).then(function(locationData){
+			return self.timeProvider.getPrayerTimes($http, month, year, locationData).then(function(apiResponse){
+				return new NewCalendarFromApiResponse(apiResponse, locationData, year, month)
+			})
+		})
+	}
+	
+	generateCalendarForQuarter(year, quarterOrdinal){
+		var firstDay = getFirstDayOfMonth(year, quarters[quarterOrdinal][0])
+		var lastDay = getLastDayOfMonth(year, quarters[quarterOrdinal][2])
+		return new Calendar("Quarter Calendar", generateWeeks(firstDay, lastDay), {})
+	}
 }
 
 //Constructor

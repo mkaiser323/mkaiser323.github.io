@@ -1,4 +1,5 @@
 var wire = {
+	calendarGenerator: new CalendarGenerator(resolveTimeProviderFromConfig(), new IpApiLocationProvider(), resolveDefaultLocationFromConfig()),
     locationProvider: new IpApiLocationProvider(),
     timeProvider: resolveTimeProviderFromConfig(),
     defaultLocation: resolveDefaultLocationFromConfig()

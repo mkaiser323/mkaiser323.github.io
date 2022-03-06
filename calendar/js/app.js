@@ -37,11 +37,11 @@ app.controller('myCtrl', function($scope, $http, $q) {
 });
 
 function regenerateQuarterCalendar($scope){
-	$scope.quarterCalendar = generateCalendarForQuarter($scope.year, $scope.quarter)
+	$scope.quarterCalendar = wire.calendarGenerator.generateCalendarForQuarter($scope.year, $scope.quarter)
 }
 
 function regenerateCalendar($scope, $http){
-	generateCalendarForMonth($http, wire.timeProvider, wire.locationProvider, $scope.today.monthNum, $scope.today.year, wire.defaultLocation)
+	wire.calendarGenerator.generateCalendarForMonth($http, $scope.today.monthNum, $scope.today.year)
 	.then(function(calendar){
 		if(MARK_TODAY){
 			calendar.markDayAsToday($scope.today);
