@@ -120,6 +120,11 @@
 					</div>
 				</div>
 				<!-- END CALENDAR WRAPPER -->
+				<!-- SETTINGS -->
+				<select class="form-select" aria-label="Default select example" ng-change="regenerateCalendar()" ng-model="selectedLocation">
+					<option ng-repeat="location in savedLocations" ng-value="{{location}}">{{location.city}}</option>
+				</select>
+				<!-- END SETTINGS -->
 			</div>
 		</div>
 	</body>

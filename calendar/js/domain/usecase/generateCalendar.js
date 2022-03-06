@@ -1,15 +1,14 @@
 class CalendarGenerator {
-	constructor(timeProvider, locationProvider, defaultLocation=null) {
+	constructor(timeProvider, locationProvider) {
 		this.timeProvider = timeProvider
 		this.locationProvider = locationProvider
-		this.defaultLocation = defaultLocation
 	}
 
-	generateCalendarForMonth($http, month, year){
+	generateCalendarForMonth($http, month, year, locationOverride=null){//TODO: consider renaming
 		var locationDataPromise = this.locationProvider.getLocationData($http)
 		var self = this
 		return locationDataPromise.then(function(locationData){
-			var location = self.defaultLocation ? self.defaultLocation : locationData
+			var location = locationOverride ? locationOverride : locationData
 			return location
 		}).then(function(locationData){
 			return self.timeProvider.getPrayerTimes($http, month, year, locationData).then(function(apiResponse){

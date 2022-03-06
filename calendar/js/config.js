@@ -21,7 +21,7 @@ const MARK_TODAY = false;//TODO: enable marking of today and make it not show fo
 const NIGHT_MODE = false;
 const BLACK_AND_WHITE_BY_DEFAULT = false;
 
-const DefaultLocations = {
+const SavedLocations = {
 	UpperDarby: {
 		IP: "68.80.23.23",
 		LAT: "39.94875654100655",
@@ -37,8 +37,7 @@ const DefaultLocations = {
 		CC: "US",
 		CITY: "Morrisville",
 		REGION: "Pennsylvania"
-	},
-	Null: null
+	}
 }
 
-const defaultLocation = DefaultLocations.Morrisville
+const defaultLocation = SavedLocations.Morrisville

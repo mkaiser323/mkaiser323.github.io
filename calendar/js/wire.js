@@ -1,8 +1,10 @@
-var wire = {
-	calendarGenerator: new CalendarGenerator(resolveTimeProviderFromConfig(), new IpApiLocationProvider(), resolveDefaultLocationFromConfig()),
-    locationProvider: new IpApiLocationProvider(),
-    timeProvider: resolveTimeProviderFromConfig(),
-    defaultLocation: resolveDefaultLocationFromConfig()
+var wire = {}
+
+initWire()
+
+function initWire() {
+	wire.calendarGenerator = new CalendarGenerator(resolveTimeProviderFromConfig(), new IpApiLocationProvider())
+	wire.savedLocations = loadSavedLocations()
 }
 
 function resolveTimeProviderFromConfig(){
@@ -19,4 +21,17 @@ function resolveDefaultLocationFromConfig() {
 		return null
 	}
 	return new LocationData(defaultLocation.IP, defaultLocation.LAT, defaultLocation.LON, defaultLocation.CC, defaultLocation.CITY, defaultLocation.REGION)
+}
+
+function loadSavedLocations() {
+	var defaultLocation = resolveDefaultLocationFromConfig()
+	var list= Object.values(SavedLocations).map(function(v){
+		var locationData = 	new LocationData(v.IP, v.LAT, v.LON, v.CC, v.CITY, v.REGION)
+		if(locationData.equals(defaultLocation)){
+			wire.defaultLocation = locationData
+		}
+		return locationData
+	})
+	console.log(list)
+	return list
 }

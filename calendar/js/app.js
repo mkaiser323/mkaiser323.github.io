@@ -6,6 +6,8 @@ app.controller('myCtrl', function($scope, $http, $q) {
 	console.log($scope.today)
 	$scope.quarter = $scope.today.quarter.ordinal
 	$scope.year = $scope.today.year
+	$scope.selectedLocation = wire.defaultLocation
+	$scope.savedLocations = wire.savedLocations
 	regenerateCalendar($scope, $http, $q);
 	regenerateQuarterCalendar($scope)
 
@@ -41,7 +43,7 @@ function regenerateQuarterCalendar($scope){
 }
 
 function regenerateCalendar($scope, $http){
-	wire.calendarGenerator.generateCalendarForMonth($http, $scope.today.monthNum, $scope.today.year)
+	wire.calendarGenerator.generateCalendarForMonth($http, $scope.today.monthNum, $scope.today.year, $scope.selectedLocation)
 	.then(function(calendar){
 		if(MARK_TODAY){
 			calendar.markDayAsToday($scope.today);

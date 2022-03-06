@@ -169,6 +169,13 @@ class LocationData {
 		this.city = city;
 		this.region = region
 	}
+
+	equals(locationData){
+		if (!locationData){
+			return false
+		}
+		return this.lat == locationData.lat && this.lon == locationData.lon
+	}
 }
 
 class PrayerTimes {
