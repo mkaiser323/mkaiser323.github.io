@@ -25,11 +25,13 @@ function resolveDefaultLocationFromConfig() {
 
 function loadSavedLocations() {
 	var defaultLocation = resolveDefaultLocationFromConfig()
-	var list= Object.values(SavedLocations).map(function(v){
+	var list= Object.values(SavedLocations).map(function(v, index){
 		var locationData = 	new LocationData(v.IP, v.LAT, v.LON, v.CC, v.CITY, v.REGION)
 		if(locationData.equals(defaultLocation)){
 			wire.defaultLocation = locationData
 		}
+		locationData.id=index
+		console.log(locationData)
 		return locationData
 	})
 	console.log(list)

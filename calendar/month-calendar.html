@@ -42,6 +42,11 @@
 								</div>
 								<div ng-if="!calendar.black_and_white">Black & White</div>
 						</div>
+						<select class="custom-select" id="inputGroupSelect01" ng-change="regenerateCalendar()" ng-model="selectedLocation"
+						 ng-options="location.city for location in savedLocations">
+							<option selected>Select a location</option>
+							<option ng-repeat="location in savedLocations" ng-value="{{location}}">{{location.city}}</option>
+						  </select>
 					</div>
 				</div>
 				<!-- END TOOLBAR -->
@@ -120,11 +125,6 @@
 					</div>
 				</div>
 				<!-- END CALENDAR WRAPPER -->
-				<!-- SETTINGS -->
-				<select class="form-select" aria-label="Default select example" ng-change="regenerateCalendar()" ng-model="selectedLocation">
-					<option ng-repeat="location in savedLocations" ng-value="{{location}}">{{location.city}}</option>
-				</select>
-				<!-- END SETTINGS -->
 			</div>
 		</div>
 	</body>
