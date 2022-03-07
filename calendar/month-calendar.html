@@ -71,27 +71,27 @@
 									<div class="date" ng-class="{'cell-{{day.highlight}}': day.highlight }">{{day.day}}</div>
 									<div class="prayer-times">
 										<div class="pt pt-fajr" ng-class="{ 'pt-light': calendar.black_and_white }">
-											{{day.Fajr}}
+											{{day.prayerTimes.Fajr.timestring}}
 											<span class="pt-label" ng-class="{ 'pt-label-hide': !calendar.black_and_white }"> F </span> 
 										</div>
 										<div class="pt pt-sunrise" ng-class="{ 'pt-dark': calendar.black_and_white }">
-											{{day.Sunrise}}
+											{{day.prayerTimes.Sunrise.timestring}}
 											<span class="pt-label" ng-class="{ 'pt-label-hide': !calendar.black_and_white }"> S </span> 
 										</div>
 										<div class="pt pt-zuhr" ng-class="{ 'pt-light': calendar.black_and_white }">
-											{{day.Zuhr}}
+											{{day.prayerTimes.Zuhr.timestring}}
 											<span class="pt-label" ng-class="{ 'pt-label-hide': !calendar.black_and_white }"> Z </span> 
 										</div>
 										<div class="pt pt-asr" ng-class="{ 'pt-dark': calendar.black_and_white }">
-											{{day.Asr}}
+											{{day.prayerTimes.Asr.timestring}}
 											<span class="pt-label" ng-class="{ 'pt-label-hide': !calendar.black_and_white }"> A </span> 
 										</div>
 										<div class="pt pt-maghrib" ng-class="{ 'pt-light': calendar.black_and_white }">
-											{{day.Maghrib}}
+											{{day.prayerTimes.Maghrib.timestring}}
 											<span class="pt-label" ng-class="{ 'pt-label-hide': !calendar.black_and_white }"> M </span> 
 										</div>
 										<div class="pt pt-isha" ng-class="{ 'pt-dark': calendar.black_and_white }">
-											{{day.Isha}}
+											{{day.prayerTimes.Isha.timestring}}
 											<span class="pt-label" ng-class="{ 'pt-label-hide': !calendar.black_and_white }"> I </span> 
 										</div>
 									</div>

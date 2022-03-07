@@ -32,12 +32,7 @@ class Day {
 	}
 
 	setPrayerTimes(prayerTimes){
-		this.Fajr = prayerTimes.Fajr
-		this.Sunrise = prayerTimes.Sunrise
-		this.Zuhr = prayerTimes.Zuhr
-		this.Asr = prayerTimes.Asr
-		this.Maghrib = prayerTimes.Maghrib
-		this.Isha = prayerTimes.Isha
+		this.prayerTimes=prayerTimes
 	}
 
 	setHijriData(hijriData){
@@ -180,12 +175,36 @@ class LocationData {
 
 class PrayerTimes {
 	constructor(fajr, sunrise, zuhr, asr, maghrib, isha){
-		this.Fajr = fajr
-		this.Sunrise = sunrise
-		this.Zuhr = zuhr
-		this.Asr = asr
-		this.Maghrib = maghrib
-		this.Isha = isha
+		this.Fajr = new PrayerTime(fajr)
+		this.Sunrise = new PrayerTime(sunrise)
+		this.Zuhr = new PrayerTime(zuhr)
+		this.Asr = new PrayerTime(asr)
+		this.Maghrib = new PrayerTime(maghrib)
+		this.Isha = new PrayerTime(isha)
+	}
+
+	asList(includeSunrise=false){
+		if (includeSunrise){
+			return [this.Fajr, this.Sunrise, this.Zuhr, this.Asr, this.Maghrib, this.Isha]
+		}
+		return [this.Fajr, this.Zuhr, this.Asr, this.Maghrib, this.Isha]
+	}
+}
+
+class PrayerTime {
+	constructor(timeparts){
+		this.HH=timeparts.HH
+		this.MM=timeparts.MM
+		var meridiem = this.HH > 12 ? "PM" : "AM"
+		this.timestring = `${this.HH % 12}:${this.MM} ${meridiem}`
+	}
+	
+}
+
+class TimeParts{
+	constructor(hour, minute){
+		this.HH = hour
+		this.MM = minute
 	}
 }
 
