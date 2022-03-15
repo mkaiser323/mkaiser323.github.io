@@ -3,7 +3,7 @@ var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope, $http, $q) {
 	$scope.nightMode=NIGHT_MODE;
 	$scope.today = new Day(new Date())
-	console.log($scope.today)
+	console.log("today", $scope.today)
 	$scope.quarter = $scope.today.quarter.ordinal
 	$scope.year = $scope.today.year
 	$scope.selectedLocation = wire.savedLocations[0]
@@ -53,5 +53,7 @@ function regenerateCalendar($scope, $http){
 		calendar.black_and_white = BLACK_AND_WHITE_BY_DEFAULT
 		$scope.calendar = calendar
 		$scope.title = calendar.title
+
+		console.log("current prayer time", calendar.getCurrentPrayerTimeInfo())
 	})
 }

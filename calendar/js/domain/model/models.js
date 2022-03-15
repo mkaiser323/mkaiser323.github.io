@@ -33,6 +33,7 @@ class Day {
 
 	setPrayerTimes(prayerTimes){
 		this.prayerTimes=prayerTimes
+		this.prayerTimes.setDate(this.date)
 	}
 
 	setHijriData(hijriData){
@@ -86,6 +87,7 @@ class Week {
 				next = this.startDate//retain the reference
 			}
 			day.next = next
+			next.previous = day
 			day = next
 		} while (day.weekday != 'Sunday');
 		this.nextDay = day;
@@ -123,6 +125,13 @@ class Quarter {
 	}
 }
 
+class CalendarDayCoordinate{
+	constructor(day){
+		this.dayIndex = day.date.getDay()//TODO: confirm that this is 0-6 for Sunday-Monday
+		this.weekIndex = Math.floor((this.dayIndex+day.day-1)/7)//dayIndex+date-1 < 7, 14, 21, 28
+	}
+}
+
 class Calendar{
 	constructor(title, weeks, firstDay, lastDay, locationData) {
     	this.title = title;
@@ -131,13 +140,40 @@ class Calendar{
 		this.lastDay = lastDay
 		this.ext = 'pdf';
 		this.locationData = locationData;
+		this.firstDayCoordinate = new CalendarDayCoordinate(this.firstDay)
   	}
 
   	getFileName(){
   		return this.title + '.' + this.ext
 	}
-	  
-	markDayAsToday(day){//TODO: this will move to iterator
+	
+	getCurrentDay(){
+		var todayCoordinate = new CalendarDayCoordinate(new Day(new Date()))
+		return this.weeks[todayCoordinate.weekIndex].days[todayCoordinate.dayIndex]
+	}
+
+
+	getCurrentPrayerTimeInfo() {
+		var today = this.getCurrentDay()
+		var now = new Date()
+
+		today.prayerTimes.chain(true, today.previous.prayerTimes.Isha, today.next.prayerTimes.Fajr)
+		
+		var currentPrayerTime = today.prayerTimes.getCurrentPrayerTime()
+		currentPrayerTime.next.setDate(currentPrayerTime.next.date)//TODO: addresses bug where time is incorrect
+		return new CurrentPrayerTimeInfo(currentPrayerTime, currentPrayerTime.next, new ElapsedTime(now, currentPrayerTime.next.date))		
+	}
+
+	getNextPrayerTime(includeSunrise=false){
+		var today = this.getCurrentDay()
+		var now = new Date()
+
+		return today.prayerTimes.asList(includeSunrise).forEach().find(function(p){
+			return now < p.asDate()
+		})
+	}
+
+	markDayAsToday(day){
 		this.weeks.forEach(function(w){
 			w.days.forEach(function(d){
 				if (d.equals(day)){
@@ -173,14 +209,35 @@ class LocationData {
 	}
 }
 
+class ElapsedTime {
+	constructor(startDate, endDate){
+		console.log(endDate)
+		console.log(startDate)
+		var diffInMilliSeconds = (endDate - startDate)/1000
+		this.hours = Math.floor(diffInMilliSeconds / 3600) % 24;
+    	diffInMilliSeconds -= this.hours * 3600;
+		this.minutes = Math.floor(diffInMilliSeconds / 60) % 60;
+		diffInMilliSeconds -= this.minutes * 60;
+		this.seconds = Math.floor(diffInMilliSeconds)
+	}
+}
+
+class CurrentPrayerTimeInfo {
+	constructor(current, next, timeTillNext){
+		this.current = current
+		this.next = next
+		this.timeTillNext = timeTillNext
+	}
+}
+
 class PrayerTimes {
 	constructor(fajr, sunrise, zuhr, asr, maghrib, isha){
-		this.Fajr = new PrayerTime(fajr)
-		this.Sunrise = new PrayerTime(sunrise)
-		this.Zuhr = new PrayerTime(zuhr)
-		this.Asr = new PrayerTime(asr)
-		this.Maghrib = new PrayerTime(maghrib)
-		this.Isha = new PrayerTime(isha)
+		this.Fajr = new PrayerTime("Fajr", fajr)
+		this.Sunrise = new PrayerTime("Sunrise", sunrise)
+		this.Zuhr = new PrayerTime("Zuhr", zuhr)
+		this.Asr = new PrayerTime("Asr", asr)
+		this.Maghrib = new PrayerTime("Maghrib", maghrib)
+		this.Isha = new PrayerTime("Isha", isha)
 	}
 
 	asList(includeSunrise=false){
@@ -189,14 +246,98 @@ class PrayerTimes {
 		}
 		return [this.Fajr, this.Zuhr, this.Asr, this.Maghrib, this.Isha]
 	}
+
+	chain(includeSunrise=false, yesterdayIsha=null, tomorrowFajr=null){
+		this.asList(includeSunrise).forEach((item, index, arr) => {
+			if(arr[index + 1]) {
+				this.link(item, arr[index + 1])
+			}
+		})
+
+		if (yesterdayIsha) {
+			this.link(yesterdayIsha, this.Fajr)
+		}
+
+		if(tomorrowFajr) {
+			this.link(this.Isha, tomorrowFajr)
+		}
+	}
+
+	setDate(date) {
+		this.asList(true).forEach((p) => {
+			p.setDate(date)
+		})
+	}
+
+	getCurrentPrayerTime(includeSunrise=false){
+		//TODO: validate correct date
+		//TODO: validate chained with yesterday and today
+		var now = new Date()
+
+		if (this.isBetween(this.Fajr.previous, this.Fajr, now)){
+			console.log(this.Fajr)
+			console.log(now)
+			return this.Fajr
+		}
+
+		if (this.isBetween(this.Isha, this.Isha.next, now)){
+			return this.Isha
+		}
+
+		return this.asList(includeSunrise).find((item, index, arr) => {
+			if(arr[index + 1]) {
+				if (this.isBetween(item, arr[index + 1], now)) {
+					console.log(item)
+					console.log(arr[index + 1])
+					console.log(now)
+					return true
+				}
+			}
+		})
+
+	}
+
+	isBetween(a, b, t){
+		return a.isBefore(t) && b.isAfter(t)
+	}
+
+	link(a, b){
+		a.next = b
+		b.previous = a
+	}
 }
 
 class PrayerTime {
-	constructor(timeparts){
+	constructor(label, timeparts){
+		this.label = label
 		this.HH=timeparts.HH
 		this.MM=timeparts.MM
-		var meridiem = this.HH > 12 ? "PM" : "AM"
-		this.timestring = `${this.HH % 12}:${this.MM} ${meridiem}`
+		this.meridiem = this.HH > 12 ? "PM" : "AM"
+		this.timestring = `${this.HH % 12}:${this.MM} ${this.meridiem}`
+	}
+
+	setDate(date){
+		date.setHours(this.HH)
+		date.setMinutes(this.MM)
+		this.date = date
+	}
+
+	setNext(next) {
+		this.next=next
+	}
+
+	isBefore(date){
+		return this.date < date
+	}//TODO: implement these
+
+	isAfter(date){
+		return date < this.date
+	}
+
+	asDate(date=new Date()){
+		date.setHours(this.HH)
+		date.setMinutes(this.MM)
+		return date
 	}
 	
 }

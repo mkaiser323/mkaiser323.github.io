@@ -20,7 +20,7 @@ class CalendarGenerator {
 	generateCalendarForQuarter(year, quarterOrdinal){
 		var firstDay = getFirstDayOfMonth(year, quarters[quarterOrdinal][0])
 		var lastDay = getLastDayOfMonth(year, quarters[quarterOrdinal][2])
-		return new Calendar("Quarter Calendar", generateWeeks(firstDay, lastDay), {})
+		return new Calendar("Quarter Calendar", generateWeeks(firstDay, lastDay), firstDay, lastDay, {})
 	}
 }
 
@@ -47,6 +47,7 @@ function NewCalendarFromApiResponse(apiResponseDays, locationData, year, month){
 		weeks=wrapSixthWeek(weeks, month)
 	}
 	var title = `${firstDay.month} ${firstDay.year}`
+	console.log("first day", firstDay)
 	return new Calendar(title, weeks, firstDay, lastDay, locationData)
 }
 

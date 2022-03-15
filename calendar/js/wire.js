@@ -31,9 +31,7 @@ function loadSavedLocations() {
 			wire.defaultLocation = locationData
 		}
 		locationData.id=index
-		console.log(locationData)
 		return locationData
 	})
-	console.log(list)
 	return list
 }
