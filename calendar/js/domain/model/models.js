@@ -126,9 +126,10 @@ class Quarter {
 }
 
 class CalendarDayCoordinate{
-	constructor(day){
-		this.dayIndex = day.date.getDay()//TODO: confirm that this is 0-6 for Sunday-Monday
-		this.weekIndex = Math.floor((this.dayIndex+day.day-1)/7)//dayIndex+date-1 < 7, 14, 21, 28
+	constructor(day, firstDayOffset){
+		this.dayIndex = day.date.getDay()
+		let gridSpot = day.day+firstDayOffset
+		this.weekIndex = Math.floor(gridSpot/7)-1
 	}
 }
 
@@ -140,15 +141,26 @@ class Calendar{
 		this.lastDay = lastDay
 		this.ext = 'pdf';
 		this.locationData = locationData;
-		this.firstDayCoordinate = new CalendarDayCoordinate(this.firstDay)
+		this.firstDayCoordinate = new CalendarDayCoordinate(this.firstDay, this.getFirstDayOffset())
   	}
+
+	//number of placeholder days before the 1st of the month
+	getFirstDayOffset(){
+		let offset=0
+		let d = this.weeks[0].days[0]
+		while(d.placeholder){
+			offset++
+			d=d.next
+		}
+		return offset
+	}
 
   	getFileName(){
   		return this.title + '.' + this.ext
 	}
 	
 	getCurrentDay(){
-		var todayCoordinate = new CalendarDayCoordinate(new Day(new Date()))
+		var todayCoordinate = new CalendarDayCoordinate(new Day(new Date()), this.getFirstDayOffset())
 		return this.weeks[todayCoordinate.weekIndex].days[todayCoordinate.dayIndex]
 	}
 
@@ -211,8 +223,6 @@ class LocationData {
 
 class ElapsedTime {
 	constructor(startDate, endDate){
-		console.log(endDate)
-		console.log(startDate)
 		var diffInMilliSeconds = (endDate - startDate)/1000
 		this.hours = Math.floor(diffInMilliSeconds / 3600) % 24;
     	diffInMilliSeconds -= this.hours * 3600;
@@ -270,31 +280,14 @@ class PrayerTimes {
 	}
 
 	getCurrentPrayerTime(includeSunrise=false){
-		//TODO: validate correct date
-		//TODO: validate chained with yesterday and today
 		var now = new Date()
-
-		if (this.isBetween(this.Fajr.previous, this.Fajr, now)){
-			console.log(this.Fajr)
-			console.log(now)
-			return this.Fajr
-		}
-
-		if (this.isBetween(this.Isha, this.Isha.next, now)){
-			return this.Isha
-		}
-
-		return this.asList(includeSunrise).find((item, index, arr) => {
+		return [this.Fajr.previous, this.Fajr, this.Zuhr, this.Asr, this.Maghrib, this.Isha, this.Isha.next].find((item, index, arr) => {
 			if(arr[index + 1]) {
 				if (this.isBetween(item, arr[index + 1], now)) {
-					console.log(item)
-					console.log(arr[index + 1])
-					console.log(now)
 					return true
 				}
 			}
 		})
-
 	}
 
 	isBetween(a, b, t){
@@ -339,7 +332,6 @@ class PrayerTime {
 		date.setMinutes(this.MM)
 		return date
 	}
-	
 }
 
 class TimeParts{

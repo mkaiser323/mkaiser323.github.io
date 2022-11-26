@@ -9,32 +9,57 @@
 
 		<script src="js/domain/model/models.js"></script>
 		<script src="js/domain/usecase/generateCalendar.js"></script>
+		<script src="js/external/locationProviders/locationProviders.js"></script>
 		<script src="js/external/timeProviders/timeProviders.js"></script>
 		<script src="js/external/pdfSaver.js"></script>
 		<script src="js/config.js"></script>
+		<script src="js/wire.js"></script>
 		<script src="js/app.js"></script>
 	</head>
 
 	<body>
 		<div ng-app="myApp" ng-controller="myCtrl">
-			<button ng-click="save()">Save</button>
-			<div id="calendar" class="a4-landscape">
-				<h1> {{title}} </h1>
-				<div class="calendar-body">
-					<div class="weekday-labels cell-width"></div>
-					<div ng-repeat="week in calendar.weeks" class="week">
-						<div ng-repeat="day in week.days" class="cell inline-block" ng-class="{ 'cell-placeholder': day.placeholder }">
-							<div ng-if="!day.placeholder">
-								<div class="date">{{day.day}}</div>
-								<div class="prayer-times">
-									<div class="pt pt-fajr"><span class="pt-label">F</span> {{day.Fajr}}</div>
-									<div class="pt pt-sunrise"><span class="pt-label">S</span> {{day.Sunrise}}</div>
-									<div class="pt pt-zuhr"><span class="pt-label">Z</span> {{day.Zuhr}}</div>
-									<div class="pt pt-asr"><span class="pt-label">A</span> {{day.Asr}}</div>
-									<div class="pt pt-maghrib"><span class="pt-label">M</span> {{day.Maghrib}}</div>
-									<div class="pt pt-isha"><span class="pt-label">I</span> {{day.Isha}}</div>
+			<div class="container">
+				<div class="location-section" ng-repeat="(index, location) in savedLocations">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="location-name">{{location.city}}, {{location.region}}</div>
+						</div>
+						<div class="col-md-12">
+							<div class="current-prayer-time">
+								Next Prayer:
+								{{location.currentPrayerTimeInfo.next.label}} in
+								{{location.currentPrayerTimeInfo.timeTillNext.hours}} Hours, 
+								{{location.currentPrayerTimeInfo.timeTillNext.minutes}} Minutes
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-2">
+									<div class="prayer-times-label">Fajr</div>
+									<div class="prayer-times-time">{{location.prayerTimes.Fajr.timestring}}</div>
 								</div>
-							</div>									
+								<div class="col-md-2">
+									<div class="prayer-times-label">Sunrise</div>
+									<div class="prayer-times-time">{{location.prayerTimes.Sunrise.timestring}}</div>
+								</div>
+								<div class="col-md-2">
+									<div class="prayer-times-label">Zuhr</div>
+									<div class="prayer-times-time">{{location.prayerTimes.Zuhr.timestring}}</div>
+								</div>
+								<div class="col-md-2">
+									<div class="prayer-times-label">Asr</div>
+									<div class="prayer-times-time">{{location.prayerTimes.Asr.timestring}}</div>
+								</div>
+								<div class="col-md-2">
+									<div class="prayer-times-label">Maghrib</div>
+									<div class="prayer-times-time">{{location.prayerTimes.Maghrib.timestring}}</div>
+								</div>
+								<div class="col-md-2">
+									<div class="prayer-times-label">Isha</div>
+									<div class="prayer-times-time">{{location.prayerTimes.Isha.timestring}}</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -44,6 +44,18 @@ function regenerateQuarterCalendar($scope){
 
 function regenerateCalendar($scope, $http){
 	console.log("selectedLocation:", $scope.selectedLocation)
+
+	wire.savedLocations.forEach(function(location, index){
+		wire.calendarGenerator.generateCalendarForMonth($http, $scope.today.monthNum, $scope.today.year, location)
+		.then(function(calendar){
+			console.log(`${location} calendar:`, calendar)
+			location.currentPrayerTimeInfo=calendar.getCurrentPrayerTimeInfo()
+			location.prayerTimes=calendar.getCurrentDay().prayerTimes
+			console.log("location", location)
+		})
+	})
+
+	//month calendar
 	wire.calendarGenerator.generateCalendarForMonth($http, $scope.today.monthNum, $scope.today.year, $scope.selectedLocation)
 	.then(function(calendar){
 		if(MARK_TODAY){
@@ -56,4 +68,6 @@ function regenerateCalendar($scope, $http){
 
 		console.log("current prayer time", calendar.getCurrentPrayerTimeInfo())
 	})
+
+
 }

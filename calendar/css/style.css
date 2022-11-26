@@ -265,3 +265,10 @@ body {
 .text-medium {
 	font-family: 'Ubuntu-Medium';
 }
+
+.location-section {
+	background: #EEEEEE;
+	border-radius: 20px;
+	margin: 20px;
+	padding:20px;
+}
