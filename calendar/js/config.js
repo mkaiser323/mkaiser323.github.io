@@ -30,13 +30,13 @@ const SavedLocations = {
 		CITY: "Morrisville",
 		REGION: "Pennsylvania"
 	},
-	UpperDarby: {
-		IP: "68.80.23.23",
-		LAT: "39.94875654100655",
-		LON: "-75.2588708144357",
+	Bronx: {
+		IP: "TODO",
+		LAT: "40.88141434956781",
+		LON: "-73.90444279257854",
 		CC: "US",
-		CITY: "Upper Darby",
-		REGION: "Pennsylvania"
+		CITY: "Bronx",
+		REGION: "New York"
 	},
 	Lansdale: {
 		IP: "73.81.31.194",
@@ -46,14 +46,6 @@ const SavedLocations = {
 		CITY: "Lansdale",
 		REGION: "Pennsylvania"
 	},
-	Bronx: {
-		IP: "TODO",
-		LAT: "40.88141434956781",
-		LON: "-73.90444279257854",
-		CC: "US",
-		CITY: "Bronx",
-		REGION: "New York"
-	},
 	Danbury: {
 		IP: "TODO",
 		LAT: "41.42976345040008",
@@ -61,6 +53,14 @@ const SavedLocations = {
 		CC: "US",
 		CITY: "Danbury",
 		REGION: "Connecticut"
+	},	
+	UpperDarby: {
+		IP: "68.80.23.23",
+		LAT: "39.94875654100655",
+		LON: "-75.2588708144357",
+		CC: "US",
+		CITY: "Upper Darby",
+		REGION: "Pennsylvania"
 	}
 }
 
