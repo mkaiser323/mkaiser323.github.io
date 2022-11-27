@@ -283,7 +283,7 @@ class PrayerTimes {
 		var now = new Date()
 		return [this.Fajr.previous, this.Fajr, this.Zuhr, this.Asr, this.Maghrib, this.Isha, this.Isha.next].find((item, index, arr) => {
 			if(arr[index + 1]) {
-				if (this.isBetween(item, arr[index + 1], now)) {
+				if (item.isBefore(now) && item.next.isAfter(now)) {
 					return true
 				}
 			}
@@ -310,9 +310,9 @@ class PrayerTime {
 	}
 
 	setDate(date){
-		date.setHours(this.HH)
-		date.setMinutes(this.MM)
-		this.date = date
+		this.date = new Date(date.getTime());
+		this.date.setHours(this.HH)
+		this.date.setMinutes(this.MM)
 	}
 
 	setNext(next) {
